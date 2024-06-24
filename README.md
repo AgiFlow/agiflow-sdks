@@ -1,8 +1,8 @@
 # AGIFlow SDKs Mono-Repo
 
-![Discord Shield](https://discord.com/api/guilds/1254667011884187718/widget.png?style=shield)
+![Discord Shield](https://discord.com/api/guilds/1254667011884187718/widget.png?style=shield) [Join Us On Discord](https://discord.gg/KCMyce2J) or [Subscribe to our Newsletter](https://mailchi.mp/agiflow/agiflow-sub)
 
-Welcome to the AGIFlow SDKs mono-repo! This repository serves as a centralized location for all the Software Development Kits (SDKs) developed by AGIFlow. Whether you're building applications, integrating with our services, or exploring our technology, this mono-repo provides you with the necessary tools and resources.
+Welcome to the [AGIFlow](https://agiflow.io) SDKs mono-repo! This repository serves as a centralized location for all the Software Development Kits (SDKs) developed by AGIFlow. Whether you're building applications, integrating with our services, or exploring our technology, this mono-repo provides you with the necessary tools and resources.
 
 ## Purpose
 
@@ -22,6 +22,7 @@ This mono-repo encompasses a wide range of SDKs designed to meet various develop
 We're making sources available on rolling basic. For comprehensive documentations, please visit [AGIFLow's docs](https://docs.agiflow.io).
 - [x] llm-mocks: Mocking library for LLM providers
 - [ ] agiflow-sdk: Agiflow python SDK for observability and tracing
+- [ ] agiflow-eval: Agiflow python SDK for LLM Evaluations
 - [ ] @agiflow/js-sdk: Agiflow web sdk for analytics
 - [ ] @agiflow/web-feedback: Agiflow web sdk to get user feedback
 - [ ] dockers: Docker compose to run and self-host Agiflow
