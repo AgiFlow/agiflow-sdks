@@ -8,13 +8,13 @@ show_missing = true
 
 [tool.poetry]
 name = "llm-mocks"
-version = "0.0.1"
+version = "0.0.2"
 description = "Mock LLMs' responses for unit-tests"
 authors = [
   "Vuong Ngo <vuongngo.pd@gmail.com>"
 ]
 repository = "https://github.com/AgiFlow/agiflow-sdks"
-documentation = "https://docs.agiflow.io/python_llm_mocks"
+documentation = "https://docs.agiflow.io/llm-mocks"
 license = "MIT"
 readme = "README.md"
 
