@@ -1,0 +1,208 @@
+[
+  {
+    "message": {
+      "id": "msg_013VSqK3DXtpNUp1TKeUR2rQ",
+      "content": [],
+      "model": "claude-3-sonnet-20240229",
+      "role": "assistant",
+      "type": "message",
+      "usage": {
+        "input_tokens": 12,
+        "output_tokens": 1
+      }
+    },
+    "type": "message_start"
+  },
+  {
+    "content_block": {
+      "text": "",
+      "type": "text"
+    },
+    "index": 0,
+    "type": "content_block_start"
+  },
+  {
+    "delta": {
+      "text": "Hi",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " there! As",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " an AI",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " language",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " model, I don",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": "'t have personal",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " feelings",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " or a physical state",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": ",",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " but",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " I'm",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " functioning",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " properly",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " and ready",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " to assist you",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " with",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " any questions or tasks",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " you might",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " have. How can",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": " I help you today",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "delta": {
+      "text": "?",
+      "type": "text_delta"
+    },
+    "index": 0,
+    "type": "content_block_delta"
+  },
+  {
+    "index": 0,
+    "type": "content_block_stop"
+  },
+  {
+    "delta": {
+      "stop_reason": "end_turn"
+    },
+    "type": "message_delta",
+    "usage": {
+      "output_tokens": 49
+    }
+  },
+  {
+    "type": "message_stop"
+  }
+]

@@ -1,0 +1,86 @@
+{
+  "name": "llm-mocks",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/python/llm-mocks",
+  "targets": {
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "packages/python/llm-mocks"
+      }
+    },
+    "release": {
+      "executor": "@nxlv/python:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "poetry publish",
+        "cwd": "packages/python/llm-mocks"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "outputPath": "packages/python/llm-mocks/dist",
+        "publish": false,
+        "lockedVersions": false,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": [
+        "{workspaceRoot}/reports/packages/python/llm-mocks/pylint.txt"
+      ],
+      "options": {
+        "outputFile": "reports/packages/python/llm-mocks/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/packages/python/llm-mocks/unittests",
+        "{workspaceRoot}/coverage/packages/python/llm-mocks"
+      ],
+      "options": {
+        "command": "poetry run pytest --disable-vcr -s tests/",
+        "cwd": "packages/python/llm-mocks"
+      }
+    },
+    "build-release": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "commands": [
+          "chmod +x ../../scripts/build-release.sh",
+          "../../scripts/build-release.sh"
+        ],
+        "cwd": "packages/python/llm-mocks"
+      }
+    }
+  },
+  "tags": ["llm-mocks"]
+}

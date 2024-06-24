@@ -1,0 +1,17 @@
+{
+  "id": "msg_01B5gM1fR9SgAG6bdA59ZC73",
+  "content": [
+    {
+      "text": "I'm doing well, thanks for asking! I'm Claude, an AI assistant created by Anthropic.",
+      "type": "text"
+    }
+  ],
+  "model": "claude-3-sonnet-20240229",
+  "role": "assistant",
+  "stop_reason": "end_turn",
+  "type": "message",
+  "usage": {
+    "input_tokens": 12,
+    "output_tokens": 25
+  }
+}

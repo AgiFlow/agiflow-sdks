@@ -1,0 +1,10 @@
+node_modules
+dist
+build
+out
+backend/apis/guardrails-api
+.nx
+*.py
+routeTree.gen.ts
+src/openapi.ts
+/artifacts

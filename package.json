@@ -1,0 +1,50 @@
+{
+  "name": "@agiflowai/source",
+  "version": "0.0.0",
+  "scripts": {
+    "prepare": "husky",
+    "dev": "pnpm -r --if-present dev:local",
+    "postinstall": "nx run-many -t install",
+    "cz": "cz"
+  },
+  "private": true,
+  "dependencies": {
+    "tslib": "2.6.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.3.0",
+    "@commitlint/config-conventional": "19.2.2",
+    "@commitlint/config-nx-scopes": "19.3.1",
+    "@commitlint/cz-commitlint": "19.2.0",
+    "@nx/devkit": "19.3.0",
+    "@nx/eslint": "19.3.0",
+    "@nx/eslint-plugin": "19.3.0",
+    "@nx/jest": "19.3.0",
+    "@nx/js": "19.3.0",
+    "@nx/playwright": "19.3.0",
+    "@nx/workspace": "19.3.0",
+    "@nxlv/python": "18.1.0",
+    "@rushstack/eslint-config": "3.7.0",
+    "@trivago/prettier-plugin-sort-imports": "4.3.0",
+    "@types/node": "20.11.20",
+    "commitizen": "4.3.0",
+    "husky": "9.0.11",
+    "inquirer": "8",
+    "lint-staged": "15.2.7",
+    "nx": "19.3.0",
+    "prettier": "3.3.2",
+    "typescript": "5.4.5"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "inquirer": ">=8"
+      }
+    }
+  }
+}
