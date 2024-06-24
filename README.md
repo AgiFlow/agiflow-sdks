@@ -1,5 +1,7 @@
 # AGIFlow SDKs Mono-Repo
 
+![Discord Shield](https://discord.com/api/guilds/1254667011884187718/widget.png?style=shield)
+
 Welcome to the AGIFlow SDKs mono-repo! This repository serves as a centralized location for all the Software Development Kits (SDKs) developed by AGIFlow. Whether you're building applications, integrating with our services, or exploring our technology, this mono-repo provides you with the necessary tools and resources.
 
 ## Purpose
@@ -15,11 +17,18 @@ This mono-repo encompasses a wide range of SDKs designed to meet various develop
 - **Examples**: Sample code and projects demonstrating how to use the SDKs effectively.
 - **Documentation**: Detailed documentation to guide users through installation, configuration, and usage.
 
+### Rolling release
+
 We're making sources available on rolling basic. For comprehensive documentations, please visit [AGIFLow's docs](https://docs.agiflow.io).
+- [x] llm-mocks: Mocking library for LLM providers
+- [ ] agiflow-sdk: Agiflow python SDK for observability and tracing
+- [ ] @agiflow/js-sdk: Agiflow web sdk for analytics
+- [ ] @agiflow/web-feedback: Agiflow web sdk to get user feedback
+- [ ] dockers: Docker compose to run and self-host Agiflow
 
 ## Getting Started
 
-To get started with any of the SDKs, navigate to the respective subdirectory and follow the instructions provided in the README file within that directory. Here’s a quick guide to help you:
+This repo use `NX` for task manager and `Pnpm` + `Poetry` for package manager. Simply clone the repo and run `pnpm install` to install all dependencies.  
 
 1. **Clone the Repository**:
    ```bash
@@ -27,9 +36,9 @@ To get started with any of the SDKs, navigate to the respective subdirectory and
    cd AGIFlow-SDKs
    ```
 
-2. **Navigate to the Desired SDK**:
+2. **Install dependencies**:
    ```bash
-   cd path/to/sdk
+   pnpm install
    ```
 
 3. **Follow the Instructions**: Each SDK has its own set of instructions for installation and usage. Refer to the README file within the SDK’s directory.
@@ -53,5 +62,7 @@ This repository is a mono-repo that contains various packages, modules, and appl
 ## Support
 
 If you have any questions or need support, please open an issue in this repository or contact our support team at vuong@agiflow.com.
+
+To stay updated, get support, and engage with fellow developers, join our [Discord community](https://discord.gg/KCMyce2J). Click the link below to connect with us and be part of the conversation!
 
 Thank you for using AGIFlow SDKs! We look forward to seeing the amazing things you build.
