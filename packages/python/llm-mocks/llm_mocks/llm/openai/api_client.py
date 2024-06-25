@@ -24,8 +24,8 @@ class MockOpenAIClient(MockAPIClient):
         **kwargs
     ):
         super().__init__(self, *args, **kwargs)
-        self.chat_completion_factory = ChatCompletionFactory(faker=self.faker)
-        self.images_response_factory = ImagesResponseFactory(faker=self.faker)
+        self.chat_completion_factory = ChatCompletionFactory(faker=self.faker, selector=self.selector)
+        self.images_response_factory = ImagesResponseFactory(faker=self.faker, selector=self.selector)
 
     def is_stream(self, kwargs):
         return kwargs.get('stream') is True

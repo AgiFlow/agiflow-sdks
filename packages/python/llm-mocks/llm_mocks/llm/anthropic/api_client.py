@@ -23,7 +23,7 @@ class MockAnthropicAPIClient(MockAPIClient):
         **kwargs
     ):
         super().__init__(self, *args, **kwargs)
-        self.chat_completion_factory = MessageFactory(faker=self.faker)
+        self.chat_completion_factory = MessageFactory(faker=self.faker, selector=self.selector)
 
     def is_stream(self, kwargs):
         return kwargs.get('body', {}).get('stream') is True

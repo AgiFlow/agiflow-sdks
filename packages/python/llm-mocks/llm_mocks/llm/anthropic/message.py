@@ -22,7 +22,7 @@ class AnthropicMessageFactory(DataFactory):
         return {}
 
     def get_stream(self, override=None):
-        data = AnthropicMessageFactory.stream_data
+        data = self.selector.get_data(self.stream_data)
         if self.faker:
             model = self.faker.random_choices(ANTHROPIC_MODELS)
             role = self.faker.random_choices(LLM_ROLES)
@@ -68,7 +68,7 @@ class AnthropicMessageFactory(DataFactory):
         return self.get_object_data(data, override=override)
 
     def get(self, override=None):
-        data = AnthropicMessageFactory.data
+        data = self.selector.get_data(self.data)
         if self.faker:
             data = {
                 "id": self.faker.uuid4(),

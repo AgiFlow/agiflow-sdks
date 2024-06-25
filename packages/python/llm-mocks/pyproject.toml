@@ -8,7 +8,7 @@ show_missing = true
 
 [tool.poetry]
 name = "llm-mocks"
-version = "0.0.2"
+version = "0.0.4"
 description = "Mock LLMs' responses for unit-tests"
 authors = [
   "Vuong Ngo <vuongngo.pd@gmail.com>"

@@ -25,7 +25,7 @@ class OpenAIChatCompletionFactory(DataFactory):
         return {}
 
     def get_stream(self, override=None):
-        data = OpenAIChatCompletionFactory.stream_data
+        data = self.selector.get_data(self.stream_data)
         if self.faker:
             model = self.faker.random_choices(OPEN_AI_CHAT_MODELS)
             obj = "chat.completion.chunk"
@@ -73,7 +73,7 @@ class OpenAIChatCompletionFactory(DataFactory):
         return self.get_object_data(data, override=override)
 
     def get(self, override=None):
-        data = OpenAIChatCompletionFactory.data
+        data = self.selector.get_data(self.data)
         if self.faker:
             data = {
                 "id": self.faker.uuid4(),

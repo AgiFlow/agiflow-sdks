@@ -1,4 +1,5 @@
 import json
+from typing import Any
 
 
 def clean_empty(d):
@@ -28,38 +29,27 @@ def non_serialize(value):
     return f"<<non-serializable: {type(value).__qualname__}>>"
 
 
-def write_to_json(value, *args, **kwargs):
+def serialise_to_json(value, **kwargs) -> str:
     cleaned_object = clean_empty(value)
     try:
-        return json.dump(cleaned_object, *args, **kwargs)
+        return json.dumps(cleaned_object, **kwargs)
     except Exception as e:
         print(e)
         try:
-            return json.dump(cleaned_object, *args, default=custom_serializer, **kwargs)
+            return json.dumps(cleaned_object, default=custom_serializer, **kwargs)
         except Exception as e:
             print(e)
             try:
-                return json.dump(cleaned_object, *args, default=non_serialize, **kwargs)
+                return json.dumps(cleaned_object, default=non_serialize, **kwargs)
             except Exception as e:
                 print(e)
                 return value
 
 
-def serialise_to_json(value) -> str:
-    cleaned_object = clean_empty(value)
-    try:
-        return json.dumps(cleaned_object)
-    except Exception as e:
-        print(e)
-        try:
-            return json.dumps(cleaned_object, default=custom_serializer)
-        except Exception as e:
-            print(e)
-            try:
-                return json.dumps(cleaned_object, default=non_serialize)
-            except Exception as e:
-                print(e)
-                return value
+def write_to_json(result: Any, file: str):
+    json = serialise_to_json(result, ensure_ascii=False, indent=4)
+    with open(file, 'w') as f:
+        f.write(json)
 
 
 __all__ = [

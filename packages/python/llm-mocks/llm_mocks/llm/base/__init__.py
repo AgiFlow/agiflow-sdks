@@ -1,10 +1,13 @@
 from logging import Logger
-from typing import Any, Optional
+from typing import Any, Optional, List
 from munch import Munch
 from faker import Faker
 from llm_mocks.utils import serialise_to_json, write_to_json
+from abc import ABC
 import json
 import os
+from datetime import datetime
+from multiprocessing.pool import ThreadPool
 
 LLM_ROLES = {
   "assistant": "assistant",
@@ -12,10 +15,54 @@ LLM_ROLES = {
 }
 
 
+class AbstracSelectorStrategy(ABC):
+    """
+    Control how data is selected from factory for the model response
+    """
+    def get_data(self, list: Any):
+        pass
+
+
+class StaticSelectorStrategy(AbstracSelectorStrategy):
+    """
+    Alway return the first item from data list as model response
+    """
+    def __init__(self):
+        self.position = 0
+
+    def get_data(self, list: List[Any]):
+        return list[self.position]
+
+
+class RecycleSelectorStrategy(AbstracSelectorStrategy):
+    """
+    Alway return the first item from data list as model response
+    """
+    def __init__(self):
+        self.position = 0
+
+    def get_data(self, list: List[Any]):
+        item = list[self.position]
+        if item is not None:
+            self.position += 1
+            return item
+        else:
+            self.positon = 0
+            return list[self.position]
+
+
 class DataFactory(object):
-    def __init__(self, faker: Optional[Faker] = None, random=False):
+    """
+    Generate data from file or randomise with faker.
+    Extend this class to generate correct data per model.
+    """
+    data: Any
+    stream_data: Any
+
+    def __init__(self, faker: Optional[Faker] = None, random=False, selector=AbstracSelectorStrategy):
         self.faker = faker
         self.random = random
+        self.selector = selector
 
     def get_object_data(self, data, override=None):
         if override:
@@ -30,22 +77,34 @@ class DataFactory(object):
         return data
 
     def get_stream(self, override=None):
+        """
+        Return a single item from stream_data
+        """
         pass
 
     def get(self, override=None):
+        """
+        Return a single item from data
+        """
         pass
 
 
 class MockAPIClient():
+    """
+    Mock APIClient method or wrap it to record response.
+    """
     def __init__(
         self,
         *args,
         faker: Optional[Faker] = None,
+        SelectorStrategy: Optional[AbstracSelectorStrategy] = StaticSelectorStrategy,
         debug=False,
         **kwargs
     ):
         self.faker = faker
         self.debug = debug
+        self.pool = ThreadPool(10)
+        self.selector = SelectorStrategy()
 
     def log_function_call(self, logger: Logger, args, kwargs):
         if self.debug:
@@ -59,7 +118,8 @@ class MockAPIClient():
         if path is not None:
             if not os.path.exists(path):
                 os.makedirs(path)
-            file = os.path.join(path, f"{module_name}{'Stream' if is_stream else ''}.json")
+            now = datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:-3]
+            file = os.path.join(path, f"{module_name}{'Stream' if is_stream else ''}_{now}.json")
             return file
 
     def record_stream_output(self, result, file):
@@ -82,13 +142,15 @@ class MockAPIClient():
 
     def record_output(self, result: Any, file: Optional[str]):
         if file is not None:
-            with open(file, 'w') as f:
-                write_to_json(result, f, ensure_ascii=False, indent=4)
+            self.pool.apply_async(write_to_json, (result, file))
         else:
             print(serialise_to_json(result))
 
 
 __all__ = [
-  'DataFactory',
-  'MockAPIClient',
+    'DataFactory',
+    'MockAPIClient',
+    'StaticSelectorStrategy',
+    'AbstracSelectorStrategy',
+    'RecycleSelectorStrategy'
 ]

@@ -1,5 +1,20 @@
 # Changelog for llm-mocks
 
+## [0.0.4] - 2024-06-25
+
+**Fixed**
+- Fix data select from instance instead of from class
+
+**Added**
+- Add Litellm mock
+- Add `RecycleSelectorStrategy` to select data incrementally from list
+
+## [0.0.3] - 2024-06-25
+
+**Breaking Change**
+- Change mock data format to a list of data points to support chained API calls.  
+- Add dependency injection from `SelectStrategy` class to `MockAPIClient` so you can decide which data point is return from data list when testing.  
+
 ## [0.0.2] - 2024-06-24
 
 **Fixed**

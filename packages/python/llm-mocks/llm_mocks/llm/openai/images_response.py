@@ -12,7 +12,7 @@ class OpenAIImagesResponseFactory(DataFactory):
     data = DataFactory.load_default_data(__file__, MODULE_NAME)
 
     def get(self, override=None):
-        data = OpenAIImagesResponseFactory.data
+        data = self.selector.get_data(self.data)
         if self.faker:
             data = {
                 "data": [

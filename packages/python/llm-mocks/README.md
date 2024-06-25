@@ -57,14 +57,14 @@ If you would like the `mock client` to return specific response, you can overrid
 from llm_mocks import MockOpenAISyncAPIClient, OpenAIChatCompletionFactory
 
 class MyChatCompletionFactory(OpenAIChatCompletionFactory):
-    data = {...} # Your mock data
-    stream_data = {...}
+    data = [...] # Your mock data
+    stream_data = [...]
 
 mock_client = MockOpenAISyncAPIClient(ChatCompletionFactory=MyChatCompletionFactory)
 ...
 ```
 
-For more realistic testing, you can run unit test one-round with real API and capture the output using `llm-mocks`. Then using the `captured response` as mock data for the following runs to save LLM costs. This can be easily achieved using following strategy:  
+For more realistic testing, you can run unit test with real API and capture the output using `llm-mocks`. Then using the `captured response` as mock data for the following runs to save LLM costs. This can be easily achieved using following strategy:  
 
 1. Capture the response from real API  
 NOTE: You would need to turn the mocking off for recording.  
@@ -77,8 +77,11 @@ path = os.path.join(os.path.dirname(__file__), 'data')
 MockOpenAISyncAPIClient().record(path)
 ```
 
+2. This will record API response and save to json files in `data` directory. Each response will be in `json` file with corresponding timestamp.  
 
-2. This will record API response and save to json files in `data` directory. After recording, you can load saved data to `DataFactory` classes for testing:
+3. Choose the response you like for mocking and put them together in a new json file with list format. After that, you can load saved data to `DataFactory` classes for testing:
+
+NOTE: If you have multiple items in the data list, you can write your own selector strategy by extending `AbstracSelectorStrategy`, and inject your Selector class to mock client. By default, the mock client only use the first data point from mock data.  
 
 ``` python
 ...
