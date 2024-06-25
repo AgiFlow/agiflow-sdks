@@ -1,0 +1,86 @@
+{
+  "name": "agiflow-eval",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/python/agiflow-eval",
+  "targets": {
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "packages/python/agiflow-eval"
+      }
+    },
+    "release": {
+      "executor": "@nxlv/python:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "poetry publish",
+        "cwd": "packages/python/agiflow-eval"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "outputPath": "packages/python/agiflow-eval/dist",
+        "publish": false,
+        "lockedVersions": false,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": [
+        "{workspaceRoot}/reports/packages/python/agiflow-eval/pylint.txt"
+      ],
+      "options": {
+        "outputFile": "reports/packages/python/agiflow-eval/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/packages/python/agiflow-eval/unittests",
+        "{workspaceRoot}/coverage/packages/python/agiflow-eval"
+      ],
+      "options": {
+        "command": "poetry run pytest --disable-vcr -s tests/",
+        "cwd": "packages/python/agiflow-eval"
+      }
+    },
+    "build-release": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "commands": [
+          "chmod +x ../../scripts/build-release.sh",
+          "../../scripts/build-release.sh"
+        ],
+        "cwd": "packages/python/agiflow-eval"
+      }
+    }
+  },
+  "tags": ["eval"]
+}

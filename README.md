@@ -22,7 +22,7 @@ This mono-repo encompasses a wide range of SDKs designed to meet various develop
 We're making sources available on rolling basic. For comprehensive documentations, please visit [AGIFLow's docs](https://docs.agiflow.io).
 - [x] llm-mocks: Mocking library for LLM providers
 - [ ] agiflow-sdk: Agiflow python SDK for observability and tracing
-- [ ] agiflow-eval: Agiflow python SDK for LLM Evaluations
+- [x] agiflow-eval: Agiflow python SDK for LLM Evaluations
 - [ ] @agiflow/js-sdk: Agiflow web sdk for analytics
 - [ ] @agiflow/web-feedback: Agiflow web sdk to get user feedback
 - [ ] dockers: Docker compose to run and self-host Agiflow
