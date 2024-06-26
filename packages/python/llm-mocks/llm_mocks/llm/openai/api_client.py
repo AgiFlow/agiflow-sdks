@@ -44,7 +44,7 @@ class MockOpenAIClient(MockAPIClient):
 
     def patch(self, patch: Callable):
         """
-        Substitue original method with new mock implementation
+        Substitute original method with new mock implementation
         """
         patch(self._request_path, self._request)
 
