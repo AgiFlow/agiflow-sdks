@@ -1,43 +1,43 @@
-# AGIFlow SDKs Mono-Repo
+# 🚀 AGIFlow SDKs: Production AI Ready
 
-![Discord Shield](https://discord.com/api/guilds/1254667011884187718/widget.png?style=shield) [Join Us On Discord](https://discord.gg/KCMyce2J) or [Subscribe to our Newsletter](https://mailchi.mp/agiflow/agiflow-sub)
+![Discord Shield](https://discord.com/api/guilds/1254667011884187718/widget.png?style=shield) 
 
-Welcome to the [AGIFlow](https://agiflow.io) SDKs mono-repo! This repository serves as a centralized location for all the Software Development Kits (SDKs) developed by AGIFlow. Whether you're building applications, integrating with our services, or exploring our technology, this mono-repo provides you with the necessary tools and resources.
+Welcome to the AGIFlow SDKs mono-repo! This centralized hub contains all the Software Development Kits (SDKs) developed by AGIFlow, designed to streamline your development process and prepare your applications for user-facing release.
 
-## Purpose
+## 🌟 What's Inside?
 
-The primary purpose of this repository is to facilitate the development and integration of AGIFlow's services by providing comprehensive SDKs for LLM Observability, testing and user feedbacks. This repository is structured to accommodate multiple SDKs, each tailored to different platforms, languages, and use cases.
+This mono-repo includes various libraries and packages such as:
 
-## Scope
+- 🔍 **LLM Ops**: Effective monitoring, deployment, and management of machine learning models to ensure optimal performance and reliability.
+- 🧪 **Testing Tools**: Validate the performance, accuracy, and robustness of your language models, ensuring they function correctly and reliably in various scenarios.
+- 📣 **User In-the-loop Feedback**: Gather quantitative and qualitative user feedback to enhance your AI through fine-tuning and prompt benchmarking.
 
-This mono-repo encompasses a wide range of SDKs designed to meet various development needs. Each SDK is organized into its respective subdirectory and may include:
+## 💡 Why AGIFlow SDKs?
 
-- **API Clients**: Simplified interfaces to interact with AGIFlow's APIs.
-- **Utilities**: Helper functions and utilities to streamline common tasks.
-- **Examples**: Sample code and projects demonstrating how to use the SDKs effectively.
-- **Documentation**: Detailed documentation to guide users through installation, configuration, and usage.
+Our mono-repo is designed with the goal of building robust and scalable AI products. Here is an overview of our packages:
 
-### Rolling release
+- [x] **[llm-mocks](https://docs.agiflow.io/llm-mocks)**: Mocking library for LLM providers, simplifying TDD, reducing CI/CD costs on regression testing, and facilitating API development.
+- [x] **[agiflow-eval](https://docs.agiflow.io/python-agiflow-eval)**: Python SDK for LLM evaluations, supporting custom templates and multiple models.
+- [ ] **[agiflow-sdk](https://docs.agiflow.io/python)**: Python SDK built on top of Open-Telemetry to collect LLM metrics, supporting prompt and model registry synchronization for multiple LLM usages.
+- [ ] **[@agiflow/js-sdk](https://docs.agiflow.io/web)**: Web SDK for frontend analytics on how users interact with LLM apps, allowing full-stack traceability.
+- [ ] **[@agiflow/web-feedback](https://docs.agiflow.io/web/feedback)**: Feedback widget with session replay and workflow visualization to get high-quality feedback from simple chat apps to complex agentic workflows.
+- [ ] **dockers**: Docker compose to run and self-host AGIFlow.
 
-We're making sources available on rolling basic. For comprehensive documentations, please visit [AGIFLow's docs](https://docs.agiflow.io).
-- [x] llm-mocks: Mocking library for LLM providers
-- [ ] agiflow-sdk: Agiflow python SDK for observability and tracing
-- [x] agiflow-eval: Agiflow python SDK for LLM Evaluations
-- [ ] @agiflow/js-sdk: Agiflow web sdk for analytics
-- [ ] @agiflow/web-feedback: Agiflow web sdk to get user feedback
-- [ ] dockers: Docker compose to run and self-host Agiflow
+We're making sources available on a rolling basis. For comprehensive documentation, please visit [AGIFlow's docs](https://docs.agiflow.io).
+
+[🚀 Join Us On Discord](https://discord.gg/KCMyce2J) | [📬 Subscribe to our Newsletter](https://mailchi.mp/agiflow/agiflow-sub)
 
 ## Getting Started
 
-This repo use `NX` for task manager and `Pnpm` + `Poetry` for package manager. Simply clone the repo and run `pnpm install` to install all dependencies.  
+This repo uses `NX` for task management and `Pnpm` + `Poetry` for package management. To get started, simply clone the repo and run `pnpm install` to install all dependencies.
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/AGIFlow-SDKs.git
-   cd AGIFlow-SDKs
+   git clone https://github.com/AgiFlow/agiflow-sdks.git
+   cd agiflow-sdks
    ```
 
-2. **Install dependencies**:
+2. **Install Dependencies**:
    ```bash
    pnpm install
    ```
@@ -46,15 +46,7 @@ This repo use `NX` for task manager and `Pnpm` + `Poetry` for package manager. S
 
 ## Contribution
 
-We welcome contributions from the community! If you would like to contribute, please follow these steps:
-
-1. **Fork the Repository**: Create your own fork of the repository.
-2. **Create a Branch**: Create a new branch for your feature or bugfix.
-   ```bash
-   git checkout -b feature-name
-   ```
-3. **Make Changes**: Implement your changes and commit them with descriptive messages.
-4. **Open a Pull Request**: Submit a pull request to the main repository with a detailed description of your changes.
+We welcome contributions from the community! If you would like to contribute, please follow [this guide](./Contribution.md).
 
 ## License
 
