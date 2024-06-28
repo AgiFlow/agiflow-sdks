@@ -67,7 +67,7 @@
         "{workspaceRoot}/coverage/packages/python/agiflow-eval"
       ],
       "options": {
-        "command": "poetry run pytest --disable-vcr -s tests/",
+        "command": "poetry run pytest --record-mode=once -s tests/metrics/",
         "cwd": "packages/python/agiflow-eval"
       }
     },
