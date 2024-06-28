@@ -1,0 +1,414 @@
+interactions:
+- request:
+    body: '{"messages": [{"content": "Based on the input and context, please generate
+      a JSON object to indicate whether the context is relevant to the provided input.
+      The JSON will have 1 mandatory field: ''verdict'', and 1 optional field: ''reason''.\nThe
+      ''verdict'' key should STRICTLY be either ''yes'' or ''no'', and states whether
+      the context is relevant to the input.\nProvide a ''reason'' ONLY IF verdict
+      is no. You MUST quote the irrelevant parts of the context to back up your reason.\n\n**\nIMPORTANT:
+      Please make sure to only return in JSON format.\nExample Context: \"Einstein
+      won the Nobel Prize for his discovery of the photoelectric effect. He won the
+      Nobel Prize in 1968. There was a cat.\"\nExample Input: \"When what was some
+      of Einstein''s achievements?\"\n\nExample:\n{{\n    \"verdict\": \"no\",\n    \"sentence\":
+      \"Although the context contains information about Einstein winning the Nobel
+      Prize, it irrelevantly includes ''There was a cat'' when it has nothing to do
+      with Einstein''s achievements.\"\n}}\n**\n\nInput:\nWhich country is largest
+      in size?\n\nContext:\nAustralia\n\nJSON:", "role": "user"}], "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1121'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=duGmF8AMsqsgKzU.umpoM13jV.r6VZlQXAjfp7OHt68-1719551548-1.0.1.1-l5YXa1LEgDMwQ0VNCx52wdpNCOZOwDKe2WfLPcaC1eJkZWRWZuYpk48dvXpojCrjkdkMRmFSFuq1fYKW7hihDg;
+        _cfuvid=5df3DSFPCY5JaE4ymtFJXCCMX70cNcy8Tdgnuw3U1sA-1719551548267-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1SRT2vbQBDF7/oUw1xysYJkRzbWLQRKKaW4NFBoVayNNJY2Xe2ou6MkjvF3Lyv5
+        T3vZw/zmPd68PUQAqGvMAatWSdX1Jl7T/uHb5scDf8geN382H79k/Onr9/uM3z+nLzgLCn56pkrO
+        qtuKu96QaLYTrhwpoeCartJ1lqVZthxBxzWZIGt6ie84nifzuzjJ4nRxErasK/KYw88IAOAwviGi
+        rekNc0hm50lH3quGML8sAaBjEyaovNdelBWcXWHFVsiOqcuyfPZsC3sobGAFvpCrdSUF5lCg5QJn
+        Z+JIhdURPLYEo82bAFuzh45sONvDzf3gxSmj1Q28aml5EFB17ch7bRt4bXXVQsWDFbcH7UFaAqNc
+        Q15AW/D6nW4LLOyxsGVZ4in18XKu4aZ3/BSqsYMxl/lOW+3b7RQynOaF+0l+jAB+jbUO/zWFveOu
+        l63wb7LBcL5YTn54/cgrvUBhUeYf1WoenRKi33uhbrvTtiHXOz21vOu3dbZaLpLVbp1gdIz+AgAA
+        //8DAM/VE71uAgAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab2ec938aaab0b-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:12:36 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '477'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '498'
+      x-ratelimit-remaining-tokens:
+      - '29470'
+      x-ratelimit-reset-requests:
+      - 208ms
+      x-ratelimit-reset-tokens:
+      - 1.058s
+      x-request-id:
+      - req_9d7844049cca54f4f0de35226faad69b
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Based on the input and context, please generate
+      a JSON object to indicate whether the context is relevant to the provided input.
+      The JSON will have 1 mandatory field: ''verdict'', and 1 optional field: ''reason''.\nThe
+      ''verdict'' key should STRICTLY be either ''yes'' or ''no'', and states whether
+      the context is relevant to the input.\nProvide a ''reason'' ONLY IF verdict
+      is no. You MUST quote the irrelevant parts of the context to back up your reason.\n\n**\nIMPORTANT:
+      Please make sure to only return in JSON format.\nExample Context: \"Einstein
+      won the Nobel Prize for his discovery of the photoelectric effect. He won the
+      Nobel Prize in 1968. There was a cat.\"\nExample Input: \"When what was some
+      of Einstein''s achievements?\"\n\nExample:\n{{\n    \"verdict\": \"no\",\n    \"sentence\":
+      \"Although the context contains information about Einstein winning the Nobel
+      Prize, it irrelevantly includes ''There was a cat'' when it has nothing to do
+      with Einstein''s achievements.\"\n}}\n**\n\nInput:\nWhich country is largest
+      in size?\n\nContext:\nUS\n\nJSON:", "role": "user"}], "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1114'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=duGmF8AMsqsgKzU.umpoM13jV.r6VZlQXAjfp7OHt68-1719551548-1.0.1.1-l5YXa1LEgDMwQ0VNCx52wdpNCOZOwDKe2WfLPcaC1eJkZWRWZuYpk48dvXpojCrjkdkMRmFSFuq1fYKW7hihDg;
+        _cfuvid=5df3DSFPCY5JaE4ymtFJXCCMX70cNcy8Tdgnuw3U1sA-1719551548267-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1SRT4+bMBDF73yKkS97CSsIS1C4Vmp7aVVpm1OpgmMG8BY8lj1JN4ny3StD/mwv
+        Psxv3tOb53MEIHQjShCql6xGO8RrPH56/ZyfNl367ccXb3XxfdO79LD+ukpOYhEUtHtDxTfVs6LR
+        DsiazIyVQ8kYXNMiXed5muerCYzU4BBkneX4heJlsnyJkzxOs6uwJ63QixJ+RQAA5+kNEU2D76KE
+        ZHGbjOi97FCU9yUA4WgIEyG9156lYbF4QEWG0Uyp67p+82Qqc65MYJU4oGu04kqUUAlDlVjciEMZ
+        Vifws0eYbN4ZnjavT9AQejDEYB0ddIOgTUtulKELkDvaM/zttepB0d6wO4L2wD3CIF2HnkEb8PqE
+        z5WozKUydV2La+DL/dKBOutoF1ox+2G4z1tttO+3c75wlWeys/wSAfyeGt3/V5KwjkbLW6Y/aILh
+        MlvNfuLxhw+aFVfIxHL4oCqy6JpQ+KNnHLetNh066/RccGu3CpNinWVZ0oroEv0DAAD//wMAnzVP
+        vWkCAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab2ec93cae5723-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:12:37 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '844'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '497'
+      x-ratelimit-remaining-tokens:
+      - '29198'
+      x-ratelimit-reset-requests:
+      - 330ms
+      x-ratelimit-reset-tokens:
+      - 1.602s
+      x-request-id:
+      - req_428b231acd583fed40229dc11f41c512
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Based on the input and context, please generate
+      a JSON object to indicate whether the context is relevant to the provided input.
+      The JSON will have 1 mandatory field: ''verdict'', and 1 optional field: ''reason''.\nThe
+      ''verdict'' key should STRICTLY be either ''yes'' or ''no'', and states whether
+      the context is relevant to the input.\nProvide a ''reason'' ONLY IF verdict
+      is no. You MUST quote the irrelevant parts of the context to back up your reason.\n\n**\nIMPORTANT:
+      Please make sure to only return in JSON format.\nExample Context: \"Einstein
+      won the Nobel Prize for his discovery of the photoelectric effect. He won the
+      Nobel Prize in 1968. There was a cat.\"\nExample Input: \"When what was some
+      of Einstein''s achievements?\"\n\nExample:\n{{\n    \"verdict\": \"no\",\n    \"sentence\":
+      \"Although the context contains information about Einstein winning the Nobel
+      Prize, it irrelevantly includes ''There was a cat'' when it has nothing to do
+      with Einstein''s achievements.\"\n}}\n**\n\nInput:\nWhich country is largest
+      in size?\n\nContext:\nRussia\n\nJSON:", "role": "user"}], "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1118'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=duGmF8AMsqsgKzU.umpoM13jV.r6VZlQXAjfp7OHt68-1719551548-1.0.1.1-l5YXa1LEgDMwQ0VNCx52wdpNCOZOwDKe2WfLPcaC1eJkZWRWZuYpk48dvXpojCrjkdkMRmFSFuq1fYKW7hihDg;
+        _cfuvid=5df3DSFPCY5JaE4ymtFJXCCMX70cNcy8Tdgnuw3U1sA-1719551548267-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1SQwW6DMBBE73yFtedQAcGh4Va1qtRbVUXpoVTgwEKcGNvBTtU04t8rA0naiw/z
+        dmZnffYIAV5BSqDcMlu2WvhLPD2uqmf6+v5QsfunYH+IV/t1HK1/Di9vMHMOtdlhaS+uu1K1WqDl
+        So647JBZdKlhEi4pDSlNBtCqCoWzNdr6sfKjIIr9gPrhfDJuFS/RQEo+PEIIOQ+vqygr/IaUBLOL
+        0qIxrEFIr0OEQKeEU4AZw41l0sLsBkslLcqhdVEUO6NkJs+ZdCyDL+wqXtoMUpLBCU0GmewzWRQF
+        TAn9dbVQje7UxtWURyGues0lN9u8Q2aUdGuMVXq09x4hn8OJx3+tQXeq1Ta3ao/SBUbzxZgHt0+9
+        0TCeoFWWiT8uGnhTQzAnY7HNay4b7HTHx4trnVc0WcyDpF4G4PXeLwAAAP//AwDUUWJQ+gEAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab2ece7ecdab0b-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:12:38 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '1444'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '499'
+      x-ratelimit-remaining-tokens:
+      - '29369'
+      x-ratelimit-reset-requests:
+      - 120ms
+      x-ratelimit-reset-tokens:
+      - 1.261s
+      x-request-id:
+      - req_8ec8570fafcc5077a7a110e51a3c5295
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Based on the given input, reasons for why the
+      retrieval context is irrelevant to the input, and the contextual relevancy score
+      (the closer to 1 the better), please generate a CONCISE reason for the score.\nIn
+      your reason, you should quote data provided in the reasons for irrelevancy to
+      support your point.\n\nContextual Relevancy Score:\n0.33\n\nInput:\nWhich country
+      is largest in size?\n\nReasons for why the retrieval context is irrelevant to
+      the input:\n[\"The context ''US'' does not provide information about which country
+      is the largest in size.\", \"The context only mentions ''Australia'' without
+      addressing which country is the largest in size.\"]\n\nExample:\nThe score is
+      <contextual_relevancy_score> because <your_reason>.\n\n**\nIMPORTANT:\nIf the
+      score is 1, keep it short and say something positive with an upbeat encouraging
+      tone (but don''t overdo it otherwise it gets annoying).\n**\n\nReason:", "role":
+      "user"}], "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '974'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=duGmF8AMsqsgKzU.umpoM13jV.r6VZlQXAjfp7OHt68-1719551548-1.0.1.1-l5YXa1LEgDMwQ0VNCx52wdpNCOZOwDKe2WfLPcaC1eJkZWRWZuYpk48dvXpojCrjkdkMRmFSFuq1fYKW7hihDg;
+        _cfuvid=5df3DSFPCY5JaE4ymtFJXCCMX70cNcy8Tdgnuw3U1sA-1719551548267-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1RRu47bMBDs9RULNm4sQw8rht0lVwdXXHJFcoFBUyuJF4qrcFexlYP/PaDss3EN
+        i5md4ezsWwKgbK12oEynxfSDS7c4PTyvs+fTJ34spvrPl7/TUdqGnh5/HL6qZVTQ4RWNvKtWhvrB
+        oVjyF9oE1ILRNd/k26rKq2o7Ez3V6KKsHSRdU1pkxTrNqjQvr8KOrEFWO/iZAAC8zW+M6Gs8qR1k
+        y3ekR2bdotrdhgBUIBcRpZkti/ailnfSkBf0c+pvHQIbCgiWIVuVJRzQ6JERpEOYB08CL4q8m6BH
+        H1djWHweWYJ2Vi9A+xoW358WcLTS0Sig6zogs/UtHDtrOjA0eglT/CGaOh1aZAHrge0/XL0odY12
+        vu3kqB0CHeL+fnTuhjfWW+72ATWTj/lZaLjIzwnAr7m78UMdagjUD7IX+o0+GubbzcVP3a91Z8tr
+        sUpItLvjRbFJrgkVTyzY7xvrWwxDsJcqm2FvMNtsy7LMGpWck/8AAAD//wMAzAtsIVMCAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab2ed9ee155723-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:12:39 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '579'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '499'
+      x-ratelimit-remaining-tokens:
+      - '29762'
+      x-ratelimit-reset-requests:
+      - 120ms
+      x-ratelimit-reset-tokens:
+      - 476ms
+      x-request-id:
+      - req_45f225e9d6078288f21cdc48bad528ab
+    status:
+      code: 200
+      message: OK
+version: 1

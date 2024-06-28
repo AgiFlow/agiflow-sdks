@@ -1,0 +1,216 @@
+interactions:
+- request:
+    body: '{"messages": [{"content": "For each context in contexts, which is a list
+      of strings, please generate a list of JSON objects to indicate whether the given
+      ''actual output'' agrees with EACH context. The JSON will have 2 fields: ''verdict''
+      and ''reason''.\nThe ''verdict'' key should STRICTLY be either ''yes'' or ''no'',
+      and states whether the given text agrees with the context.\nThe ''reason'' is
+      the reason for the verdict. When the answer is ''no'', try to provide a correction
+      in the reason.\n\n**\nIMPORTANT: Please make sure to only return in JSON format,
+      with the ''verdicts'' key as a list of JSON objects.\nExample contexts: [\"Einstein
+      won the Nobel Prize for his discovery of the photoelectric effect.\", \"Einstein
+      won the Nobel Prize in 1968.\"]\nExample actual output: \"Einstein won the Nobel
+      Prize in 1969 for his discovery of the photoelectric effect.\"\n\nExample:\n{{\n    \"verdicts\":
+      [\n        {{\n            \"verdict\": \"yes\",\n            \"reason\": \"The
+      actual output agrees with the provided context which states that Einstein won
+      the Nobel Prize for his discovery of the photoelectric effect.\"\n        }},\n        {{\n            \"verdict\":
+      \"no\",\n            \"reason\": \"The actual output contradicts the provided
+      context which states that Einstein won the Nobel Prize in 1968, not 1969.\"\n        }}\n    ]\n}}\n\nYou
+      should NOT incorporate any prior knowledge you have and take each context at
+      face value. Since you are going to generate a verdict for each context, the
+      number of ''verdicts'' SHOULD BE STRICTLY EQUAL to that of contexts.\nYou should
+      FORGIVE cases where the actual output is lacking in detail, you should ONLY
+      provide a ''no'' answer if IT IS A CONTRADICTION.\n**\n\nContexts:\n[''Sad'',
+      ''Angry'', ''Depressed'']\n\nActual Output:\nAngry\n\nJSON:", "role": "user"}],
+      "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1823'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=duGmF8AMsqsgKzU.umpoM13jV.r6VZlQXAjfp7OHt68-1719551548-1.0.1.1-l5YXa1LEgDMwQ0VNCx52wdpNCOZOwDKe2WfLPcaC1eJkZWRWZuYpk48dvXpojCrjkdkMRmFSFuq1fYKW7hihDg;
+        _cfuvid=5df3DSFPCY5JaE4ymtFJXCCMX70cNcy8Tdgnuw3U1sA-1719551548267-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA7RTTW+bQBC98ytGe/EFR+CPuObWNpe2ag5tkkuJzBrGsC7srHaHJJbl/14t2KFO
+        VKmN1AtazXtveG80sw8AhCpEAiKvJOeNqcdL3H19/Hb3aWG2y+vmarO9u7m9/qCj29J++SxCr6D1
+        FnM+qS5yakyNrEj3cG5RMvqu8SJezueTSXTZAQ0VWHtZaXg8o/EkmszG0XwcT4/CilSOTiTwIwAA
+        2Hdfb1EX+CQSiMJTpUHnZIkieSYBCEu1rwjpnHIsNYtwAHPSjLpznWXZ1pFO9T7VHkvFA9pC5exS
+        /+++2BkYnmc8T0uFplSELxkWpW/dEW4qBJlzK2uglk3LMHqvS7sbQUHoQBODLC0iPCqugCuEUj2g
+        hs7qE8PouyxGF/CRrMXczzeB1y1dRW1dwBqP9FQMlg7h32bZoXtzmC6D+2OInvVGX/9/xldoLDqH
+        /zTp30RnufrnfaoPqc6yTASnvKe9rak0ltZ+x3Vb18/1jdLKVas+md9Rx2R6+SEAuO/uoz1beWEs
+        NYZXTD9R+4bT5aLvJ4aLHNB4Fh9RJpb1AMyn74KjReF2jrFZbZQu0Rqr+nvZmFUxX1xOo8VmGYng
+        EPwCAAD//wMABZDGXDgEAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab3ea73e155737-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:23:28 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '2222'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '499'
+      x-ratelimit-remaining-tokens:
+      - '29558'
+      x-ratelimit-reset-requests:
+      - 120ms
+      x-ratelimit-reset-tokens:
+      - 884ms
+      x-request-id:
+      - req_c54b563abb1ade3ebef28fec7c4e4e07
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Given a list of factual alignments and contradictions,
+      which highlights alignment/contradictions between the `actual output` and `contexts,
+      use it to provide a reason for the hallucination score in a CONCISELY. Note
+      that The hallucination score ranges from 0 - 1, and the lower the better.\n\nFactual
+      Alignments:\n[\"The actual output ''Angry'' does not agree with the given context
+      ''Sad''. Correction: The actual output should be ''Sad''.\", \"The actual output
+      ''Angry'' does not agree with the given context ''Depressed''. Correction: The
+      actual output should be ''Depressed''.\"]\n\nContradictions:\n[\"The actual
+      output ''Angry'' agrees with the given context ''Angry''.\"]\n\nHallucination
+      Score:\n0.67\n\nExample:\nThe score is <hallucination_score> because <your_reason>.\n\nReason:",
+      "role": "user"}], "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '841'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=duGmF8AMsqsgKzU.umpoM13jV.r6VZlQXAjfp7OHt68-1719551548-1.0.1.1-l5YXa1LEgDMwQ0VNCx52wdpNCOZOwDKe2WfLPcaC1eJkZWRWZuYpk48dvXpojCrjkdkMRmFSFuq1fYKW7hihDg;
+        _cfuvid=5df3DSFPCY5JaE4ymtFJXCCMX70cNcy8Tdgnuw3U1sA-1719551548267-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1SRT0/DMAzF7/0UVi5c1qntNsZ2Q+ICaAKkCYQQmtLMbQNpHCWutgntu6N0/+CS
+        w3t+zs/2TwIg9FrMQahGsmqdSWe4W+yyx3delIW6Xz5NHmZvxatvn7uXuzcxiAkqv1DxKTVU1DqD
+        rMkebOVRMsau+TSfTSZFkd30RktrNDFWO07HlBZZMU6zSZqPjsGGtMIg5vCRAAD89G9EtGvcijlk
+        g5PSYgiyRjE/FwEITyYqQoagA0vLYnAxFVlG21MvG4SgyCPoANnwegolKtkFBG4QpOJOGqCOXcdw
+        dWtrv7uCjQxQUWfXwAQlgraKvEfFoC3whmI9UAXceEToP9tyGIojwP5Mbqh2nso4pe2MOeuVtjo0
+        K48ykI2Ugckd4vsE4LPfUPdvaOE8tY5XTN9oY8P8ZnroJy43ubjFyWRiaf7o+Tg5EoqwC4ztqtK2
+        Ru+8PiysciuF2XQ2Go2ySiT75BcAAP//AwCKGGIoOQIAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab3eb6ded35737-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:23:29 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '631'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '499'
+      x-ratelimit-remaining-tokens:
+      - '29794'
+      x-ratelimit-reset-requests:
+      - 120ms
+      x-ratelimit-reset-tokens:
+      - 412ms
+      x-request-id:
+      - req_da65b448262755ec92d1aa7065bf8780
+    status:
+      code: 200
+      message: OK
+version: 1

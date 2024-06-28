@@ -48,9 +48,9 @@ vcrpy = "^6.0.1"
 pydantic = ">2"
 munch = "4.0.0"
 pytest-asyncio = "^0.23.5"
-pytest-vcr = "^1.0.2"
+pytest-recording = "^0.13.1"
 pytest-mock = "^3.14.0"
-llm-mocks = "^0.0.4"
+llm-mocks = "0.1.0"
 
 [build-system]
 requires = [ "poetry-core" ]

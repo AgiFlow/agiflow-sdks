@@ -1,0 +1,316 @@
+interactions:
+- request:
+    body: '{"messages": [{"content": "Given the text, breakdown and generate a list
+      of statements presented. Ambiguous statements and single words can also be considered
+      as statements.\n\nExample:\nExample text: Shoes. The shoes can be refunded at
+      no extra cost. Thanks for asking the question!\n\n{{\n    \"statements\": [\"Shoes.\",
+      \"Shoes can be refunded at no extra cost\", \"Thanks for asking the question!\"]\n}}\n=====
+      END OF EXAMPLE ======\n\nText:\nWelcome, how are you\n\n**\nIMPORTANT: Please
+      make sure to only return in JSON format, with the \"statements\" key mapping
+      to a list of strings. No words or explanation is needed.\n**\n\nJSON:", "role":
+      "user"}], "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '679'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1SQS2/CMBCE7/kV1p6TKmlIKdz6uPQhpB4qpNaIGLOQUMdr4kUFIf57ZQK0vfgw
+        3854dveREFDPYShAV4p140wywN3D82w9Gt/d0/rx9unl7uM9e7upXkerrYI4OGi2Qs1n15Wmxhnk
+        mmyHdYuKMaRm/WxQFFnR6x9BQ3M0wbZ0nPQouU6ve0laJFl+MlZUa/QwFJ+REELsj2+oaOe4haFI
+        47PSoPdqiTC8DAkBLZmggPK+9qwsQ/wLNVlGe2xdluXKk5V2L21gEjwrxgYtexl+lzBGo6nBWEIs
+        JFT0LVSLYkcbCRNpD9KWZQmn8MOllaGla2kWNrAbYy76ora1r6YtKk82NPBMrrMfIiEmx+03/xYC
+        11LjeMr0hTYEZvmgy4Pfe/+hZ8jEyvzRi9vo1BD8zjM200Vtl9i6tu6OsXBTjWl/kOd5uoDoEP0A
+        AAD//wMA2msldhUCAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab2e91ccf1a95c-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:12:28 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=duGmF8AMsqsgKzU.umpoM13jV.r6VZlQXAjfp7OHt68-1719551548-1.0.1.1-l5YXa1LEgDMwQ0VNCx52wdpNCOZOwDKe2WfLPcaC1eJkZWRWZuYpk48dvXpojCrjkdkMRmFSFuq1fYKW7hihDg;
+        path=/; expires=Fri, 28-Jun-24 05:42:28 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=5df3DSFPCY5JaE4ymtFJXCCMX70cNcy8Tdgnuw3U1sA-1719551548267-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '741'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '499'
+      x-ratelimit-remaining-tokens:
+      - '29836'
+      x-ratelimit-reset-requests:
+      - 120ms
+      x-ratelimit-reset-tokens:
+      - 328ms
+      x-request-id:
+      - req_6335fbf2244118330e992e7986de2292
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "For the provided list of statements, determine
+      whether each statement is relevant to address the input.\nPlease generate a
+      list of JSON with two keys: `verdict` and `reason`.\nThe ''verdict'' key should
+      STRICTLY be either a ''yes'', ''idk'' or ''no''. Answer ''yes'' if the statement
+      is relevant to addressing the original input, ''no'' if the statement is irrelevant,
+      and ''idk'' if it is ambiguous (eg., not directly relevant but could be used
+      as a supporting point to address the input).\nThe ''reason'' is the reason for
+      the verdict.\nProvide a ''reason'' ONLY if the answer is ''no''.\nThe provided
+      statements are statements made in the actual output.\n\n**\nIMPORTANT: Please
+      make sure to only return in JSON format, with the ''verdicts'' key mapping to
+      a list of JSON objects.\nExample input: What should I do if there is an earthquake?\nExample
+      statements: [\"Shoes.\", \"Thanks for asking the question!\", \"Is there anything
+      else I can help you with?\", \"Duck and hide\"]\nExample JSON:\n{{\n    \"verdicts\":
+      [\n        {{\n            \"verdict\": \"no\",\n            \"reason\": \"The
+      ''Shoes.'' statement made in the actual output is completely irrelevant to the
+      input, which asks about what to do in the event of an earthquake.\"\n        }},\n        {{\n            \"verdict\":
+      \"idk\"\n        }},\n        {{\n            \"verdict\": \"idk\"\n        }},\n        {{\n            \"verdict\":
+      \"yes\"\n        }}\n    ]\n}}\n\nSince you are going to generate a verdict
+      for each statement, the number of ''verdicts'' SHOULD BE STRICTLY EQUAL to the
+      number of `statements`.\n**\n\nInput:\nHi model\n\nStatements:\n[''Welcome,'',
+      ''how are you'']\n\nJSON:", "role": "user"}], "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1711'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=duGmF8AMsqsgKzU.umpoM13jV.r6VZlQXAjfp7OHt68-1719551548-1.0.1.1-l5YXa1LEgDMwQ0VNCx52wdpNCOZOwDKe2WfLPcaC1eJkZWRWZuYpk48dvXpojCrjkdkMRmFSFuq1fYKW7hihDg;
+        _cfuvid=5df3DSFPCY5JaE4ymtFJXCCMX70cNcy8Tdgnuw3U1sA-1719551548267-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA7RSPW/bMBDd9SsOXLxIgRxbUeWxHVog6NQUQVEFFi2dJboUjyVPSQzD/72gZEdI
+        xwJdBOJ9HB917xQBCNWIDYi6k1z3VicFHj/df8y+7b4/2FV6aL9+vtc/ns36Ls8fX0UcHLQ7YM1X
+        101NvdXIisxE1w4lY5i6zJdFli2z9YeR6KlBHWyt5WRNyW16u07SLFmuLsaOVI1ebOBnBABwGr8h
+        omnwVWwgja9Ij97LFsXmTQQgHOmACOm98iwNi3gmazKMZkxdVdXBkynNqTSBK8UzukbV7Mtw9wSO
+        AebjO12QlcJQKeK/FQ5lGD0KHjoEz5KxR8OweERdU4/xApQHCa1DZGVakKaBhtCDIQbZNA69B+4Q
+        lLEDw+KLgvHPLW5KMV93jv9Xzo5eQDqEIw2XqHvSml6SwcLvAX3Y9L+Gno5PpTmXpqoqEV0fc12s
+        ptY62oUSmEHrN3yvjPLddoodluiZ7GQ/RwBPY4GGd50Q1lFvecv0C00YuMqLaZ6YKzuzxfJCMrHU
+        M77O0+iSUPijZ+y3e2VadNapqU97u22y/G6V5vsiFdE5+gMAAP//AwAoEmEQWAMAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab2e995ccaa95c-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:12:30 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '1300'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '499'
+      x-ratelimit-remaining-tokens:
+      - '29589'
+      x-ratelimit-reset-requests:
+      - 120ms
+      x-ratelimit-reset-tokens:
+      - 822ms
+      x-request-id:
+      - req_f23eb784dfe1e9df7d19d97873c7e133
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Given the answer relevancy score, the list of
+      reasons of irrelevant statements made in the actual output, and the input, provide
+      a CONCISE reason for the score. Explain why it is not higher, but also why it
+      is at its current score.\nThe irrelevant statements represent things in the
+      actual output that is irrelevant to addressing whatever is asked/talked about
+      in the input.\nIf there is nothing irrelevant, just say something positive with
+      an upbeat encouraging tone (but don''t overdo it otherwise it gets annoying).\n\nAnswer
+      Relevancy Score:\n0.00\n\nReasons why the score can''t be higher based on irrelevant
+      statements in the actual output:\n[\"The statement ''Welcome,'' is a greeting
+      and does not address the input ''Hi model''.\", \"The statement ''how are you''
+      is a follow-up question and does not address the input ''Hi model''.\"]\n\nInput:\nHi
+      model\n\nExample:\nThe score is <answer_relevancy_score> because <your_reason>.\n\nReason:",
+      "role": "user"}], "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1004'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=duGmF8AMsqsgKzU.umpoM13jV.r6VZlQXAjfp7OHt68-1719551548-1.0.1.1-l5YXa1LEgDMwQ0VNCx52wdpNCOZOwDKe2WfLPcaC1eJkZWRWZuYpk48dvXpojCrjkdkMRmFSFuq1fYKW7hihDg;
+        _cfuvid=5df3DSFPCY5JaE4ymtFJXCCMX70cNcy8Tdgnuw3U1sA-1719551548267-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1SRzW7bMBCE73qKxZ4tg/pral97SFAgpxZoi6owaHotsaW4BLlq6gZ+94Ky46QX
+        HmY4H2bI5wIA7QG3gGbUYqbgyg2dPjx+/Wjr4e9GPbyzRj893n+7338ybVvhKid4/5OMvKTWhqfg
+        SCz7i20iaaFMre6qTddVXacWY+IDuRwbgpQtl7Wq21J1ZdVcgyNbQwm38L0AAHhezlzRH+gPbmHB
+        LMpEKemBcHu7BICRXVZQp2STaC+4ejUNeyG/tP48EiTDkcAmUGulYE9Gz4lAsiNaaCIvCXr8Qs7w
+        RKseQfsD9DjyE+hIcOI5a5kRIzn6rb2A8EKwPswCPT5YWCave8RrkfNtgeMhRN7ntX527qYfrbdp
+        3EXSiX1um4TDJX4uAH4sLzX/Nx5D5CnITvgX+QysVXvh4evfvHHfX01h0e6N3tTFtSGmUxKadkfr
+        B4oh2svDHcPOkLrbNE2jjlici38AAAD//wMA7Rcob0ECAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab2ea40f91a95c-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:12:31 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '924'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '499'
+      x-ratelimit-remaining-tokens:
+      - '29753'
+      x-ratelimit-reset-requests:
+      - 120ms
+      x-ratelimit-reset-tokens:
+      - 494ms
+      x-request-id:
+      - req_221bd6cef738cfab9b15d116c413a9d7
+    status:
+      code: 200
+      message: OK
+version: 1

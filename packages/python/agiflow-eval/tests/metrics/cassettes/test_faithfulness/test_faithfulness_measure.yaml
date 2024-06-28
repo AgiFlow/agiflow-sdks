@@ -1,0 +1,303 @@
+interactions:
+- request:
+    body: '{"messages": [{"content": "Based on the given text, please generate a comprehensive
+      list of FACTUAL, undisputed truths that can inferred from the provided text.\n\nExample:\nExample
+      Text:\n\"Einstein won the noble prize in 1968 for his discovery of the photoelectric
+      effect.\"\n\nExample JSON:\n{{\n    \"truths\": [\n        \"Einstein won the
+      noble prize for his discovery of the photoelectric effect.\",\n        \"Einstein
+      won the noble prize in 1968.\"\n    ]\n}}\n===== END OF EXAMPLE ======\n\n**\nIMPORTANT:
+      Please make sure to only return in JSON format, with the \"truths\" key as a
+      list of strings. No words or explanation is needed.\nOnly include truths that
+      are factual.\n**\n\nText:\nSad\n\nAngry\n\nDepressed\n\nJSON:", "role": "user"}],
+      "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '771'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=d_9QtfpNIgbToMUc4R4SW5ZVADKSzjbXBP4jijOV5Qg-1719552546-1.0.1.1-MWVmodx0Zfp2G6tW5SuP5B7NBkEXkZ53uALHSBFL3IO7GmDbQCGP6UUuHahp.e9w_BaoI.L2K47qdsMcj0MhfA;
+        _cfuvid=j7osANNd6AGFK7T1rYqLceKPYjUi4p1KkkaOw9qdsII-1719552546511-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1SQS2+DMBCE7/wKa8+hAhJC4dgqqpRLD5F6KREixoBbv2pvpCSI/14Z8mgvPszs
+        NzvrISAEeAMFAdrXSKURYc7OHz9qt3MyObxtt5vLaVO/9N3lPXqlEhae0IcvRvFGPVEtjWDItZpt
+        almNzKfGWZynaZKlz5MhdcOExzqD4UqHSZSswigN4+UV7DWnzEFBPgNCCBmm11dUDTtBQaLFTZHM
+        ubpjUNyHCAGrhVegdo47rBXC4mFSrZCpqfUwlMprJaA9Yu9Kv3FfqnGE6/x4XyR0Z6w++FLqKMRd
+        b7nirq8sq51WPtShNjM+BoTsp4OO/zqCsVoarFB/M+UD43Uy58HjCx9ufvVQYy3+QFkcXAuCOztk
+        smq56pg1ls/ntaZq0my9jLI2jyAYg18AAAD//wMAidAOGucBAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab4c21fae8a949-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:32:38 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '438'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '499'
+      x-ratelimit-remaining-tokens:
+      - '29816'
+      x-ratelimit-reset-requests:
+      - 120ms
+      x-ratelimit-reset-tokens:
+      - 368ms
+      x-request-id:
+      - req_73fb7e0c10dffb31b381d6661b47a5e5
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Based on the given text, please generate a comphrensive
+      list of FACTUAL claims that can inferred from the provided text.\n\nExample:\nExample
+      Text:\n\"Einstein won the noble prize in 1968 for his discovery of the photoelectric
+      effect.\"\n\nExample JSON:\n{{\n    \"claims\": [\n        \"Einstein won the
+      noble prize for his discovery of the photoelectric effect.\",\n        \"Einstein
+      won the noble prize in 1968.\"\n    ]\n}}\n===== END OF EXAMPLE ======\n\n**\nIMPORTANT:
+      Please make sure to only return in JSON format, with the \"claims\" key as value
+      is a list of strings. No words or explanation is needed.\nOnly include claims
+      that are factual, and the claims you extract should include the full context
+      it was presented in, NOT cherry picked facts.\nYou should NOT include any prior
+      knowledge, and take the text at face value when extracting claims.\n**\n\nText:\nAngry\n\nJSON:",
+      "role": "user"}], "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '953'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=d_9QtfpNIgbToMUc4R4SW5ZVADKSzjbXBP4jijOV5Qg-1719552546-1.0.1.1-MWVmodx0Zfp2G6tW5SuP5B7NBkEXkZ53uALHSBFL3IO7GmDbQCGP6UUuHahp.e9w_BaoI.L2K47qdsMcj0MhfA;
+        _cfuvid=j7osANNd6AGFK7T1rYqLceKPYjUi4p1KkkaOw9qdsII-1719552546511-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1SQwW6DMBBE73yFtedQAQkguFZtVannSlWJwDGGODFexzZS04h/rwxp0l58mNk3
+        O+tLQAiIFkoCbE8dG7QMC35+N6en5Dsb1Xrz/Pj2gTTbjcfzq3g5wcoTuDtw5n6pB4aDltwJVIvN
+        DKeO+9Q4j4s0TfK0mI0BWy491msXbjBMomQTRmkYr6/gHgXjFkryGRBCyGV+fUXV8i8oSbT6VQZu
+        Le05lLchQsCg9ApQa4V1VDlY3U2GynE1t26a5mBRVepSKe9VwCQVg6385m2lpko1TQNXdrotldhr
+        gztfUI1S3vROKGH3teHUovILrEO94FNAyHY+bvzXF7TBQbva4ZErHxgX6ZIH9+/848ZX06Gj8q4n
+        URZcG4I9W8eHuhOq50Ybsdza6bpN82wd5V0RQTAFPwAAAP//AwASz/3G9AEAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab4c2728eaa949-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:32:39 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '450'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '499'
+      x-ratelimit-remaining-tokens:
+      - '29769'
+      x-ratelimit-reset-requests:
+      - 120ms
+      x-ratelimit-reset-tokens:
+      - 462ms
+      x-request-id:
+      - req_65b63defe478777dcad82a76b9c01fe1
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Below is a list of Contradictions. It is a list
+      of strings explaining why the ''actual output'' does not align with the information
+      presented in the ''retrieval context''. Contradictions happen in the ''actual
+      output'', NOT the ''retrieval context''.\nGiven the faithfulness score, which
+      is a 0-1 score indicating how faithful the `actual output` is to the retrieval
+      context (higher the better), CONCISELY summarize the contradictions to justify
+      the score.\n\nFaithfulness Score:\n1.00\n\nContradictions:\n[]\n\nExample:\nThe
+      score is <faithfulness_score> because <your_reason>.\n\n**\nIMPORTANT:\nIf there
+      are no contradictions, just say something positive with an upbeat encouraging
+      tone (but don''t overdo it otherwise it gets annoying).\nYour reason MUST use
+      information in `contradiction` in your reason.\nBe sure in your reason, as if
+      you know what the actual output is from the contradictions.\n**\n\nReason:",
+      "role": "user"}], "model": "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '972'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=d_9QtfpNIgbToMUc4R4SW5ZVADKSzjbXBP4jijOV5Qg-1719552546-1.0.1.1-MWVmodx0Zfp2G6tW5SuP5B7NBkEXkZ53uALHSBFL3IO7GmDbQCGP6UUuHahp.e9w_BaoI.L2K47qdsMcj0MhfA;
+        _cfuvid=j7osANNd6AGFK7T1rYqLceKPYjUi4p1KkkaOw9qdsII-1719552546511-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.35.7
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.7
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1RRTYvbMBC9+1fM6hwHO06aOseyH4VC6aGU0qUERR5b2sgaIY2bhCX/vUhJE3rR
+        4X0x7+m9ABCmExsQSktWo7dli6cf8bPuP/Kze1x//fVz//ite/4UuKbwJGbJQbs3VPzPNVc0eots
+        yF1oFVAyptR6Xber1WL9ocrESB3aZBs8l0sqF9ViWVarsm6uRk1GYRQbeC0AAN7zm050HR7FBnJM
+        RkaMUQ4oNjcRgAhkEyJkjCaydCxmd1KRY3T56u8aISoKCCZCPa8q2KGSU0RgjQFBBgRHkBxBdkal
+        anEGUdPBuAFYS05KkIonaYEm9hOnLI+hR8X2BNKawWEHB8M6awNyMPhH2hyLR57DS9oJ3mj3AF8Q
+        PUw+K/Go0Fp0DAcK+wdxrXC+dbc0+EC7tJObrL3hvXEm6m1AGcmlnpHJX+znAuB33nj6bzbhA42e
+        t0x7dCmwbttLnrj/6p1tVleSiaW944tmWVwvFPEUGcdtb9yAwQdzmbz3W4XVum2apupFcS7+AgAA
+        //8DAOepHgl7AgAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89ab4c2cff75a949-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Jun 2024 05:32:40 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '744'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '500'
+      x-ratelimit-limit-tokens:
+      - '30000'
+      x-ratelimit-remaining-requests:
+      - '499'
+      x-ratelimit-remaining-tokens:
+      - '29761'
+      x-ratelimit-reset-requests:
+      - 120ms
+      x-ratelimit-reset-tokens:
+      - 478ms
+      x-request-id:
+      - req_76462fd86f7607223df88966f3580f99
+    status:
+      code: 200
+      message: OK
+version: 1
