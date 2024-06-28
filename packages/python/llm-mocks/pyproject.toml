@@ -8,7 +8,7 @@ show_missing = true
 
 [tool.poetry]
 name = "llm-mocks"
-version = "0.0.4"
+version = "0.1.0"
 description = "Mock LLMs' responses for unit-tests"
 authors = [
   "Vuong Ngo <vuongngo.pd@gmail.com>"
@@ -23,29 +23,22 @@ include = "llm_mocks"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4"
-pydantic = "^2.5.3"
 deprecated = "^1.2.14"
-munch = "^4.0.0"
-faker = "^25.9.1"
+wrapt = "^1.16.0"
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^2.0.4"
 flake8 = "7.0.0"
 pytest = "8.1.0"
-pytest-sugar = "1.0.0"
-nest-asyncio = "1.6.0"
+faker = "^26.0.0"
 
 [tool.poetry.group.test.dependencies]
-openai = "^1.30.5"
-anthropic = "^0.28.0"
-langchain = "^0.2.1"
-langchain-community = "^0.2.1"
-langchain-openai = "^0.1.8"
 vcrpy = "^6.0.1"
-pydantic = ">2"
-pytest-asyncio = "^0.23.5"
-pytest-vcr = "^1.0.2"
-pytest-mock = "^3.14.0"
+
+[project.optional-dependencies]
+test = [
+  "faker",
+]
 
 [build-system]
 requires = [ "poetry-core" ]

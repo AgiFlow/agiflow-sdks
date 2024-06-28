@@ -1,5 +1,11 @@
 # Changelog for llm-mocks
 
+## [0.1.0] - 2024-06-28
+
+**Breaking Change**
+- Use `vcrpy` for network mock instead of mocking vendor sdks' APIClients.  
+- Wrap `vcr` to return mock response without recording prerequisite.  
+
 ## [0.0.4] - 2024-06-25
 
 **Fixed**
