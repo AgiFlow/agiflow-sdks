@@ -1,0 +1,97 @@
+interactions:
+- request:
+    body: '{"prompt": "A charming and adorable baby sea otter. This small, fluffy
+      creature is floating gracefully on its back, with its tiny webbed paws folded
+      cutely over its fuzzy belly. It has big, round, innocent eyes that are brimming
+      with youthful curiosity. As it blissfully floats on the calm, sparkling ocean
+      surface under the glow of the golden sunset, it playfully tosses a shiny seashell
+      from one paw to another, showcasing its playful and distinctively otter-like
+      behavior.", "model": "dall-e-3"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '498'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.35.3
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.3
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/images/generations
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2SRW2/cNhCF3/dXDBbw9mW1N2l1MSAU2/SCAHXdNonTbFEUI3Ik0aJImUOtLAf5
+        7wXtFKjRF2KAM5fz8XxeACyFI/Qkl9ewz/ZFkuXpLl0HQaLH5TX8uQAA+Pz8AiwdXRST/Htwth/8
+        8hqWJwPKOWLFXlV6BpTWYaUJKqxmYEKw3pODSfkWaj3W9Qz16NZQa4temQYah4LqUesZrAHlGSoU
+        Xah9SyBQ94BGAg/oOh0GrCA0wKOrUdAG3oeugDE6+obBKzPDRFVFEgacGNAR1FZLkmAv5F4uUDin
+        DCCI0RP0aAy5DbwNmmrW4OxoJNBMvIZaaU3yhWC2o2/rUYMYnbKs/Lz+6oxgNJLcs+lG2wlsDQhN
+        OBzMGiYfvCqGQeMcVmjlvaav/6MYenJO6Rm8ZQ6cCNwGGCbklrSG2tkerKHABd4CGutbcmuQisPS
+        MBToZAjDCK8utH5ZH2nVEVTU4kVZt1mu/w10dDqk2Ho/8PV2a1FJ1JpwUIOzksXIm0rbaiOso82k
+        jLQTbwz57eDUBT1trWuimx/ccKSBHtqp6rL7/Y83u5t7e6q2I5OLbnvxm3C/DxMNj+9qae/usu8E
+        399uVd9E/flW59PZxL98FEX64TEvfsKHt0O9GUzzLfvysDsk0S6NDtn7XXYVn47pVXxK0vOK6ZVW
+        vNKG0q34EhriaL+PdvGKXVmtHAtZKqOVoVD7UvXY0HYwzYo7q2SZIqIkSVFSV3GUpEUeYV6nUZon
+        MsvytNql2Yo7r2SJSS4EHtOIUolRkicUYb5PokLkSZEeD5Wo4tD6yuX+Kj7FAeMQn1fc/Qch/5/I
+        ZbXi7jWEasrTXTF+/OPTm09p0g2nxw/F04PVPx+e3hzIvDv2vz7uzzfF5elpm/JV/P3yOecvC4C/
+        Fl8W/wAAAP//AwCT2cMA8gMAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89a439873804aac9-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 27 Jun 2024 08:56:46 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=6ZRZZw5o5TAkqmnnCT0Df5fMCwMd7xNzaMr3YQW8KjA-1719478606-1.0.1.1-hw8CjH.ZisdhFXUuh1xEWhtYvBFx.qlEQkHc6Q.pUi6hfyfj4p5rWkolBLNbkVxeJz8KFuZ76BDCm81_PLXKKg;
+        path=/; expires=Thu, 27-Jun-24 09:26:46 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=YQi3mdPd46CBPxi4n8f_AAEIyxMCyQ2TQN.XMyjErUI-1719478606457-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '10542'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      x-request-id:
+      - req_266994d7fe5041465301ef6a3817330f
+    status:
+      code: 200
+      message: OK
+version: 1
