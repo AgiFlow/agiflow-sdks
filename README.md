@@ -1,5 +1,7 @@
 <div align="center">
+
 ![Logo of AGIFlow](./docs/agiflow_logo.png)
+
 # **AGIFlow**
 
 🤖 **AGIFlow**: LLM QA and Observability. We streamline LLM and Agentic Workflow development with real-time tracing and a visual debugger. Easily test prompt and model performance while continuously monitoring performance in production.
