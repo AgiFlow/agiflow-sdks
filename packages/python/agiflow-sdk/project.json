@@ -1,0 +1,86 @@
+{
+  "name": "agiflow-sdk",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/python/agiflow-sdk",
+  "targets": {
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "packages/python/agiflow-sdk"
+      }
+    },
+    "release": {
+      "executor": "@nxlv/python:run-commands",
+      "dependsOn": ["build-release"],
+      "options": {
+        "command": "poetry publish",
+        "cwd": "packages/python/agiflow-sdk"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build-release": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "outputPath": "packages/python/agiflow-sdk/dist",
+        "publish": true,
+        "lockedVersions": false,
+        "bundleLocalDependencies": false
+      }
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "outputPath": "packages/python/agiflow-sdk/dist",
+        "publish": false,
+        "lockedVersions": false,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": [
+        "{workspaceRoot}/reports/packages/python/agiflow-sdk/pylint.txt"
+      ],
+      "options": {
+        "outputFile": "reports/packages/python/agiflow-sdk/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/packages/python/agiflow-sdk/unittests",
+        "{workspaceRoot}/coverage/packages/python/agiflow-sdk"
+      ],
+      "options": {
+        "command": "poetry run pytest --record-mode=once -s",
+        "cwd": "packages/python/agiflow-sdk"
+      }
+    }
+  },
+  "tags": ["sdk"]
+}
