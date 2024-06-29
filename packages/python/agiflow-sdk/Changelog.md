@@ -1,5 +1,10 @@
 # Changelog for agiflow-sdk
 
+## [0.0.19] - 2024-06-29
+
+**Fixed**
+- Fix github link to repo
+
 ## [0.0.18] - 2024-06-29
 
 **Added**

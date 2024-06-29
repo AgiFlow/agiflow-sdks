@@ -8,12 +8,12 @@ show_missing = true
 
 [tool.poetry]
 name = "agiflow-sdk"
-version = "0.0.18"
+version = "0.0.19"
 description = "Agiflow Software Development Kit (SDK) for Python, support LLM APIs and Frameworks tracing with Opentelemetry and more."
 authors = [
   "Vuong Ngo <vuongngo.pd@gmail.com>"
 ]
-repository = "https://github.com/agiflowAI/agiflow"
+repository = "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/python/agiflow-sdk"
 documentation = "https://docs.agiflow.io/python"
 license = "MIT"
 readme = "README.md"
