@@ -1,0 +1,107 @@
+interactions:
+- request:
+    body: '{"messages": [{"content": "You are world class technical documentation
+      writer.", "role": "system"}, {"content": "how can langsmith help with testing?",
+      "role": "user"}], "model": "gpt-3.5-turbo", "n": 1, "stream": false, "temperature":
+      0.7}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '240'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.35.3
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.35.3
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA3xV247bRgx991cQetYa2Vs38WsSNEHbtGjz1hQLekRJkx0NtSRlrxrsvwczkq9t
+        9sWASZE85/Ay3xYAha+KFRSuRXNdHy7eUP328euff7xv3rnr+Nf44a77+LH++Zf+t/HT26JMEbz+
+        Ss52UUvHXR/IPMfJ7YTQKGW9vLt8c3P3+vbmJjs6riiksKa3i+vl7YUNsuaLV5dXt3Nky96RFiv4
+        ewEA8C3/JoyxoqdiBa/KnaUjVWyoWO0/AiiEQ7IUqOrVMFpRHpyOo1HMsH/F2GjnrQWHEZqEN4ww
+        RcE22Y3UfGxgPUIvvPFV+oPQ85akHgJgrKAO9OTXgSBgbAZsCBqKJJiUyB9gxDCqVzDmsIQPJAQo
+        BModwRZHhVMgLYX+pPzqS/wSL5fwmdSgQsOjCquz4NlDgLD1FcEGxZONwHXONoXXLFD5uiahaKCO
+        IopnLXPpRNEYKOogBKmrQi1F9RuaUjjekGBDS/jces1VfXRhqA7MYwOCseIu1ytBe3K+9g56NCOJ
+        WgIL0IYi6BitJfNugmYtGnS+805BCMPFliVUMCiBQyVdJi2uZi2S5QUtcDDukhbWEuRxTC3ZKZHT
+        wRqVKuC4g0gVOPFG4jFBFHocvFBH0fSIr2ISw3eUG0x1zWLgI3QYBwxhnKslJQ+l8qeTqpklhgA9
+        q+bh2Tchj0aWmKpM9nomq058by/RnQbXx+M22CFUc993olT74a4FO9qyPBwzzEPo9xrmVC3tY3ph
+        R3rEKRkdx4QgzVSyC/WEholdRkFP5IYEPNO6WcIntEEwHBZnN+/nxNIC/TtpvSscz2N97AfTEjp8
+        SFi8AaF6kjTLkwijGnU6aT/39b9phliRpKORV51lV9DHJsO+XcJ7ERZoMVYhn4MkQdVM8/kjCjs5
+        zzszTUbqC72QVcuDyBl+asXEB9bU4oYUHIuQSwcsU8iLz0Oyx8on1afV+T3tbgjlGb51OhgbDMPU
+        LuaQ0P5Px09uhO/SVTw7C+XR3s2xhvqg5ekCEDwOGLyN86wEj2uf/3MNyrVt842cmrYs5gP+vL/8
+        gZteeJ1eiTiEsLfXPnpt74VQOaYrr8b9FP68APgnvzDDyaNR9MJdb/fGDxRTwqu7KV1xeNOOnLc/
+        zV5jw3DkeH29mBEWE+772seGpBefH5yEc/G8+A4AAP//AwBXyQP7bwcAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 89a43841bc16a7ef-SYD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 27 Jun 2024 08:55:47 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=oSwD93SCKpLJfdYse7zgD8u5xEfYc.lhmcnBhJw4Ynk-1719478547-1.0.1.1-OJnFMLufTtYgjlNqWP6d4CZn9YOEUGeJ.b13742kV5lzTJ6NY5tV5Vv.KVar0YYvqZ7VDH9aF0xAsdUxOcujlg;
+        path=/; expires=Thu, 27-Jun-24 09:25:47 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=8qHWeVWJ6oCwjow2dNYWqfeNNgyhsZnaYddijs1eudQ-1719478547944-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - user-omcqcrrpwepxsfdovv7bcsjo
+      openai-processing-ms:
+      - '3928'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '60000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '59960'
+      x-ratelimit-reset-requests:
+      - 8.64s
+      x-ratelimit-reset-tokens:
+      - 40ms
+      x-request-id:
+      - req_3062fc25536aeba65f81ab9766a32cff
+    status:
+      code: 200
+      message: OK
+version: 1
