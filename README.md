@@ -6,7 +6,7 @@
 
 🤖 **AGIFlow**: LLM QA and Observability. We streamline LLM and Agentic Workflow development with real-time tracing and a visual debugger. Easily test prompt and model performance while continuously monitoring performance in production.
 
-[Homepage](https://agiflow.io/) | [Documentation](https://docs.agiflow.com/) | [Discord](https://discord.gg/KCMyce2J) | [Newsletter](https://mailchi.mp/agiflow/agiflow-sub)
+[Homepage](https://agiflow.io/) | [Documentation](https://docs.agiflow.io/) | [Architecture and Data Security](./docs/architecture.md) | [Discord](https://discord.gg/KCMyce2J) | [Newsletter](https://mailchi.mp/agiflow/agiflow-sub)
 
 </div>
 
@@ -21,22 +21,11 @@
 
 ## Why AGIFLow?
 
-LLM Ops not only help ensuring all risks are monitored but also significantly reduces debugging time and simplifies AI workflows.  
-
-With automatic logging and detailed traces, AGIFlow optimizes performance and resolves issues efficiently. Additionally, its intuitive dashboards accelerate QA and feedback loops, boosting team productivity and reducing training time.
-
-### 🌟 What's Inside?
-
-This mono-repo includes various libraries and packages such as:
-
-- 🔍 **LLM Ops**: Effective monitoring, deployment, and management of machine learning models to ensure optimal performance and reliability.
-- 🧪 **Testing Tools**: Validate the performance, accuracy, and robustness of your language models, ensuring they function correctly and reliably in various scenarios.
-- 📣 **User In-the-loop Feedback**: Gather quantitative and qualitative user feedback to enhance your AI through fine-tuning and prompt benchmarking.
-
+With automatic logging and detailed traces, AGIFlow optimizes performance and resolves issues efficiently. Additionally, its intuitive dashboards accelerate QA and feedback loops, boosting team productivity and reducing training time. We understand the challenges of bringing your LLM app to production and want to ensure you have a [scalable, trustworthy infrastructure](./docs/architecture.md) to do so.
 
 ## Getting Started
 
-This repo uses `NX` for task management and `Pnpm` + `Poetry` for package management. To get started, simply clone the repo and run `pnpm install` to install all dependencies.
+Running Agiflow app locally using `docker compose` and start tracing your application by:
 
 1. **Clone the Repository**:
 ```bash
@@ -44,31 +33,28 @@ git clone https://github.com/AgiFlow/agiflow-sdks.git
 cd agiflow-sdks
 ```
 
-2. **Install Dependencies**:
-```bash
-pnpm install
-```
-
-3. **Run the development app**: 
+2. **Run the development app**: 
 ```bash
 cd dockers/dev
 docker-compose up
 ```
 
-Get the API key and follow [this documentation](https://docs.agiflow.io/python) to get telemetry from your LLM app to Agiflow dashboard.
+3. **Install Dependencies**:
+Go to `localhost:3000` to get the API key and follow [this documentation](https://docs.agiflow.io/python) to get telemetry from your LLM app to Agiflow dashboard. With `docker compose` development setup, the `AGIFLOW_API_ENDPOINT` is `http://localhost:3000/api/analytics`.
 
 ## Key Features
 
-Our mono-repo is designed with the goal of building robust and scalable AI products. Here is an overview of our packages:
+Our mono-repo is designed with the goal of building robust and scalable LLM ops platform. To learn more about why and how we use mono-repo, please visit [Nx, PNPM and Poetry Mono-Repo documentation](./docs/mono-repo.md).  
 
+We're making sources available on a rolling basis from our internal repo. For comprehensive documentation, please visit [AGIFlow's docs](https://docs.agiflow.io). Here is an overview of our packages:
+
+- [x] **dockers**: Docker compose to run and self-host AGIFlow.
 - [x] **[llm-mocks](https://docs.agiflow.io/llm-mocks)**: Mocking library for LLM providers, simplifying TDD, reducing CI/CD costs on regression testing, and facilitating API development.
 - [x] **[agiflow-eval](https://docs.agiflow.io/python-agiflow-eval)**: Python SDK for LLM evaluations, supporting custom templates and multiple models.
 - [x] **[agiflow-sdk](https://docs.agiflow.io/python)**: Python SDK built on top of Open-Telemetry to collect LLM metrics, supporting prompt and model registry synchronization for multiple LLM usages.
 - [ ] **[@agiflow/js-sdk](https://docs.agiflow.io/web)**: Web SDK for frontend analytics on how users interact with LLM apps, allowing full-stack traceability.
 - [ ] **[@agiflow/web-feedback](https://docs.agiflow.io/web/feedback)**: Feedback widget with session replay and workflow visualization to get high-quality feedback from simple chat apps to complex agentic workflows.
-- [ ] **dockers**: Docker compose to run and self-host AGIFlow.
 
-We're making sources available on a rolling basis from our internal repo. For comprehensive documentation, please visit [AGIFlow's docs](https://docs.agiflow.io).
 
 ## Contribution
 
