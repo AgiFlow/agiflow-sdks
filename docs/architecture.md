@@ -1,5 +1,7 @@
 # AGIFlow LLM Ops Platform Architecture Documentation
 
+![Architecture Diagram](./architecture-diagram.png)
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
@@ -27,8 +29,7 @@ The architecture of the AGIFlow Platform is composed of four primary components:
 2. **Backend**: A server built with Node.js, handling API requests and business logic.
 3. **Message Broker**: By default we use Kafka (this component can be swaped to use sns/sqs, etc...), facilitating asynchronous communication between the backend and workers.
 4. **Worker**: Nodejs and Python processes performing data processing and model management tasks.
-
-![Architecture Diagram](./architecture-diagram.png)
+4. **Data Storage**: We use Postgres to store data. Control-plane and analytics data are stored in two separated tables; which we will eventually support other type of datastore for analytics.
 
 ## Components
 
