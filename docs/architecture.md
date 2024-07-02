@@ -125,7 +125,7 @@ The architecture of the AGIFlow Platform is composed of six primary components:
 
 ## Data Flow
 
-### Control-plan (Dashboard)
+### Control-plan (via Dashboard)
 
 1. **User Interaction**: The user interacts with the frontend, performing actions such as evaluating new model.
 2. **API Request**: The frontend sends an API request to the backend.
@@ -134,7 +134,7 @@ The architecture of the AGIFlow Platform is composed of six primary components:
 5. **Result Handling**: API layers consumes the result message, updates the system state, and sends the response back to the frontend.
 6. **User Notification**: The frontend updates the user interface with the latest status and results.
 
-### Control-plan (Dashboard)
+### Data-plan (via Sdks)
 
 1. **User Interaction Analytics**: The user interacts with the end-application frontend, performing actions which call your backend-apis.
 2. **API Request**: The frontend sends an API request to the backend, AGIFLow frontend sdks attach `agiflow-x-trace-id` header.
