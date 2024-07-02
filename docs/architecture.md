@@ -23,13 +23,14 @@ AGIFlow's LLM Ops Platform is designed to streamline the testing, monitoring and
 
 ## Architecture Overview
 
-The architecture of the AGIFlow Platform is composed of four primary components:
+The architecture of the AGIFlow Platform is composed of six primary components:
 
 1. **Frontend**: A user interface built with React.
-2. **Backend**: A server built with Node.js, handling API requests and business logic.
+2. **API Layer**: API servers built with Node.js and Python, handling API requests and business logic.
 3. **Message Broker**: By default we use Kafka (this component can be swaped to use sns/sqs, etc...), facilitating asynchronous communication between the backend and workers.
-4. **Worker**: Nodejs and Python processes performing data processing and model management tasks.
-4. **Data Storage**: We use Postgres to store data. Control-plane and analytics data are stored in two separated tables; which we will eventually support other type of datastore for analytics.
+4. **Worker Layer**: Nodejs and Python processes performing data processing and model management tasks.
+5. **Data Storage**: We use Postgres to store data. Control-plane and analytics data are stored in two separated tables; which we will eventually support other type of datastore for analytics.
+6. **Sdks**: Frontend and backend SDKs for analytics, tracing and APIs.
 
 ## Components
 
@@ -47,13 +48,15 @@ The architecture of the AGIFlow Platform is composed of four primary components:
 - Model, Prompt and Data Management: Interface for deploying, updating, and monitoring LLMs.
 - Notifications: Real-time alerts for critical events and system status changes.
 
-### Auth layer
+### API Layer
+
+#### Auth
 **Technology**: Supabase Auth 
 
 **Responsibilities**:
 - Authenticate user with SAML, SSO support
 
-### API layer
+#### API servers
 
 **Technology**: Node.js, Python
 
@@ -61,7 +64,7 @@ The architecture of the AGIFlow Platform is composed of four primary components:
 - Expose RESTful APIs for frontend interaction with Open API documentation.
 - Handle business logic and data validation.
 - Produce messages to Kafka for worker processing.
-- Consume messages from Kafka for real-time updates and notifications.
+- Webhooks for real-time updates and notifications.
 
 **Key Features**:
 - User Authorization is based on [Casbin](https://casbin.org/docs/get-started), make it easier to extend and customise Role-base Access Control (RBAC).  
@@ -70,7 +73,7 @@ The architecture of the AGIFlow Platform is composed of four primary components:
 
 ### Message Broker
 
-**Technology**: Kafka as default (switchable via built-time)
+**Technology**: Kafka as default message broker (support other message brokers and queues via built-time)
 
 **Responsibilities**:
 - Facilitate asynchronous communication between the backend and workers.
@@ -82,7 +85,7 @@ The architecture of the AGIFlow Platform is composed of four primary components:
 - Consumer Groups: Distribute workload among multiple worker instances.
 - Persistence: Ensure messages are not lost in transit.
 
-### Worker
+### Worker Layer
 
 **Technology**: Nodejs, Python
 
@@ -96,14 +99,50 @@ The architecture of the AGIFlow Platform is composed of four primary components:
 - Data Preprocessing: Clean and prepare data for model consumption.
 - Monitoring and Logging: Track task performance and log results for auditing.
 
+### Data Storage
+
+**Technology**: Postgres
+
+**Responsibilities**:
+- Control-plan Database stores data including organization + projects + environments settings, models + prompt registry, dataset.
+- Analytics Database stores traces, frontend analytics, session logging, etc...
+
+**Key Features**:
+- Postgres is matured and flexible which is perfect fit for current stage of project.
+- Analytics Data is stored in a different database so we can support OLAP and other data storage later.
+
+### Sdks
+
+**Technology**: Typescript, Python
+
+**Responsibilities**:
+- Use to collect analytics and traces from end-applications.
+
+**Key Features**:
+- Fontend sdks provide feedback widget with workflow visualisation mode for power user to help improve LLM.
+- Backend sdks is built on top of open-telemetry, support distributed tracing and easy integration.  
+
+
 ## Data Flow
 
-1. **User Interaction**: The user interacts with the frontend, performing actions such as deploying a new model or requesting performance metrics.
+### Control-plan (Dashboard)
+
+1. **User Interaction**: The user interacts with the frontend, performing actions such as evaluating new model.
 2. **API Request**: The frontend sends an API request to the backend.
 3. **Task Submission**: The backend processes the request, validates the data, and submits a task message to Kafka.
-4. **Worker Processing**: A Python worker consumes the message, performs the required task (e.g., model training), and produces a result message back to Kafka.
-5. **Result Handling**: The backend consumes the result message, updates the system state, and sends the response back to the frontend.
+4. **Worker Processing**: A Python worker consumes the message, performs the required task (e.g., model validation), and produces a result message back via webhook to API layers.
+5. **Result Handling**: API layers consumes the result message, updates the system state, and sends the response back to the frontend.
 6. **User Notification**: The frontend updates the user interface with the latest status and results.
+
+### Control-plan (Dashboard)
+
+1. **User Interaction Analytics**: The user interacts with the end-application frontend, performing actions which call your backend-apis.
+2. **API Request**: The frontend sends an API request to the backend, AGIFLow frontend sdks attach `agiflow-x-trace-id` header.
+3. **Tracing**: The backend processes the request, use AGIFlow backend sdks to get context from `agiflow-x-trace-id`. Traces are automatically sent to AGIFlow `dataplan API`.
+4. **Trace Processing**: Formatting traces and run real-time evaluations if you enable AGIFLow Evaluation plugins. Create deduplicated delayed queue for `tail analysis`.
+5. **Workflow Analysis**: Once the trace finalised, run workflow analysis to add metadata to workflow trace and perform aggregation.
+6. **User Notification**: If there is issue with real-time evaluations, send websocket notification to fontend sdks so developer can decide what to do with that.
+
 
 ## Deployment
 AGIFlow's goal is to provide a scalable LLM Ops platform which can automatically scale as your business growth. With this in mind, we provide a modular layered application which can be easily adapt to your infrastructure need via built-time.
@@ -114,6 +153,7 @@ AGIFlow's goal is to provide a scalable LLM Ops platform which can automatically
 - **Backend**: Deployed on a Node.js server or cloud service (e.g., Cloudflare worker, Azure function, AWS EC2, AWS Lambda, ...).
 - **Message Broker**: Use kafka managed service (e.g., Confluent Cloud, AWS MSK) or self-hosted cluster, or switch to sns/sqs and other cloud messaging systems.
 - **Workers**: Deployed on serverless container or a container orchestration platform (e.g., Kubernetes, AWS ECS).
+- **Data Storage**: Your choice of PostGres instance.
 
 ## Scalability and Fault Tolerance
 

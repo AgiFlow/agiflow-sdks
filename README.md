@@ -21,6 +21,10 @@
 
 ## Why AGIFLow?
 
+
+[<img src="./docs/overview.png">](https://www.loom.com/share/d2e4fcb3b7c847ec8bc752f48a644570)
+
+
 With automatic logging and detailed traces, AGIFlow optimizes performance and resolves issues efficiently. Additionally, its intuitive dashboards accelerate QA and feedback loops, boosting team productivity and reducing training time. We understand the challenges of bringing your LLM app to production and want to ensure you have a [scalable, trustworthy infrastructure](./docs/architecture.md) to do so.
 
 ## Getting Started
