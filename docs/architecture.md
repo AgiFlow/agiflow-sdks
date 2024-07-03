@@ -15,11 +15,10 @@
 5. [Deployment](#deployment)
 6. [Scalability and Fault Tolerance](#scalability-and-fault-tolerance)
 7. [Security](#security)
-8. [Conclusion](#conclusion)
 
 ## Introduction
 
-AGIFlow's LLM Ops Platform is designed to streamline the testing, monitoring and management of Large Language Models (LLMs) apps. This document provides an overview of the architecture, detailing the various components and their interactions within the system. The platform is built using React for the frontend, Node.js and Python for the backend. AGIFlow supports different messaging and queue system during built-time for event-driven architecture; where you can easily self-hosted on your own infrastructure.
+[AGIFlow's LLM Ops Platform](https://agiflow.io) is designed to streamline the testing, monitoring and management of Large Language Models (LLMs) apps. This document provides an overview of the architecture, detailing the various components and their interactions within the system. The platform is built using React for the frontend, Node.js and Python for the backend. AGIFlow supports different messaging and queue system during built-time for event-driven architecture; where you can easily self-hosted on your own infrastructure.
 
 ## Architecture Overview
 
@@ -30,7 +29,7 @@ The architecture of the AGIFlow Platform is composed of six primary components:
 3. **Message Broker**: By default we use Kafka (this component can be swaped to use sns/sqs, etc...), facilitating asynchronous communication between the backend and workers.
 4. **Worker Layer**: Nodejs and Python processes performing data processing and model management tasks.
 5. **Data Storage**: We use Postgres to store data. Control-plane and analytics data are stored in two separated tables; which we will eventually support other type of datastore for analytics.
-6. **Sdks**: Frontend and backend SDKs for analytics, tracing and APIs.
+6. **Sdks**: Frontend and backend SDKs for analytics, tracing and AGIFlow's APIs interaction.
 
 ## Components
 
@@ -174,6 +173,6 @@ AGIFlow's goal is to provide a scalable LLM Ops platform which can automatically
 - **Network Security**: Use VPCs, firewalls, and security groups to restrict access.
 - **Monitoring and Logging**: Implement comprehensive monitoring and logging for security auditing and incident response.
 
-## Conclusion
+---
 
 AGIFlow's LLM Ops Platform leverages modern technologies to provide a robust, scalable, and secure solution for managing Large Language Models. We understand the challenges of bringing your LLM app to production and want to ensure you have a scalable, trustworthy infrastructure to do so.
