@@ -44,7 +44,7 @@ docker-compose up
 ```
 
 3. **Install Dependencies**:
-Go to `localhost:3000` to get the API key and follow [this documentation](https://docs.agiflow.io/python) to get telemetry from your LLM app to Agiflow dashboard. With `docker compose` development setup, the `AGIFLOW_API_ENDPOINT` is `http://localhost:3000/api/analytics`.
+Go to `localhost:3000` to get the API key and follow [this documentation](https://docs.agiflow.io/python) to get telemetry from your LLM app to Agiflow dashboard. With `docker compose` development setup, the `AGIFLOW_BASE_URL` or `api_endpoint` option is `http://localhost:3000/api/analytics`; same url applied for [frontend analytics sdk](https://docs.agiflow.io/web)'s `endpoint`.
 
 ## Key Features
 
