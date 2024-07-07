@@ -1,0 +1,23 @@
+{
+  "name": "@agiflowai/rig-esbuild-config",
+  "version": "0.0.0",
+  "description": "Shared esbuild configs",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild-plugin-lodash": "1.2.0",
+    "esbuild-plugin-polyfill-node": "0.3.0",
+    "esbuild-plugin-copy": "2.1.1"
+  },
+  "peerDependencies": {
+    "esbuild": "0.20.2"
+  },
+  "devDependencies": {
+    "esbuild": "0.20.2"
+  },
+  "private": true
+}

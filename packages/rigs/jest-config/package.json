@@ -1,0 +1,22 @@
+{
+  "name": "@agiflowai/rig-jest-config",
+  "version": "1.0.0",
+  "description": "Shared jest configs",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "jest": ">=29.5.0"
+  },
+  "dependencies": {
+    "jest-esbuild": "0.3.0",
+    "es-jest": "2.1.0"
+  },
+  "devDependencies": {
+    "jest": "29.7.0"
+  },
+  "private": true
+}

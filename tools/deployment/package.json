@@ -1,0 +1,17 @@
+{
+  "name": "@agiflowai/tool-deployment",
+  "description": "Deployment helper for agiflow",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "src/index.mjs",
+  "scripts": {},
+  "dependencies": {
+    "@agiflowai/tool-cli-helper": "workspace:*",
+    "commander": "12.0.0",
+    "dotenv": "16.4.5",
+    "inquirer": "9.2.15",
+    "rollup": "4.17.2",
+    "typescript": "5.4.5"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,34 @@
+{
+  "name": "@agiflowai/rig-rollup-config",
+  "version": "0.0.0",
+  "description": "Shared rollup configs",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@rollup/plugin-alias": "5.1.0",
+    "@rollup/plugin-commonjs": "25.0.7",
+    "@rollup/plugin-multi-entry": "6.0.1",
+    "@rollup/plugin-node-resolve": "15.2.3",
+    "esbuild": "0.20.2",
+    "recast": "0.23.4",
+    "rollup-plugin-esbuild": "6.1.0",
+    "rollup-plugin-ignore": "1.0.10",
+    "rollup-plugin-multi-input": "1.4.1",
+    "rollup-plugin-node-externals": "6.1.2",
+    "rollup-plugin-use-client": "1.4.0",
+    "unplugin-ast": "0.8.2"
+  },
+  "peerDependencies": {
+    "rollup": ">=3.18.0",
+    "typescript": ">=4.9.5"
+  },
+  "devDependencies": {
+    "rollup": "4.17.2",
+    "typescript": "5.4.5"
+  },
+  "private": true
+}

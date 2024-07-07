@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "es2022",
+    "moduleResolution": "node",
+    "lib": ["esnext"],
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "rootDir": "../../../..",
+    "outDir": "../../../../.build",
+    "baseUrl": "../../../../src",
+    "paths": {
+      "$/*": ["../dist/*"],
+      "@/*": ["*"],
+      "#/*": ["../test/*"]
+    }
+  },
+  "include": [
+    "../../../../vitest.config.ts",
+    "../../../../src/**/*",
+    "../../../../test/**/*",
+    "../../../../types"
+  ]
+}

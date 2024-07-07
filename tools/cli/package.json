@@ -1,0 +1,23 @@
+{
+  "name": "@agiflowai/tool-cli",
+  "description": "Cli for agiflow",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "index.mjs",
+  "bin": {
+    "st": "cli/st.mjs"
+  },
+  "scripts": {
+    "build": "echo \"none\"",
+    "types": "echo \"No Types\"",
+    "lint": "echo \"No Lint\""
+  },
+  "dependencies": {
+    "@agiflowai/tool-builder": "workspace:*",
+    "@agiflowai/tool-generator": "workspace:*",
+    "@agiflowai/tool-testing": "workspace:*",
+    "@agiflowai/tool-development": "workspace:*",
+    "@agiflowai/tool-deployment": "workspace:*",
+    "commander": "12.0.0"
+  }
+}

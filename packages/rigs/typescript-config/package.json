@@ -1,0 +1,22 @@
+{
+  "name": "@agiflowai/rig-typescript-config",
+  "version": "0.0.0",
+  "description": "Shared typescript configs",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "echo \"none\"",
+    "build:watch": "echo \"none\"",
+    "lint": "echo \"none\"",
+    "fixcode": "echo \"none\"",
+    "test": "echo \"Error: no test\"",
+    "clean": "echo \"none\"",
+    "types": "echo \"none\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {},
+  "private": true
+}
