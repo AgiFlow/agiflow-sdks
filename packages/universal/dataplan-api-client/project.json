@@ -1,0 +1,8 @@
+{
+  "name": "@agiflowai/dataplane-api-client",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/universal/dataplane-api-client",
+  "projectType": "package",
+  "targets": {},
+  "tags": []
+}

@@ -1,0 +1,21 @@
+module.exports = {
+  preset: 'es-jest',
+  clearMocks: true,
+  moduleFileExtensions: ['json', 'js', 'ts', 'tsx'],
+  transformIgnorePatterns: ['/node_modules/', '/.build/', '/.serverless/'],
+  coveragePathIgnorePatterns: ['/node_modules/', '/.build/', '/.serverless/'],
+  watchPathIgnorePatterns: ['/node_modules/', '/.build/', '/.serverless/'],
+  modulePathIgnorePatterns: ['/node_modules/', '/.build/', '/.serverless/'],
+  testMatch: ['**/?(*.)+(spec|test).+(ts|tsx|js)'],
+  moduleNameMapper: {
+    '@/(.*)$': '<rootDir>/src/$1',
+    '#/(.*)$': '<rootDir>/test/$1',
+  },
+  rootDir: '.',
+  roots: ['./src', './test'],
+  testEnvironment: 'node',
+  setupFilesAfterEnv: ['<rootDir>/test/setup.ts'],
+  globalSetup: '<rootDir>/test/globalSetup.ts',
+  globalTeardown: '<rootDir>/test/globalTeardown.ts',
+  cacheDirectory: '.cache',
+};

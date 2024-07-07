@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  analytics-db-1:
+    image: postgres:16.2
+    environment:
+      POSTGRES_PASSWORD: ${ANALYTICS_DB_PASSWORD}
+      POSTGRES_USER: ${ANALYTICS_DB_USER}
+      POSTGRES_DB: ${ANALYTICS_DB_DATABASE}
+    ports:
+      - "6432:5432"
+
+  saas-db-1:
+    image: postgres:16.2
+    environment:
+      POSTGRES_PASSWORD: ${SAAS_DB_PASSWORD}
+      POSTGRES_USER: ${SAAS_DB_USER}
+      POSTGRES_DB: ${SAAS_DB_DATABASE}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
+    ports:
+      - "6433:5432"

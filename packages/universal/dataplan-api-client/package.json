@@ -1,0 +1,44 @@
+{
+  "name": "@agiflowai/dataplane-api-client",
+  "version": "0.0.0",
+  "description": "AGIFlow dataplan api",
+  "main": "./dist/index.js",
+  "jsnext:main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "st build ts package",
+    "build:watch": "st build ts package --watch",
+    "deploy": "zx ./scripts/deploy.mjs --experimental-json-modules ",
+    "test": "echo \"Error: no test specified\"",
+    "lint": "pnpm run lint:js",
+    "lint:js": "eslint --ext .ts --ext .tsx src/",
+    "lint:js:fix": "eslint --ext .ts --ext .tsx --cache --quiet --fix src/",
+    "fixcode": "pnpm run lint:js:fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-config": "3.7.0",
+    "@agiflowai/rig-eslint-config": "workspace:*",
+    "@agiflowai/rig-prettier-config": "workspace:*",
+    "@agiflowai/rig-rollup-config": "workspace:*",
+    "@agiflowai/rig-typescript-config": "workspace:*",
+    "@agiflowai/tool-cli": "workspace:*",
+    "@types/node": "20.10.5",
+    "openapi-typescript": "6.7.4",
+    "eslint": "8.57.0",
+    "jest": "29.7.0",
+    "rollup": "4.17.2",
+    "rollup-plugin-copy": "3.4.0",
+    "typescript": "5.4.5"
+  },
+  "author": "Vuong Ngo",
+  "license": "Apache-2.0"
+}

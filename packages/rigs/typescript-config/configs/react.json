@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "jsx": "preserve",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "allowUnreachableCode": false,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "rootDirs": [
+      "../../../../src",
+      "../../../../test",
+      "../../../../jest.config.ts"
+    ],
+    "paths": {
+      "@/*": ["../../../../src/*"],
+      "#/*": ["../../../../test/*"]
+    },
+    "outDir": "../../../../dist",
+    "typeRoots": [
+      "../../../../node_modules/@types",
+      "../../../../node_modules/@agiflowai/frontend-shared-theme/types",
+      "../../../../types"
+    ]
+  },
+  "include": [
+    "types/*.d.ts",
+    "../../../../jest.config.ts",
+    "../../../../types",
+    "../../../../node_modules/@types/*",
+    "../../../../node_modules/@agiflowai/frontend-shared-theme/types/*",
+    "../../../../src/**/*"
+  ]
+}
