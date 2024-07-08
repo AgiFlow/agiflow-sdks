@@ -18,6 +18,5 @@
   },
   "devDependencies": {
     "esbuild": "0.20.2"
-  },
-  "private": true
+  }
 }
