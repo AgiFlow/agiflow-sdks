@@ -1,0 +1,8 @@
+{
+  "name": "@agiflowai/frontend-web-sankey",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/frontend/web-sankey",
+  "projectType": "package",
+  "targets": {},
+  "tags": []
+}
