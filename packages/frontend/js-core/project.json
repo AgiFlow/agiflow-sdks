@@ -1,0 +1,8 @@
+{
+  "name": "@agiflowai/js-core",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/frontend/js-core",
+  "projectType": "package",
+  "targets": {},
+  "tags": []
+}

@@ -79,6 +79,98 @@ importers:
         specifier: 5.4.5
         version: 5.4.5
 
+  packages/frontend/js-core:
+    dependencies:
+      '@agiflowai/dataplane-api-client':
+        specifier: workspace:*
+        version: link:../../universal/dataplan-api-client
+    devDependencies:
+      '@agiflowai/rig-eslint-config':
+        specifier: workspace:*
+        version: link:../../rigs/eslint-config
+      '@agiflowai/rig-prettier-config':
+        specifier: workspace:*
+        version: link:../../rigs/prettier-config
+      '@agiflowai/rig-rollup-config':
+        specifier: workspace:*
+        version: link:../../rigs/rollup-config
+      '@agiflowai/rig-typescript-config':
+        specifier: workspace:*
+        version: link:../../rigs/typescript-config
+      '@agiflowai/tool-cli':
+        specifier: workspace:*
+        version: link:../../../tools/cli
+      '@rushstack/eslint-config':
+        specifier: 3.7.0
+        version: 3.7.0(eslint@8.57.0)(typescript@5.4.5)
+      '@types/node':
+        specifier: 20.10.5
+        version: 20.10.5
+      eslint:
+        specifier: 8.57.0
+        version: 8.57.0
+      jest:
+        specifier: 29.7.0
+        version: 29.7.0(@types/node@20.10.5)(ts-node@10.9.1(@types/node@20.10.5)(typescript@5.4.5))
+      rollup:
+        specifier: 4.17.2
+        version: 4.17.2
+      rollup-plugin-copy:
+        specifier: 3.4.0
+        version: 3.4.0
+      typescript:
+        specifier: 5.4.5
+        version: 5.4.5
+
+  packages/frontend/js-sdk:
+    dependencies:
+      '@agiflowai/dataplane-api-client':
+        specifier: workspace:*
+        version: link:../../universal/dataplan-api-client
+      openapi-fetch:
+        specifier: 0.9.2
+        version: 0.9.2
+      ulidx:
+        specifier: 2.3.0
+        version: 2.3.0
+    devDependencies:
+      '@agiflowai/rig-eslint-config':
+        specifier: workspace:*
+        version: link:../../rigs/eslint-config
+      '@agiflowai/rig-prettier-config':
+        specifier: workspace:*
+        version: link:../../rigs/prettier-config
+      '@agiflowai/rig-rollup-config':
+        specifier: workspace:*
+        version: link:../../rigs/rollup-config
+      '@agiflowai/rig-typescript-config':
+        specifier: workspace:*
+        version: link:../../rigs/typescript-config
+      '@agiflowai/tool-cli':
+        specifier: workspace:*
+        version: link:../../../tools/cli
+      '@rushstack/eslint-config':
+        specifier: 3.7.0
+        version: 3.7.0(eslint@8.57.0)(typescript@5.4.5)
+      '@types/node':
+        specifier: 20.10.5
+        version: 20.10.5
+      eslint:
+        specifier: 8.57.0
+        version: 8.57.0
+      jest:
+        specifier: 29.7.0
+        version: 29.7.0(@types/node@20.10.5)(ts-node@10.9.1(@types/node@20.10.5)(typescript@5.4.5))
+      rollup:
+        specifier: 4.17.2
+        version: 4.17.2
+      rollup-plugin-copy:
+        specifier: 3.4.0
+        version: 3.4.0
+      typescript:
+        specifier: 5.4.5
+        version: 5.4.5
+
   packages/rigs/esbuild-config:
     dependencies:
       esbuild-plugin-copy:
@@ -4048,6 +4140,9 @@ packages:
     resolution: {integrity: sha512-MbjN408fEndfiQXbFQ1vnd+1NoLDsnQW41410oQBXiyXDMYH5z505juWa4KUE1LqxRC7DgOgZDbKLxHIwm27hA==}
     engines: {node: '>=0.10'}
 
+  layerr@2.1.0:
+    resolution: {integrity: sha512-xDD9suWxfBYeXgqffRVH/Wqh+mqZrQcqPRn0I0ijl7iJQ7vu8gMGPt1Qop59pEW/jaIDNUN7+PX1Qk40+vuflg==}
+
   leven@3.1.0:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}
     engines: {node: '>=6'}
@@ -4386,6 +4481,12 @@ packages:
   open@8.4.2:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
+
+  openapi-fetch@0.9.2:
+    resolution: {integrity: sha512-EEzVCoGAbGP1Z3eTZXI0urHtvb+JRKLnPbnemsUzeTWcHCaAXsdhAWYfdLAx4fTNNUaL23BQLup8dQjMMkCRqA==}
+
+  openapi-typescript-helpers@0.0.7:
+    resolution: {integrity: sha512-7nwlAtdA1fULipibFRBWE/rnF114q6ejRYzNvhdA/x+qTWAZhXGLc/368dlwMlyJDvCQMCnADjpzb5BS5ZmNSA==}
 
   openapi-typescript@6.7.4:
     resolution: {integrity: sha512-EZyeW9Wy7UDCKv0iYmKrq2pVZtquXiD/YHiUClAKqiMi42nodx/EQH11K6fLqjt1IZlJmVokrAsExsBMM2RROQ==}
@@ -5226,6 +5327,10 @@ packages:
     resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  ulidx@2.3.0:
+    resolution: {integrity: sha512-36piWNqcdp9hKlQewyeehCaALy4lyx3FodsCxHuV6i0YdexSkjDOubwxEVr2yi4kh62L/0MgyrxqG4K+qtovnw==}
+    engines: {node: '>=16'}
 
   unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
@@ -10205,6 +10310,8 @@ snapshots:
     dependencies:
       language-subtag-registry: 0.3.23
 
+  layerr@2.1.0: {}
+
   leven@3.1.0: {}
 
   levn@0.4.1:
@@ -10606,6 +10713,12 @@ snapshots:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
+
+  openapi-fetch@0.9.2:
+    dependencies:
+      openapi-typescript-helpers: 0.0.7
+
+  openapi-typescript-helpers@0.0.7: {}
 
   openapi-typescript@6.7.4:
     dependencies:
@@ -11463,6 +11576,10 @@ snapshots:
       possible-typed-array-names: 1.0.0
 
   typescript@5.4.5: {}
+
+  ulidx@2.3.0:
+    dependencies:
+      layerr: 2.1.0
 
   unbox-primitive@1.0.2:
     dependencies:

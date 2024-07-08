@@ -1,0 +1,3 @@
+{
+  "extends": "./node_modules/@agiflowai/rig-typescript-config/configs/react.json"
+}
