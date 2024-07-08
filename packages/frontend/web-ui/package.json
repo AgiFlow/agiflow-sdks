@@ -13,7 +13,6 @@
   },
   "scripts": {
     "storybook": "start-storybook",
-    "publish": "build-storybook -o ./build",
     "build": "st build ts package",
     "build:watch": "st build ts package --watch",
     "test": "echo \"Error: no test specified\"",
