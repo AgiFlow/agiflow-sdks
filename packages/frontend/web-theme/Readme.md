@@ -1,4 +1,4 @@
-# @agiflowai/frontend-web-theme Package
+# @agiflowai/frontend-web-theme
 
 This package includes [AGIFlow's](https://agiflow.io) tailwind and storybook theming configuration.
 

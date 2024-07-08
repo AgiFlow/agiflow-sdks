@@ -1,0 +1,8 @@
+{
+  "name": "@agiflowai/frontend-web-atoms",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/frontend/web-atoms",
+  "projectType": "package",
+  "targets": {},
+  "tags": []
+}
