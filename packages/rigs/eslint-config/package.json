@@ -1,13 +1,14 @@
 {
   "name": "@agiflowai/rig-eslint-config",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Shared eslint configs",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {},
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/rigs/eslint-config",
   "dependencies": {
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",

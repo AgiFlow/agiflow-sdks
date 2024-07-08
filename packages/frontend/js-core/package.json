@@ -1,12 +1,13 @@
 {
   "name": "@agiflowai/js-core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Shared types and utils for js-sdk and web-feedback",
   "main": "./dist/index.js",
   "jsnext:main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/frontend/js-core",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

@@ -1,12 +1,13 @@
 {
   "name": "@agiflowai/js-sdk",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Web js-sdk for Agiflow analytics",
   "main": "./dist/index.js",
   "jsnext:main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/frontend/js-sdk",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

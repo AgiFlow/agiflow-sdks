@@ -1,9 +1,10 @@
 {
   "name": "@agiflowai/tool-deployment",
   "description": "Deployment helper for agiflow",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "src/index.mjs",
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/tools/deployment",
   "scripts": {},
   "dependencies": {
     "@agiflowai/tool-cli-helper": "workspace:*",
