@@ -1,4 +1,4 @@
-# @agiflowai/shared-theme Package
+# @agiflowai/frontend-shared-theme Package
 
 This package includes [AGIFlow's](https://agiflow.io) theme configuration and utils for colors and fonts.
 
@@ -12,7 +12,7 @@ This package includes [AGIFlow's](https://agiflow.io) theme configuration and ut
 Install the package using npm or yarn:
 
 ```bash
-npm install @agiflowai/shared-theme
+npm install @agiflowai/frontend-shared-theme
 ```
 
 ## License
