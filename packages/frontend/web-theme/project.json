@@ -1,0 +1,8 @@
+{
+  "name": "@agiflowai/frontend-web-theme",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/frontend/web-theme",
+  "projectType": "package",
+  "targets": {},
+  "tags": []
+}
