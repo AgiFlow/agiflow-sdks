@@ -1,4 +1,4 @@
-# @agiflowai/tool-testing
+# @agiflowai/tool-deployment
 
 ## Usage
-- Cli for testing node or packages with vitest and docker on child process etc...  
+- Cli scripts for deploying [agiflow's](https://agiflow.io) apis or packages with vitest and docker on child process etc...  
