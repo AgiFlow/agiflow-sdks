@@ -12,11 +12,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "storybook": "start-storybook -p 7003 --no-manager-cache",
-    "storybook:noop": "start-storybook -p 7003 --no-open",
     "build": "st build ts package",
     "build:watch": "st build ts package --watch",
-    "publish": "build-storybook -o ./build",
     "test": "echo \"Error: no test specified\"",
     "lint": "pnpm run lint:js",
     "lint:js": "eslint --ext .ts --ext .tsx src/",
