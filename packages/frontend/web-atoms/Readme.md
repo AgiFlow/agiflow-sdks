@@ -17,7 +17,7 @@ npm install @agiflowai/frontend-web-atoms
 
 ## Usage
 
-### Shadecn/ui components
+### Shadcn/ui components
 For **shadcn/ui**'s components, please visit [Shadcn's](https://ui.shadcn.com/docs/components/accordion).
 
 ### Custom components
