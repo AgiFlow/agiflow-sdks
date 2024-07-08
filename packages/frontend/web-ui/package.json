@@ -1,6 +1,6 @@
 {
   "name": "@agiflowai/frontend-web-ui",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Shared UI library for web",
   "main": "./dist/index.js",
   "jsnext:main": "./dist/index.js",
