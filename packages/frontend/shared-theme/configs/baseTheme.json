@@ -1,0 +1,108 @@
+{
+  "fonts": {
+    "family": {
+      "main": "Roboto",
+      "head": "Inter"
+    },
+    "sizes": {
+      "xxxsml": 8,
+      "xxsml": 10,
+      "xsml": 12,
+      "sml": 14,
+      "md": 16,
+      "lg": 18,
+      "h6": 18,
+      "h5": 22,
+      "h4": 28,
+      "h3": 36,
+      "h2": 48,
+      "h1": 60
+    },
+    "mobileSizes": {
+      "h6": 18,
+      "h5": 22,
+      "h4": 26,
+      "h3": 30,
+      "h2": 34,
+      "h1": 38
+    },
+    "weights": {
+      "light": 500,
+      "normal": 500,
+      "bold": 700,
+      "bolder": 800
+    }
+  },
+  "icons": {
+    "sizes": {
+      "sml": 12,
+      "md": 20,
+      "lg": 28,
+      "xlg": 36,
+      "xxlg": 48,
+      "xxxlg": 64
+    },
+    "mobileSizes": {
+      "sml": 14,
+      "md": 20,
+      "lg": 28,
+      "xlg": 36,
+      "xxlg": 48,
+      "xxxlg": 64
+    }
+  },
+  "colors": {
+    "primary": {
+      "default": "#8576FF",
+      "dark": "#1C1678",
+      "text": "#fff"
+    },
+    "secondary": {
+      "default": "#7BC9FF",
+      "dark": "#A3FFD6",
+      "text": "#f1f5f9"
+    },
+    "semantic": {
+      "info": "#0369a1",
+      "success": "#16a34a",
+      "error": "#dc2626",
+      "alert": "#f59e0b"
+    },
+    "transparent": "rgba(0, 0, 0, 0)",
+    "white": "#fff",
+    "black": "#333"
+  },
+  "layout": {
+    "space": [0, 2, 4, 8, 12, 16, 24, 32, 40, 48, 64, 80, 96, 160],
+    "breakpoints": {
+      "xxs": 0,
+      "xs": 576,
+      "sm": 768,
+      "md": 922,
+      "lg": 1200,
+      "xlg": 1600,
+      "xxlg": 1900,
+      "xxxlg": 2500
+    },
+    "navigations": {
+      "expanded": 86,
+      "normal": 64
+    }
+  },
+  "border": {
+    "radius": {
+      "default": 8,
+      "sm": 4,
+      "md": 8,
+      "lg": 12,
+      "xlg": 16,
+      "round": 999
+    },
+    "width": {
+      "default": 1,
+      "sm": 1,
+      "md": 2,
+      "lg": 3
+    }
+  }
+}

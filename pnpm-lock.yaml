@@ -171,6 +171,52 @@ importers:
         specifier: 5.4.5
         version: 5.4.5
 
+  packages/frontend/shared-theme:
+    dependencies:
+      colord:
+        specifier: 2.9.3
+        version: 2.9.3
+    devDependencies:
+      '@agiflowai/rig-eslint-config':
+        specifier: workspace:*
+        version: link:../../rigs/eslint-config
+      '@agiflowai/rig-prettier-config':
+        specifier: workspace:*
+        version: link:../../rigs/prettier-config
+      '@agiflowai/rig-rollup-config':
+        specifier: workspace:*
+        version: link:../../rigs/rollup-config
+      '@agiflowai/rig-typescript-config':
+        specifier: workspace:*
+        version: link:../../rigs/typescript-config
+      '@agiflowai/tool-cli':
+        specifier: workspace:*
+        version: link:../../../tools/cli
+      '@rushstack/eslint-config':
+        specifier: 3.7.0
+        version: 3.7.0(eslint@8.57.0)(typescript@5.4.5)
+      '@types/node':
+        specifier: 20.10.5
+        version: 20.10.5
+      '@types/react':
+        specifier: 18.3.1
+        version: 18.3.1
+      eslint:
+        specifier: 8.57.0
+        version: 8.57.0
+      jest:
+        specifier: 29.7.0
+        version: 29.7.0(@types/node@20.10.5)(ts-node@10.9.1(@types/node@20.10.5)(typescript@5.4.5))
+      rollup:
+        specifier: 4.17.2
+        version: 4.17.2
+      rollup-plugin-copy:
+        specifier: 3.4.0
+        version: 3.4.0
+      typescript:
+        specifier: 5.4.5
+        version: 5.4.5
+
   packages/rigs/esbuild-config:
     dependencies:
       esbuild-plugin-copy:
@@ -2128,6 +2174,12 @@ packages:
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
 
+  '@types/prop-types@15.7.12':
+    resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
+
+  '@types/react@18.3.1':
+    resolution: {integrity: sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==}
+
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
 
@@ -2701,6 +2753,9 @@ packages:
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
+  colord@2.9.3:
+    resolution: {integrity: sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==}
+
   colorette@1.4.0:
     resolution: {integrity: sha512-Y2oEozpomLn7Q3HFP7dpww7AtMJplbM9lGZP6RDfHqmbeRjiwRg4n6VM6j4KLmRke85uWEI7JqF17f3pqdRA0g==}
 
@@ -2813,6 +2868,9 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
+
+  csstype@3.1.3:
+    resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
   cz-conventional-changelog@3.3.0:
     resolution: {integrity: sha512-U466fIzU5U22eES5lTNiNbZ+d8dfcHcssH4o7QsdWaCcRs/feIPCxKYSWkYBNs5mny7MvEfwpTLWjvbm94hecw==}
@@ -7779,6 +7837,13 @@ snapshots:
 
   '@types/parse-json@4.0.2': {}
 
+  '@types/prop-types@15.7.12': {}
+
+  '@types/react@18.3.1':
+    dependencies:
+      '@types/prop-types': 15.7.12
+      csstype: 3.1.3
+
   '@types/resolve@1.20.2': {}
 
   '@types/retry@0.12.2': {}
@@ -8450,6 +8515,8 @@ snapshots:
 
   color-name@1.1.4: {}
 
+  colord@2.9.3: {}
+
   colorette@1.4.0: {}
 
   colorette@2.0.20: {}
@@ -8595,6 +8662,8 @@ snapshots:
   crypto-random-string@2.0.0: {}
 
   cssesc@3.0.0: {}
+
+  csstype@3.1.3: {}
 
   cz-conventional-changelog@3.3.0(@types/node@20.11.20)(typescript@5.4.5):
     dependencies:

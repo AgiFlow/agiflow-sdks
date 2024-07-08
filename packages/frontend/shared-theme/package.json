@@ -1,13 +1,13 @@
 {
-  "name": "@agiflowai/js-sdk",
-  "version": "0.0.6",
-  "description": "Web js-sdk for Agiflow analytics",
+  "name": "@agiflowai/frontend-shared-theme",
+  "version": "0.0.0",
+  "description": "Shared theme configuration",
   "main": "./dist/index.js",
   "jsnext:main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
-  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/frontend/js-sdk",
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/frontend/shared-theme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -22,18 +22,17 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@agiflowai/dataplane-api-client": "workspace:*",
-    "openapi-fetch": "0.9.2",
-    "ulidx": "2.3.0"
+    "colord": "2.9.3"
   },
   "devDependencies": {
+    "@rushstack/eslint-config": "3.7.0",
     "@agiflowai/rig-eslint-config": "workspace:*",
     "@agiflowai/rig-prettier-config": "workspace:*",
     "@agiflowai/rig-rollup-config": "workspace:*",
     "@agiflowai/rig-typescript-config": "workspace:*",
     "@agiflowai/tool-cli": "workspace:*",
-    "@rushstack/eslint-config": "3.7.0",
     "@types/node": "20.10.5",
+    "@types/react": "18.3.1",
     "eslint": "8.57.0",
     "jest": "29.7.0",
     "rollup": "4.17.2",

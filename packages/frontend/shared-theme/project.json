@@ -1,0 +1,8 @@
+{
+  "name": "@agiflowai/frontend-shared-theme",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/frontend/shared-theme",
+  "projectType": "package",
+  "targets": {},
+  "tags": []
+}
