@@ -1,0 +1,8 @@
+{
+  "name": "@agiflowai/frontend-web-molecules",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/frontend/web-molecules",
+  "projectType": "package",
+  "targets": {},
+  "tags": []
+}

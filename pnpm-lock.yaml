@@ -398,6 +398,97 @@ importers:
         specifier: 5.91.0
         version: 5.91.0
 
+  packages/frontend/web-molecules:
+    dependencies:
+      '@agiflowai/frontend-shared-theme':
+        specifier: workspace:*
+        version: link:../shared-theme
+      '@radix-ui/react-icons':
+        specifier: 1.3.0
+        version: 1.3.0(react@18.3.1)
+      class-variance-authority:
+        specifier: 0.7.0
+        version: 0.7.0
+      usehooks-ts:
+        specifier: 3.1.0
+        version: 3.1.0(react@18.3.1)
+    devDependencies:
+      '@agiflowai/frontend-web-atoms':
+        specifier: workspace:*
+        version: link:../web-atoms
+      '@agiflowai/frontend-web-theme':
+        specifier: workspace:*
+        version: link:../web-theme
+      '@agiflowai/rig-eslint-config':
+        specifier: workspace:*
+        version: link:../../rigs/eslint-config
+      '@agiflowai/rig-prettier-config':
+        specifier: workspace:*
+        version: link:../../rigs/prettier-config
+      '@agiflowai/rig-rollup-config':
+        specifier: workspace:*
+        version: link:../../rigs/rollup-config
+      '@agiflowai/rig-typescript-config':
+        specifier: workspace:*
+        version: link:../../rigs/typescript-config
+      '@agiflowai/tool-cli':
+        specifier: workspace:*
+        version: link:../../../tools/cli
+      '@radix-ui/react-dialog':
+        specifier: 1.0.5
+        version: 1.0.5(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@rushstack/eslint-config':
+        specifier: 3.7.0
+        version: 3.7.0(eslint@8.57.0)(typescript@5.4.5)
+      '@storybook/react':
+        specifier: 6.5.16
+        version: 6.5.16(@babel/core@7.24.7)(@types/webpack@4.41.38)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(require-from-string@2.0.2)(type-fest@0.21.3)(typescript@5.4.5)(webpack-hot-middleware@2.26.1)
+      '@types/node':
+        specifier: 20.10.5
+        version: 20.10.5
+      '@types/ramda':
+        specifier: 0.29.9
+        version: 0.29.9
+      '@types/react':
+        specifier: 18.3.1
+        version: 18.3.1
+      autoprefixer:
+        specifier: 10.4.19
+        version: 10.4.19(postcss@8.4.35)
+      eslint:
+        specifier: 8.57.0
+        version: 8.57.0
+      eslint-plugin-tailwindcss:
+        specifier: 3.15.1
+        version: 3.15.1(tailwindcss@3.4.3(ts-node@10.9.1(@types/node@20.10.5)(typescript@5.4.5)))
+      jest:
+        specifier: 29.7.0
+        version: 29.7.0(@types/node@20.10.5)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@types/node@20.10.5)(typescript@5.4.5))
+      prettier-plugin-tailwindcss:
+        specifier: 0.5.14
+        version: 0.5.14(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.3.2))(prettier-plugin-astro@0.13.0)(prettier@3.3.2)
+      react:
+        specifier: 18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: 18.3.1
+        version: 18.3.1(react@18.3.1)
+      rollup:
+        specifier: 4.17.2
+        version: 4.17.2
+      shadcn-ui:
+        specifier: 0.8.0
+        version: 0.8.0(typescript@5.4.5)
+      tailwindcss:
+        specifier: 3.4.3
+        version: 3.4.3(ts-node@10.9.1(@types/node@20.10.5)(typescript@5.4.5))
+      typescript:
+        specifier: 5.4.5
+        version: 5.4.5
+      webpack:
+        specifier: 5.91.0
+        version: 5.91.0
+
   packages/frontend/web-sankey:
     dependencies:
       '@agiflowai/frontend-shared-theme':
@@ -2821,6 +2912,11 @@ packages:
       '@types/react-dom':
         optional: true
 
+  '@radix-ui/react-icons@1.3.0':
+    resolution: {integrity: sha512-jQxj/0LKgp+j9BiTXz3O3sgs26RNet2iLWmsPyRz2SIcR4q/4SbazXfnYwbAr+vLYKSfc7qxzyGQA1HLlYiuNw==}
+    peerDependencies:
+      react: ^16.x || ^17.x || ^18.x || ^18.2.0
+
   '@radix-ui/react-id@1.0.1':
     resolution: {integrity: sha512-tI7sT/kqYp8p96yGWY1OAnLHrqDgzHefRBKQ2YAkBS5ja7QLcZ9Z/uY7bEjPUatf8RomoXM8/1sMj1IJaE5UzQ==}
     peerDependencies:
@@ -2913,8 +3009,8 @@ packages:
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
-      react: ^16.8 || ^17.0 || ^18.0
-      react-dom: ^16.8 || ^17.0 || ^18.0
+      react: ^16.8 || ^17.0 || ^18.0 || ^18.2.0
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^18.2.0
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -9989,6 +10085,12 @@ packages:
     resolution: {integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==}
     engines: {node: '>=0.10.0'}
 
+  usehooks-ts@3.1.0:
+    resolution: {integrity: sha512-bBIa7yUyPhE1BCc0GmR96VU/15l/9gP1Ch5mYdLcFBaFGQsdmXkvjV0TtOqW1yUd6VjIwDunm+flSciCQXujiw==}
+    engines: {node: '>=16.15.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || >=18.2.0
+
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
@@ -12948,6 +13050,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.1
       '@types/react-dom': 18.3.0
+
+  '@radix-ui/react-icons@1.3.0(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
 
   '@radix-ui/react-id@1.0.1(@types/react@18.3.1)(react@18.3.1)':
     dependencies:
@@ -22058,6 +22164,11 @@ snapshots:
       '@types/react': 18.3.1
 
   use@3.1.1: {}
+
+  usehooks-ts@3.1.0(react@18.3.1):
+    dependencies:
+      lodash.debounce: 4.0.8
+      react: 18.3.1
 
   util-deprecate@1.0.2: {}
 
