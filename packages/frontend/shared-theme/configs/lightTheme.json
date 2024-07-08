@@ -1,0 +1,28 @@
+{
+  "colors": {
+    "border": "#ccc",
+    "shadow": {
+      "default": "#ccc",
+      "dark": "#999",
+      "light": "#ccc"
+    },
+    "mono": {
+      "xxxlight": "#e5e5e5",
+      "xxlight": "#d4d4d4",
+      "xlight": "#a3a3a3",
+      "light": "#525252",
+      "default": "#262626",
+      "dark": "#171717"
+    },
+    "text": {
+      "default": "#353535",
+      "inverted": "#fcfcfc"
+    },
+    "background": {
+      "default": "#fff",
+      "shade": "#f5f5f5",
+      "dark": "#f5f5f5",
+      "light": "rgba(0, 0, 0, 0.75)"
+    }
+  }
+}

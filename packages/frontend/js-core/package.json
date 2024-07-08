@@ -19,7 +19,6 @@
     "lint:js": "eslint --ext .ts --ext .tsx src/",
     "lint:js:fix": "eslint --ext .ts --ext .tsx --cache --quiet --fix src/",
     "fixcode": "pnpm run lint:js:fix",
-    "clean": "agiflowrun env clean",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
