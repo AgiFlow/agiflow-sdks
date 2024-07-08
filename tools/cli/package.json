@@ -1,9 +1,10 @@
 {
   "name": "@agiflowai/tool-cli",
   "description": "Cli for agiflow",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "index.mjs",
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/tools/cli",
   "bin": {
     "st": "cli/st.mjs"
   },

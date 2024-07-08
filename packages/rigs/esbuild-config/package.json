@@ -1,13 +1,14 @@
 {
   "name": "@agiflowai/rig-esbuild-config",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Shared esbuild configs",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/rigs/esbuild-config",
   "scripts": {},
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "esbuild-plugin-lodash": "1.2.0",
     "esbuild-plugin-polyfill-node": "0.3.0",

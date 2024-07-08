@@ -1,13 +1,14 @@
 {
   "name": "@agiflowai/rig-jest-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shared jest configs",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {},
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/rigs/jest-config",
   "peerDependencies": {
     "jest": ">=29.5.0"
   },

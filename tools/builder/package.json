@@ -1,9 +1,10 @@
 {
   "name": "@agiflowai/tool-builder",
   "description": "Builder helper for agiflow",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "src/index.mjs",
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/tools/builder",
   "scripts": {},
   "dependencies": {
     "@agiflowai/tool-cli-helper": "workspace:*",

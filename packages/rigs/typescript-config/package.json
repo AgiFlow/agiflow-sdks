@@ -1,7 +1,8 @@
 {
   "name": "@agiflowai/rig-typescript-config",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Shared typescript configs",
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/rigs/typescript-config",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -15,7 +16,7 @@
     "types": "echo \"none\""
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {}
 }

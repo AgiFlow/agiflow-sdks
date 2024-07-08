@@ -1,13 +1,14 @@
 {
   "name": "@agiflowai/rig-rollup-config",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Shared rollup configs",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {},
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/rigs/rollup-config",
   "dependencies": {
     "@rollup/plugin-alias": "5.1.0",
     "@rollup/plugin-commonjs": "25.0.7",
