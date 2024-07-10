@@ -1086,6 +1086,52 @@ importers:
 
   packages/rigs/typescript-config: {}
 
+  packages/universal/controlplane-api-client:
+    dependencies:
+      zod:
+        specifier: 3.23.8
+        version: 3.23.8
+    devDependencies:
+      '@agiflowai/rig-eslint-config':
+        specifier: workspace:*
+        version: link:../../rigs/eslint-config
+      '@agiflowai/rig-prettier-config':
+        specifier: workspace:*
+        version: link:../../rigs/prettier-config
+      '@agiflowai/rig-rollup-config':
+        specifier: workspace:*
+        version: link:../../rigs/rollup-config
+      '@agiflowai/rig-typescript-config':
+        specifier: workspace:*
+        version: link:../../rigs/typescript-config
+      '@agiflowai/tool-cli':
+        specifier: workspace:*
+        version: link:../../../tools/cli
+      '@rushstack/eslint-config':
+        specifier: 3.7.0
+        version: 3.7.0(eslint@8.57.0)(typescript@5.4.5)
+      '@types/node':
+        specifier: 20.10.5
+        version: 20.10.5
+      eslint:
+        specifier: 8.57.0
+        version: 8.57.0
+      jest:
+        specifier: 29.7.0
+        version: 29.7.0(@types/node@20.10.5)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@types/node@20.10.5)(typescript@5.4.5))
+      openapi-typescript:
+        specifier: 6.7.4
+        version: 6.7.4
+      rollup:
+        specifier: 4.17.2
+        version: 4.17.2
+      rollup-plugin-copy:
+        specifier: 3.4.0
+        version: 3.4.0
+      typescript:
+        specifier: 5.4.5
+        version: 5.4.5
+
   packages/universal/dataplan-api-client:
     dependencies:
       zod:
