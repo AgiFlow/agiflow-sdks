@@ -52,6 +52,10 @@ export const init = async () => {
       opts
     );
     await runBash(
+      `pnpm -r --if-present --stream=true --filter backend-migrations-* seed`,
+      opts
+    );
+    await runBash(
       `pnpm -r --if-present --stream=true ${pkg?.name ? '--filter ' + pkg.name : '' } seed`,
       opts
     );
