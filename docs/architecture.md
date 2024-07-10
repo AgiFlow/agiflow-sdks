@@ -103,7 +103,7 @@ The architecture of the AGIFlow Platform is composed of six primary components:
 **Technology**: Postgres
 
 **Responsibilities**:
-- Control-plan Database stores data including organization + projects + environments settings, models + prompt registry, dataset.
+- Control-plane Database stores data including organization + projects + environments settings, models + prompt registry, dataset.
 - Analytics Database stores traces, frontend analytics, session logging, etc...
 
 **Key Features**:
@@ -124,7 +124,7 @@ The architecture of the AGIFlow Platform is composed of six primary components:
 
 ## Data Flow
 
-### Control-plan (via Dashboard)
+### Control-plane (via Dashboard)
 
 1. **User Interaction**: The user interacts with the frontend, performing actions such as evaluating new model.
 2. **API Request**: The frontend sends an API request to the backend.
@@ -133,11 +133,11 @@ The architecture of the AGIFlow Platform is composed of six primary components:
 5. **Result Handling**: API layers consumes the result message, updates the system state, and sends the response back to the frontend.
 6. **User Notification**: The frontend updates the user interface with the latest status and results.
 
-### Data-plan (via Sdks)
+### Data-plane (via Sdks)
 
 1. **User Interaction Analytics**: The user interacts with the end-application frontend, performing actions which call your backend-apis.
 2. **API Request**: The frontend sends an API request to the backend, AGIFLow frontend sdks attach `agiflow-x-trace-id` header.
-3. **Tracing**: The backend processes the request, use AGIFlow backend sdks to get context from `agiflow-x-trace-id`. Traces are automatically sent to AGIFlow `dataplan API`.
+3. **Tracing**: The backend processes the request, use AGIFlow backend sdks to get context from `agiflow-x-trace-id`. Traces are automatically sent to AGIFlow `dataplane API`.
 4. **Trace Processing**: Formatting traces and run real-time evaluations if you enable AGIFLow Evaluation plugins. Create deduplicated delayed queue for `tail analysis`.
 5. **Workflow Analysis**: Once the trace finalised, run workflow analysis to add metadata to workflow trace and perform aggregation.
 6. **User Notification**: If there is issue with real-time evaluations, send websocket notification to fontend sdks so developer can decide what to do with that.

@@ -42,6 +42,8 @@ services:
         condition: service_healthy
       agiflow-kafka:
         condition: service_started
+    # environment:
+    #  - CORS_ORIGIN=http://localhost:3000,http://localhost:3001
 
   agiflow-guardrails:
     image: agiflowai/guardrails-dev
