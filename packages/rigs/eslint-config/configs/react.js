@@ -33,6 +33,7 @@ module.exports = {
     'react/jsx-no-bind': 'off',
     '@typescript-eslint/typedef': 'off',
     'react/no-unescaped-entities': 'off',
+    'tailwindcss/enforces-shorthand': 'off',
   },
   env: {
     es6: true,

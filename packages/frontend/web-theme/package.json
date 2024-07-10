@@ -32,7 +32,7 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "tailwindcss": "3.4.3"
+    "tailwindcss": "3.4.4"
   },
   "dependencies": {
     "@mertasan/tailwindcss-variables": "2.6.1",
@@ -44,7 +44,7 @@
     "remcalc": "1.0.10",
     "tailwindcss-animate": "1.0.7",
     "tailwind-gradient-mask-image": "1.1.0",
-    "tailwind-merge": "2.1.0",
+    "tailwind-merge": "2.4.0",
     "tailwind-scrollbar": "3.0.4"
   },
   "devDependencies": {
@@ -66,7 +66,7 @@
     "react-dom": "18.3.1",
     "rollup": "4.17.2",
     "rollup-plugin-copy": "3.4.0",
-    "tailwindcss": "3.4.3",
+    "tailwindcss": "3.4.4",
     "typescript": "5.4.5",
     "webpack": "5.91.0"
   },
