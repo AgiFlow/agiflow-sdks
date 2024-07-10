@@ -24,12 +24,17 @@
 
 [<img src="./docs/overview.png">](https://www.loom.com/share/d2e4fcb3b7c847ec8bc752f48a644570)
 
+If you are developing a complex LLM workflow, you might have some difficulties with:  
+- Understand how output from one LLM affect the other LLM inference  
+- Disect LLM execution dependencies to improve performance  
+- Communicate with QA and non-technical users on how the workflow works  
+...and more
 
-With automatic logging and detailed traces, AGIFlow optimizes performance and resolves issues efficiently. Additionally, its intuitive dashboards accelerate QA and feedback loops, boosting team productivity and reducing training time. We understand the challenges of bringing your LLM app to production and want to ensure you have a [scalable, trustworthy infrastructure](./docs/architecture.md) to do so.
+AGIFlow solves these issues by visualising LLM workflow automatically for you based on telemetry data. With a few integration lines of code, you can get AGIFlow up and running from development environment to production. We understand the challenges of bringing your LLM app to production and want to ensure you have a [scalable, trustworthy infrastructure](./docs/architecture.md) to do so.
 
 ## Getting Started
 
-Running Agiflow app locally using `docker compose` and start tracing your application by:
+The simpliest way to get start is to use [AGIFlow's control-plane dashboard](https://app.agiflow.io). If you wish to keep your workflow and data private, you can also run Agiflow app locally using `docker compose` and start tracing your application by:
 
 1. **Clone the Repository**:
 ```bash
@@ -43,16 +48,19 @@ cd dockers/dev
 docker-compose up
 ```
 
-3. **Install Dependencies**:
-Go to `localhost:3000` to get the API key and follow [this documentation](https://docs.agiflow.io/python) to get telemetry from your LLM app to Agiflow dashboard. With `docker compose` development setup, the `AGIFLOW_BASE_URL` or `api_endpoint` option is `http://localhost:3000/api/dataplane`; same url applied for [frontend analytics sdk](https://docs.agiflow.io/web)'s `endpoint`.
+3. **Integrate with your application**:
+- Go to `localhost:3000` to get the API key and follow [this documentation](https://docs.agiflow.io/python) to get telemetry from your LLM app to Agiflow dashboard.   
+
+- With `docker compose` development setup, the `AGIFLOW_BASE_URL` or `api_endpoint` option is `http://localhost:3000/api/dataplane`; same url applied for [frontend analytics sdk](https://docs.agiflow.io/web)'s `endpoint`.
 
 ## Key Features
 
-Our mono-repo is designed with the goal of building robust and scalable LLM ops platform. To learn more about why and how we use mono-repo, please visit [Nx, PNPM and Poetry Mono-Repo documentation](./docs/mono-repo.md).  
+This mono-repo is designed for fullstack developers and product teams to develop scalable LLM product. To learn more about why and how we use mono-repo, please visit [Nx, PNPM and Poetry Mono-Repo documentation](./docs/mono-repo.md).  
 
 We're making sources available on a rolling basis from our internal repo. For comprehensive documentation, please visit [AGIFlow's docs](https://docs.agiflow.io). Here is an overview of our packages:
 
 - [x] **dockers**: Docker compose to run and self-host AGIFlow.
+- [x] **apps/agiflow-controlplane**: The AGIFlow's controlplane dashboard built with Vitejs + React
 - [x] **[llm-mocks](https://docs.agiflow.io/llm-mocks)**: Mocking library for LLM providers, simplifying TDD, reducing CI/CD costs on regression testing, and facilitating API development.
 - [x] **[agiflow-eval](https://docs.agiflow.io/python-agiflow-eval)**: Python SDK for LLM evaluations, supporting custom templates and multiple models.
 - [x] **[agiflow-sdk](https://docs.agiflow.io/python)**: Python SDK built on top of Open-Telemetry to collect LLM metrics, supporting prompt and model registry synchronization for multiple LLM usages.
