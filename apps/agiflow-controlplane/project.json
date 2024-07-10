@@ -1,0 +1,16 @@
+{
+  "name": "agiflow-controlplane",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/agiflow-controlplane",
+  "projectType": "application",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "reportUnusedDisableDirectives": "off"
+      }
+    }
+  },
+  "plugins": [],
+  "tags": []
+}

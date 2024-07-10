@@ -1,0 +1,12 @@
+{
+  "extends": "./node_modules/@agiflowai/rig-typescript-config/configs/react.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*", "__tests__/**/*", "./node_modules/@types/*", "./types/*", "./vite.config.ts", "./utils/**/*"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

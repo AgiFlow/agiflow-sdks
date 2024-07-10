@@ -1,0 +1,7 @@
+.react-flow__minimap {
+  background: var(--colors-background);
+}
+
+.react-flow__panel {
+  margin: 0px;
+}
