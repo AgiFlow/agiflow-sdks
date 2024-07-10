@@ -1,13 +1,13 @@
 {
-  "name": "@agiflowai/dataplane-api-client",
-  "version": "0.0.1",
-  "description": "AGIFlow dataplan api",
+  "name": "@agiflowai/controlplane-api-client",
+  "version": "0.0.0",
+  "description": "ControlPlane api client generated from OpenAPI spec",
   "main": "./dist/index.js",
   "jsnext:main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
-  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/universal/dataplan-api-client",
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/packages/universal/controlplane-api-client",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
