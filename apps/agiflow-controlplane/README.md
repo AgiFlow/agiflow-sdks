@@ -183,7 +183,7 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the Business Source License. See the [LICENSE](../../LICENSE) file for details.
 
 ---
 

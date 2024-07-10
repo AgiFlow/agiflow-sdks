@@ -2,6 +2,8 @@
   "name": "agiflow-controlplane",
   "private": true,
   "version": "0.0.0",
+  "description": "ControlPlane Dashboard for AGIFlow platform",
+  "homepage": "https://github.com/AgiFlow/agiflow-sdks/tree/main/apps/agiflow-controlplane",
   "scripts": {
     "dev": "vite --port 3001",
     "build": "tsc && vite build",
@@ -72,5 +74,7 @@
     "typescript": "5.4.5",
     "vite": "5.2.11",
     "wrangler": "3.60.3"
-  }
+  },
+  "author": "Vuong Ngo",
+  "license": "BSL"
 }
