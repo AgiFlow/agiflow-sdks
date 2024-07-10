@@ -6,7 +6,7 @@
 
 🤖 **AGIFlow**: LLM QA and Observability. We streamline LLM and Agentic Workflow development with real-time tracing and a visual debugger. Easily test prompt and model performance while continuously monitoring performance in production.
 
-[Homepage](https://agiflow.io/) | [Documentation](https://docs.agiflow.io/) | [Architecture and Data Security](./docs/architecture.md) | [Discord](https://discord.gg/bk6usPc4) | [Newsletter](https://mailchi.mp/agiflow/agiflow-sub)
+[Homepage](https://agiflow.io/) | [Documentation](https://docs.agiflow.io/) | [Architecture and Data Security](./docs/architecture.md) | [Discord](https://discord.gg/vejg6tkBUu) | [Newsletter](https://mailchi.mp/agiflow/agiflow-sub)
 
 </div>
 
@@ -80,6 +80,6 @@ This repository is a mono-repo that contains various packages, modules, and appl
 
 If you have any questions or need support, please open an issue in this repository or contact our support team at vuong@agiflow.com.
 
-To stay updated, get support, and engage with fellow developers, join our [Discord community](https://discord.gg/bk6usPc4). Click the link below to connect with us and be part of the conversation!
+To stay updated, get support, and engage with fellow developers, join our [Discord community](https://discord.gg/vejg6tkBUu). Click the link below to connect with us and be part of the conversation!
 
 Thank you for using AGIFlow SDKs! We look forward to seeing the amazing things you build.
