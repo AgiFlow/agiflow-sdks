@@ -51,6 +51,7 @@ Thumbs.db
 .eslintcache
 .env
 .env.*
+!.env.example
 .serverless
 publishDir
 artifacts/v0.0.0/*
