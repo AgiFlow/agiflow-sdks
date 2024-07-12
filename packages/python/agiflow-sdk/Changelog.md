@@ -1,5 +1,10 @@
 # Changelog for agiflow-sdk
 
+## [0.0.20] - 2024-06-29
+
+**Fixed**
+- Fix class decorator missing `method_name` keyed argument.
+
 ## [0.0.19] - 2024-06-29
 
 **Fixed**
