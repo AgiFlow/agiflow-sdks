@@ -31,8 +31,9 @@ pnpm install
 ```sh
 cp .env.example .env
 ```
-Set `OPENAI_API_KEY`, `AGIFLOW_API_KEY` and `AGIFLOW_BASE_URL`.
-NOTE: You can run AGIFlow development with docker-compose by `cd dockers/dev`, or sign-up with [AGIFLow's controlplane](https://app.agiflow.io) and get the keys.
+Set `OPENAI_API_KEY`, `AGIFLOW_API_KEY`.
+
+NOTE: You can run AGIFlow development with docker-compose by `cd dockers/dev`, or sign-up with [AGIFLow's controlplane](https://app.agiflow.io) and get the keys. With docker-compose setup, set additional environment variable  `AGIFLOW_BASE_URL=https://localhost:3000/api/dataplane`.
 
 ## Usage
 

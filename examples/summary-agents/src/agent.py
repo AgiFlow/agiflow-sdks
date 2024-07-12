@@ -3,10 +3,13 @@ import json5 as json
 
 from langgraph.graph import Graph
 import litellm
+from agiflow.opentelemetry import agent
 
 MODEL = 'gpt-4-turbo'
 
 
+@agent(name="WriterAgent", method_name='writer')
+@agent(name="WriterAgent", method_name='revise')
 class WriterAgent:
 
     def writer(self, the_text: str, word_count=500):
@@ -92,6 +95,7 @@ class WriterAgent:
         return article
 
 
+@agent(name="CritiqueAgent", method_name='critique')
 class CritiqueAgent:
 
     def critique(self, article: dict):
@@ -143,6 +147,7 @@ class CritiqueAgent:
         return article
 
 
+@agent(name="InputAgent", method_name='run')
 class InputAgent:
 
     def run(self, article: dict):
@@ -165,6 +170,7 @@ class InputAgent:
         return article
 
 
+@agent(name="OutputAgent", method_name='run')
 class OutputAgent:
 
     def run(self, article: dict):
@@ -172,6 +178,7 @@ class OutputAgent:
         return article
 
 
+@agent(name="HumanReviewAgent", method_name='run')
 class HumanReviewAgent:
 
     def run(self, article: dict):
@@ -185,6 +192,7 @@ class HumanReviewAgent:
         return article
 
 
+@agent(name="StartAgent", method_name='run')
 class StartAgent:
     name = 'start'
 

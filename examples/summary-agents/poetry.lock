@@ -6,24 +6,26 @@ version = "0.0.19"
 description = "Agiflow Software Development Kit (SDK) for Python, support LLM APIs and Frameworks tracing with Opentelemetry and more."
 optional = false
 python-versions = "<=3.13,>=3.10"
-files = [
-    {file = "agiflow_sdk-0.0.19-py3-none-any.whl", hash = "sha256:4b2464901290ac0b5e777fb3441323f761b8827276ca2f2de8cb149c685bec18"},
-    {file = "agiflow_sdk-0.0.19.tar.gz", hash = "sha256:19d293dd91f48fdc593ba11e93632ed0b0aa990b859ee7dcfe5082dc30998742"},
-]
+files = []
+develop = true
 
 [package.dependencies]
-colorama = ">=0.4.6,<0.5.0"
-deprecated = ">=1.2.14,<2.0.0"
-opentelemetry-api = ">=1.23.0,<2.0.0"
-opentelemetry-exporter-otlp-proto-http = ">=1.20.0,<2.0.0"
+colorama = "^0.4.6"
+deprecated = "^1.2.14"
+opentelemetry-api = "^1.23.0"
+opentelemetry-exporter-otlp-proto-http = "^1.20.0"
 opentelemetry-instrumentation-requests = "0.44b0"
 opentelemetry-instrumentation-sqlalchemy = "0.44b0"
 opentelemetry-instrumentation-urllib3 = "0.44b0"
-opentelemetry-sdk = ">=1.20.0,<2.0.0"
-posthog = ">=3.0.2,<4.0.0"
-pydantic = ">=2.5.3,<3.0.0"
-tenacity = ">=8.2.3,<9.0.0"
-tiktoken = ">=0.7.0,<0.8.0"
+opentelemetry-sdk = "^1.20.0"
+posthog = "^3.0.2"
+pydantic = "^2.5.3"
+tenacity = "^8.2.3"
+tiktoken = "^0.7.0"
+
+[package.source]
+type = "directory"
+url = "../../packages/python/agiflow-sdk"
 
 [[package]]
 name = "aiohttp"
@@ -3543,4 +3545,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "<3.13,>=3.10"
-content-hash = "e983d1f5e2627f70465edca1a7d62ee35e6e5d07d1750aaa6038e608e232053e"
+content-hash = "0a1c1607c79143f3f586a1ac73283990b8d8363ea6f00280292d1ba5fc954fe7"

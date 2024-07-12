@@ -1,9 +1,14 @@
 import streamlit as st
-import src.agent as agent
+from src.agent import StateMachine
 import dotenv
-
+from agiflow import Agiflow
+from agiflow.opentelemetry import workflow
 
 dotenv.load_dotenv()
+
+Agiflow.init(
+  app_name="summary-agents",
+)
 
 
 def process_form(form_number, article):
@@ -124,8 +129,19 @@ with st.sidebar:
     you are satisfied with a draft.
 """)
 
+
+@workflow(name="New Agent")
+def new_agent_workflow():
+    return StateMachine()
+
+
+@workflow(name="Resume Agent")
+def resume_agent_workflow(value):
+    return st.session_state['dm'].resume(value)
+
+
 if st.session_state["dm"] is None:
-    st.session_state['dm'] = agent.StateMachine()
+    st.session_state['dm'] = new_agent_workflow()
     st.session_state["result"] = st.session_state['dm'].start()
 
 
@@ -138,7 +154,7 @@ if st.session_state["result"]:
             process_form(st.session_state['result']["form"], st.session_state.newvalues)
         if st.session_state["newvalues"] and "next" not in st.session_state.newvalues:
             with st.spinner("Please wait... Bots at work"):
-                st.session_state["result"] = st.session_state['dm'].resume(st.session_state["newvalues"])
+                st.session_state["result"] = resume_agent_workflow(st.session_state["newvalues"])
             st.session_state["newvalues"] = None
             st.rerun()
     if "quit" in st.session_state["result"]:
