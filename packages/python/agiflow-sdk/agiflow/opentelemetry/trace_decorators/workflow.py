@@ -47,6 +47,7 @@ def workflow(
     else:
         return decorate_class_method(
           name=name,
+          method_name=method_name,
           tlp_service_type=AgiflowServiceTypes.WORKFLOW,
           span_kind=span_kind,
           SpanCapture=WorkflowSpanCapture,
@@ -73,6 +74,7 @@ def aworkflow(
     else:
         return adecorate_class_method(
           name=name,
+          method_name=method_name,
           tlp_service_type=AgiflowServiceTypes.WORKFLOW,
           span_kind=span_kind,
           SpanCapture=WorkflowSpanCapture,
