@@ -371,7 +371,7 @@ def decorate_class_method(
             cls,
             method_name,
             decorate_method(
-              name=task_name,
+              name=f"{task_name}.{method_name}",
               tlp_service_type=tlp_service_type,
               span_kind=span_kind,
               SpanCapture=SpanCapture,
@@ -400,7 +400,7 @@ def adecorate_class_method(
             cls,
             method_name,
             adecorate_method(
-              name=task_name,
+              name=f"{task_name}.{method_name}",
               tlp_service_type=tlp_service_type,
               span_kind=span_kind,
               SpanCapture=SpanCapture,

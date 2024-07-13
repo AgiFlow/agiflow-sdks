@@ -50,4 +50,5 @@ def test_langgraph(exporter):
         'Graph.add_edge',
         "RunnableSequence",
         "RunnableSequence",
+        'Pregel.invoke',
     ] == [span.name for span in spans]

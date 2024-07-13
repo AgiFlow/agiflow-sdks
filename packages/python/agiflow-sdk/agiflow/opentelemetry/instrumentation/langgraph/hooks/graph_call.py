@@ -37,6 +37,11 @@ class GraphCallSpanCapture(LanggraphSpanCapture):
         if attr is not None:
             span_attributes.update(attr)
 
+        span_attributes[AgiflowSpanAttributes.AGIFLOW_ENTITY_INPUT] = serialise_to_json({
+            "args": self.fargs,
+            "kwargs": self.fkwargs
+        })
+
         self.set_span_attributes_from_pydantic(span_attributes, FrameworkSpanAttributesValidator)
 
 

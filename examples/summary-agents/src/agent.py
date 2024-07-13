@@ -147,7 +147,6 @@ class CritiqueAgent:
         return article
 
 
-@agent(name="InputAgent", method_name='run')
 class InputAgent:
 
     def run(self, article: dict):
@@ -170,7 +169,6 @@ class InputAgent:
         return article
 
 
-@agent(name="OutputAgent", method_name='run')
 class OutputAgent:
 
     def run(self, article: dict):
@@ -178,7 +176,6 @@ class OutputAgent:
         return article
 
 
-@agent(name="HumanReviewAgent", method_name='run')
 class HumanReviewAgent:
 
     def run(self, article: dict):
@@ -192,7 +189,6 @@ class HumanReviewAgent:
         return article
 
 
-@agent(name="StartAgent", method_name='run')
 class StartAgent:
     name = 'start'
 

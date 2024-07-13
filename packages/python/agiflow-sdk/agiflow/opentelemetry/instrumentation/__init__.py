@@ -120,8 +120,8 @@ def init_langchain_instrumentor(tracer_provider: TracerProvider):
     return True
 
 
-def init_langchain_core_instrumentor(tracer_provider: TracerProvider):
-    if importlib.util.find_spec("langchain-core") is not None:
+def init_langchain_core_instrumentor(tracer_provider: TracerProvider, force=False):
+    if force or importlib.util.find_spec("langchain-core") is not None:
         Telemetry().capture("instrumentation:langchain:init")
         from .langchain_core import LangchainCoreInstrumentation
 
@@ -143,13 +143,14 @@ def init_langchain_community_instrumentor(tracer_provider: TracerProvider):
 
 
 def init_langgraph_instrumentor(tracer_provider: TracerProvider):
-    if importlib.util.find_spec("langgraph-client") is not None:
+    if importlib.util.find_spec("langgraph") is not None:
         Telemetry().capture("instrumentation:langgraph:init")
         from .langgraph import LanggraphInstrumentation
 
         instrumentor = LanggraphInstrumentation(enrich_assistant=True)
         if not instrumentor.is_instrumented_by_opentelemetry:
             instrumentor.instrument(tracer_provider=tracer_provider)
+        init_langchain_core_instrumentor(tracer_provider=tracer_provider, force=True)
     return True
 
 
