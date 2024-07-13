@@ -5,7 +5,7 @@ from langgraph.graph import Graph
 import litellm
 from agiflow.opentelemetry import agent
 
-MODEL = 'gpt-4-turbo'
+MODEL = 'gpt-4o'
 
 
 @agent(name="WriterAgent", method_name='writer')
