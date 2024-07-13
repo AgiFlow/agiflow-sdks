@@ -5,7 +5,7 @@ interface CodeProps extends Omit<HighlightProps, 'theme' | 'children'> {}
 export const Code = (props: CodeProps) => (
   <Highlight theme={themes.oneDark} {...props}>
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
-      <MeasuredContainer className='relative flex w-full items-start justify-end'>
+      <MeasuredContainer className='relative flex w-full items-start justify-end' style={{ height: 'auto' }}>
         <pre style={style} className={cn(className, 'flex-1 !overflow-x-auto rounded-md p-4 !text-sm')}>
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line })}>
