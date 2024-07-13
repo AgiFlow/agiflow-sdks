@@ -146,7 +146,6 @@ if st.session_state["dm"] is None:
 
 
 if st.session_state["result"]:
-    print("have result")
     if "quit" not in st.session_state['result']:
         if st.session_state["newvalues"] is None:
             process_form(st.session_state['result']["form"], st.session_state['result'])

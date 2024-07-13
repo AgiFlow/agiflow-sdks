@@ -35,8 +35,7 @@ def serialise_to_json(value) -> str:
     cleaned_object = clean_empty(value)
     try:
         return json.dumps(cleaned_object)
-    except Exception as e:
-        debugger.warn(f"Failed to json.dump {str(e)}")
+    except Exception:
         try:
             return json.dumps(cleaned_object, default=custom_serializer)
         except Exception as e:

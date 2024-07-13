@@ -18,11 +18,13 @@ from typing import Collection
 import importlib.metadata
 import inspect
 
+from agiflow.opentelemetry.instrumentation.langgraph.hooks.pregel_invoke import PregelInvokeSpanCapture
 from opentelemetry.instrumentation.instrumentor import BaseInstrumentor
 from opentelemetry.trace import get_tracer
 from wrapt import wrap_function_wrapper
 from agiflow.opentelemetry.instrumentation.utils import (
-  method_wrapper,
+    method_wrapper,
+    async_method_wrapper,
 )
 
 from .hooks import (
@@ -80,6 +82,26 @@ class LanggraphInstrumentation(BaseInstrumentor):
                             )
 
                         )
+
+        wrap_function_wrapper(
+            'langgraph.pregel',
+            'Pregel.invoke',
+            method_wrapper(
+                tracer=tracer,
+                span_name='Pregel.invoke',
+                SpanCapture=PregelInvokeSpanCapture,
+            )
+        )
+
+        wrap_function_wrapper(
+            'langgraph.pregel',
+            'Pregel.ainvoke',
+            async_method_wrapper(
+                tracer=tracer,
+                span_name='Pregel.ainvoke',
+                SpanCapture=PregelInvokeSpanCapture,
+            )
+        )
 
     def _instrument_module(self, module_name):
         pass
