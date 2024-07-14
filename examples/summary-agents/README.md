@@ -26,14 +26,23 @@ cd agiflow-sdks
 ```sh
 pnpm install
 ```
+NOTE: if you summarize website, this project use Playwright for crawling page. You will need to install a headless browser to do so with below commands:  
+
+``` sh
+pip install pytest-playwright
+playwright install
+```
 
 3. Configure environment:
 ```sh
 cp .env.example .env
 ```
-Set `OPENAI_API_KEY`, `AGIFLOW_API_KEY`.
 
+To connect with AGIFlow, set `AGIFLOW_API_KEY` with the api_key acquired from control plane.  
 NOTE: You can run AGIFlow development with docker-compose by `cd dockers/dev`, or sign-up with [AGIFLow's controlplane](https://app.agiflow.io) and get the keys. With docker-compose setup, set additional environment variable  `AGIFLOW_BASE_URL=https://localhost:3000/api/dataplane`.
+
+If you want to run with local model using ollama, set `MODEL=[your ollama model]` and `API_BASE=http://localhost:11434`.  
+If you are using OpenAI, set `MODEL=[OpenAI model]` and `OPENAI_API_KEY=[your key]`. For other model, visit [LiteLLM](https://docs.litellm.ai/docs/completion) for configuration.  
 
 ## Usage
 
