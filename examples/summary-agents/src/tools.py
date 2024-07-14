@@ -1,8 +1,5 @@
-"""
-Created on Sun Mar 24 11:05:08 2024
-
-@author: tevsl
-"""
+import json
+from typing import Any
 
 
 def extract_text(content, content_type):
@@ -63,3 +60,21 @@ def load_text_from_url(url, timeout=10):
             # other actions...
             browser.close()
             return extract_text(html, "html")
+
+
+def trim_and_load_json(input_string: str) -> Any:
+    start = input_string.find("{")
+    end = input_string.rfind("}") + 1
+    jsonStr = input_string[start:end] if start != -1 and end != 0 else ""
+    print(jsonStr)
+    if jsonStr.startswith("{{") and jsonStr.endswith("}}"):
+        jsonStr = jsonStr[1:(len(jsonStr) - 1)]
+
+    try:
+        return json.loads(jsonStr, strict=False)
+    except json.JSONDecodeError:
+        raise ValueError(
+            "Error: Invalid JSON. Please use a better evaluation model."
+        )
+    except Exception as e:
+        raise Exception(f"An unexpected error occurred: {str(e)}")

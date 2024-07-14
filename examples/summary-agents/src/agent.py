@@ -1,11 +1,17 @@
 from datetime import datetime
-import json5 as json
+import os
 
 from langgraph.graph import Graph
 import litellm
 from agiflow.opentelemetry import agent
+from .tools import trim_and_load_json
 
-MODEL = 'gpt-4o'
+model_config = {
+    "model": os.environ['MODEL'],
+}
+
+if os.environ.get('API_BASE') is not None:
+    model_config['api_base'] = os.environ['API_BASE']
 
 
 @agent(name="WriterAgent", method_name='writer')
@@ -16,10 +22,21 @@ class WriterAgent:
 
         sample_json = """
             {
-              "title": title of the article,
-              "date": today's date,
-              "body": The body of the article,
-                "summary": "2 sentences summary of the article"
+              "title": {
+                "type": "string",
+                "description": "title of the article"
+              },
+              "date": {
+                "type": "datetime",
+              },
+              "body": {
+                "type": "string",
+                "description": "The body of the article. Multiline with proper escaped charaters.",
+              },
+              "summary": {
+                "type": "string",
+                "description": "2 sentences summary of the article",
+              }
             }
             """
 
@@ -35,25 +52,31 @@ class WriterAgent:
                        The article should be approximately {word_count} words and should be divided into paragraphs
                        using newline characters.
                        You are reporting news. Do not editorialize."""  # noqa: E501
-                       f"Please return nothing but a JSON in the following format:\n"
+                       f"Please return nothing but a JSON following below JSON schema specification:\n"
                        f"{sample_json}\n "
 
         }]
 
-        response = litellm.completion(
-            model=MODEL,
+        res = litellm.completion(
+            **model_config,
             messages=prompt,
             temperature=.5,
             num_retries=1,
-            response_format={"type": "json_object"}
         )
-        return json.loads(response['choices'][0]['message']['content'])
+        content = res['choices'][0]['message']['content']
+        return trim_and_load_json(content)
 
     def revise(self, article: dict):
         sample_revise_json = """
             {
-                "body": The body of the article,,
-                "message": "message to the critique"
+              "body": {
+                "type": "string",
+                "description": "The body of the article"
+              },
+              "message": {
+                "type": "string",
+                "description": "message to the critique",
+              }
             }
             """
         prompt = [{
@@ -66,21 +89,20 @@ class WriterAgent:
                        f"Your task is to edit the article based on the critique given.\n "
                        f"Please return json format of the 'paragraphs' and a new 'message' field"
                        f"to the critique that explain your changes or why you didn't change anything.\n"
-                       f"please return nothing but a JSON in the following format:\n"
+                       f"please return nothing but a JSON following below JSON schema specification:\n"
                        f"{sample_revise_json}\n "
 
         }]
 
         res = litellm.completion(
-            model=MODEL,
+            **model_config,
             messages=prompt,
             temperature=.5,
             num_retries=1,
-            response_format={"type": "json_object"}
         )
 
         content = res['choices'][0]['message']['content']
-        response = json.loads(content)
+        response = trim_and_load_json(content)
         print(f"For article: {article['title']}")
         print(f"Writer Revision Message: {content}\n")
         return response
@@ -123,7 +145,7 @@ class CritiqueAgent:
         }]
 
         res = litellm.completion(
-            model=MODEL,
+            **model_config,
             messages=prompt,
             temperature=.5,
             num_retries=1,
@@ -248,6 +270,7 @@ class StateMachine:
 
         self.thread = {"configurable": {"thread_id": "2"}}
         self.chain = workflow.compile(checkpointer=self.memory, interrupt_after=[start_agent.name, "critique"])
+        # self.chain.get_graph().print_ascii()
 
     def start(self):
         result = self.chain.invoke("", self.thread)
