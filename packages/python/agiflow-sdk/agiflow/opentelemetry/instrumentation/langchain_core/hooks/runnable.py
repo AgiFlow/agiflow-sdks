@@ -35,8 +35,10 @@ class RunnableSpanCapture(LangchainCoreSpanCapture):
         }
 
         if should_send_prompts() is True:
-            inputs = {}
-            inputs = {}
+            inputs = {
+                "args": self.fargs,
+                "kwargs": self.fkwargs,
+            }
             if len(self.fargs) > 0:
                 for arg in self.fargs:
                     if isinstance(arg, dict):
@@ -75,6 +77,9 @@ class RunnableSpanCapture(LangchainCoreSpanCapture):
                                 outputs[field] = item.__class__.__name__
                     if isinstance(value, str):
                         outputs[field] = value
+            else:
+                outputs = result
+
             self.set_span_attribute(SpanAttributes.AGIFLOW_ENTITY_OUTPUT, serialise_to_json(outputs))
             if isinstance(result, str):
                 self.set_span_attribute(SpanAttributes.AGIFLOW_ENTITY_OUTPUT, result)

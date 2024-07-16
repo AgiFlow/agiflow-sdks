@@ -5,12 +5,14 @@ from .generic import (
   GenericSpanCapture
 )
 from .llm import (
-  LLMSpanCapture
+  LLMSpanCapture,
+  LLMStreamSpanCapture
 )
 
 
 __all__ = [
   'RunnableSpanCapture',
   'GenericSpanCapture',
-  'LLMSpanCapture'
+  'LLMSpanCapture',
+  'LLMStreamSpanCapture'
 ]
