@@ -22,6 +22,8 @@ from opentelemetry.trace import get_tracer
 from agiflow.opentelemetry.instrumentation.utils import (
   method_wrapper,
   async_method_wrapper,
+  stream_wrapper,
+  async_stream_wrapper
 )
 from agiflow.opentelemetry.instrumentation.utils import patch_module_classes
 from agiflow.version import __version__
@@ -29,6 +31,7 @@ from .hooks import (
   GenericSpanCapture,
   RunnableSpanCapture,
   LLMSpanCapture,
+  LLMStreamSpanCapture
 )
 
 
@@ -105,6 +108,24 @@ class LangchainCoreInstrumentation(BaseInstrumentor):
             async_method_wrapper(
               tracer=tracer,
               SpanCapture=LLMSpanCapture
+            )
+        )
+
+        wrap_function_wrapper(
+            "langchain_core.language_models.llms",
+            "BaseLLM.stream",
+            stream_wrapper(
+              tracer=tracer,
+              SpanCapture=LLMStreamSpanCapture
+            )
+        )
+
+        wrap_function_wrapper(
+            "langchain_core.language_models.llms",
+            "BaseLLM.astream",
+            async_stream_wrapper(
+              tracer=tracer,
+              SpanCapture=LLMStreamSpanCapture
             )
         )
 
