@@ -31,7 +31,7 @@ export const columns: ColumnDef<Action>[] = [
     accessorKey: 'name',
     header: () => <div>Name</div>,
     cell: ({ row }) => {
-      return <div className='w-[120px] break-all text-right font-medium'>{row.getValue('name')}</div>;
+      return <div className='max-[10vw] w-full min-w-[64px] break-all font-medium'>{row.getValue('name')}</div>;
     },
   },
   {
@@ -50,14 +50,14 @@ export const columns: ColumnDef<Action>[] = [
     accessorKey: 'input',
     header: () => <div>Input</div>,
     cell: ({ row }) => {
-      return <div className='line-clamp-3 font-medium'>{row.getValue('input')}</div>;
+      return <div className='line-clamp-3 w-full min-w-[120px] max-w-[20vw] font-medium'>{row.getValue('input')}</div>;
     },
   },
   {
     accessorKey: 'output',
     header: () => <div>Ouput</div>,
     cell: ({ row }) => {
-      return <div className='line-clamp-3 font-medium'>{row.getValue('output')}</div>;
+      return <div className='line-clamp-3 w-full min-w-[120px] max-w-[20vw] font-medium'>{row.getValue('output')}</div>;
     },
   },
   {

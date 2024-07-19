@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { LabelledItem, Separator, TextDiff } from '@agiflowai/frontend-web-ui';
+import { LabelledItem, Separator, cn, Badge, TextDiff } from '@agiflowai/frontend-web-ui';
 import { getLocalCurrencyByCents } from '@/libs';
 import { Step } from '../../queries';
 import { InlineItem } from '../Item';
@@ -13,7 +13,48 @@ interface StepCompProps {
 }
 
 export const StepComp = ({ step, topSlot }: StepCompProps) => {
-  const meta = step.meta as any;
+  const { description, service, ...meta } = step.meta || ({} as any);
+
+  const renderItem = obj => {
+    if (!obj) return null;
+    return Object.entries(obj).map(([key, value]) => {
+      if (!value) return null;
+      if (typeof value === 'object') {
+        return renderItem(value);
+      }
+      return <LabelledItem label={key} value={value} key={key} />;
+    });
+  };
+
+  const renderLLM = (str?: string | null) => {
+    if (!str) return;
+    let input: Record<string, any>[] = [];
+    try {
+      input = JSON.parse(str);
+      if (typeof input === 'string') {
+        input = JSON.parse(input);
+      }
+    } catch (_) {
+      input = [{ user: str }];
+    }
+    return (
+      <div className='flex w-full flex-col gap-3'>
+        {input.map(item => {
+          return Object.entries(item).map(([key, value]) => (
+            <div className='grid w-full gap-2'>
+              <div>
+                <Badge className='rounded-md' variant='outline'>
+                  {key}
+                </Badge>
+              </div>
+              <pre className={cn('flex-1 text-wrap break-all rounded-md bg-background-shade p-3 text-xs')}>{value}</pre>
+            </div>
+          ));
+        })}
+      </div>
+    );
+  };
+
   return (
     <div className='grid gap-2 p-2'>
       <div className='inline-flex items-center gap-2'>
@@ -46,7 +87,12 @@ export const StepComp = ({ step, topSlot }: StepCompProps) => {
       {step.error_description ? (
         <LabelledItem label={'Error'} value={step.error_description} className='bg-error/10' />
       ) : null}
-      <LabelledItem label={'Input'} value={step.input} />
+      {renderItem(meta)}
+      {!step.is_llm ? (
+        <LabelledItem label={'Input'} value={step.input} />
+      ) : (
+        <LabelledItem label={'Input'}>{renderLLM(step?.actual_input)}</LabelledItem>
+      )}
       <LabelledItem
         key={step.id}
         label={'Output'}

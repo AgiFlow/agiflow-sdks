@@ -3,7 +3,7 @@ import { cn } from '../..';
 
 export interface LabelledItemProps {
   label: string;
-  value: any;
+  value?: any;
   leftSlot?: ReactNode;
   rightSlot?: ReactNode;
   children?: ReactNode;
@@ -11,6 +11,7 @@ export interface LabelledItemProps {
 }
 export const LabelledItem = ({ label, value, leftSlot, rightSlot, children, className }: LabelledItemProps) => {
   const body = useMemo(() => {
+    if (!value) return null;
     const parse = val => {
       try {
         const obj = JSON.parse(val);
@@ -20,11 +21,49 @@ export const LabelledItem = ({ label, value, leftSlot, rightSlot, children, clas
       }
     };
     const val = typeof value === 'object' ? value : parse(value);
-    if (typeof val === 'object') {
-      return JSON.stringify(val, null, 2);
-    }
     return val;
   }, [value]);
+
+  const renderObj = (obj, level = 0) => {
+    if (!obj) return null;
+    if (typeof obj !== 'object') {
+      return (
+        <div className={cn(level > 0 ? 'pl-3' : 'p-3')}>
+          <pre className={cn('w-full text-wrap break-all rounded-md bg-background-shade text-xs', className)}>
+            {obj}
+          </pre>
+        </div>
+      );
+    }
+    if (Array.isArray(obj)) {
+      return (
+        <div
+          className={cn('flex w-full flex-col gap-2 rounded-md bg-background-shade', level === 0 ? 'p-3' : undefined)}
+        >
+          {obj.map(value =>
+            value ? (
+              <div className={cn('inline-flex w-full gap-1', level > 0 ? 'pl-3' : undefined)}>
+                {renderObj(value, level + 1)}
+              </div>
+            ) : null,
+          )}
+        </div>
+      );
+    }
+    return (
+      <div className={cn('flex w-full flex-col gap-2 rounded-md bg-background-shade', level === 0 ? 'p-3' : undefined)}>
+        {Object.entries(obj).map(([key, value]: any[]) =>
+          value ? (
+            <div className={cn('flex w-full flex-col gap-1', level > 0 ? 'pl-3' : undefined)}>
+              <label className='text-xs font-bold text-mono-light'># {key}</label>
+              {renderObj(value, level + 1)}
+            </div>
+          ) : null,
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className='w-full'>
       <div className='my-2 inline-flex w-full items-end gap-2'>
@@ -34,9 +73,17 @@ export const LabelledItem = ({ label, value, leftSlot, rightSlot, children, clas
         </div>
         {rightSlot}
       </div>
-      <pre className={cn('w-full text-wrap break-all rounded-md bg-background-shade p-3 text-xs', className)}>
-        {body}
-      </pre>
+      {body ? (
+        <>
+          {typeof body === 'object' ? (
+            renderObj(body, 0)
+          ) : (
+            <pre className={cn('w-full text-wrap break-all rounded-md bg-background-shade p-3 text-xs', className)}>
+              {body}
+            </pre>
+          )}
+        </>
+      ) : null}
       {children}
     </div>
   );
