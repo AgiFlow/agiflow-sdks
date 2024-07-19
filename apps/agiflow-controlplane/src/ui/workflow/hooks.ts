@@ -7,8 +7,6 @@ import 'reactflow/dist/style.css';
 import { buildStepsWorkflow, Workflow as IWorkflow } from '@/utils/workflow';
 import { NODE_TYPES, NODE_HEIGHT, NODE_SIZES, NODE_WIDTH } from './constants';
 
-const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
-
 const getNodeWidth = node => {
   return node.style?.width || NODE_SIZES[node.type]?.width || NODE_WIDTH;
 };
@@ -18,6 +16,8 @@ const getNodeHeight = node => {
 };
 
 const getLayoutedElements = (nodes, edges, options) => {
+  const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
+
   g.setGraph({
     rankdir: options.direction,
   });
@@ -54,7 +54,11 @@ const getLayoutedElements = (nodes, edges, options) => {
   };
 };
 
-export const useWorkflow = ({ data }: { data: any }) => {
+export interface WorkflowFilter {
+  min?: number;
+  spanNames?: string[];
+}
+export const useWorkflow = ({ data, filter }: { data: any; filter?: WorkflowFilter }) => {
   const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
   const onConnect = useCallback(connection => setEdges(eds => addEdge(connection, eds)), [setEdges]);
@@ -66,6 +70,13 @@ export const useWorkflow = ({ data }: { data: any }) => {
     const addNode = (workflow: IWorkflow) => {
       if (!workflow.children.length) return;
       workflow.children.forEach(wf => {
+        if (!wf.children.length) {
+          const endDateTime = new Date(wf.step.ended_at || '').getTime();
+          const startDateTime = new Date(wf.step.started_at || '').getTime();
+          const timespan = endDateTime - startDateTime;
+          if (filter?.min && filter.min > timespan) return;
+          if ((filter?.spanNames || []).includes(wf.step.name || '')) return;
+        }
         nodes.push({
           id: wf.step.id,
           type: wf.step.is_llm ? NODE_TYPES.llmNode : NODE_TYPES.spanNode,
@@ -106,7 +117,7 @@ export const useWorkflow = ({ data }: { data: any }) => {
       setEdges(edges);
     }
     // eslint-disable-next-line  react-hooks/exhaustive-deps
-  }, [workflows]);
+  }, [workflows, filter]);
 
   return {
     nodes,

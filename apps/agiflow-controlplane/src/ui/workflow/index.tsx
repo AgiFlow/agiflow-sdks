@@ -6,7 +6,7 @@ import './styles.css';
 import { Step } from './types';
 import { LLMNode } from './LLMNode';
 import { SpanNode } from './SpanNode';
-import { useWorkflow } from './hooks';
+import { useWorkflow, WorkflowFilter } from './hooks';
 import { NODE_TYPES } from './constants';
 
 const rfStyle = {};
@@ -14,10 +14,11 @@ const rfStyle = {};
 export interface IWorkflowProps {
   steps: Step[];
   nodeTypes?: any;
+  filter?: WorkflowFilter;
 }
 
-export const Workflow = ({ steps, nodeTypes: defaultNodeTypes }: IWorkflowProps) => {
-  const { nodes, onNodesChange, edges, onEdgesChange, onConnect } = useWorkflow({ data: steps });
+export const Workflow = ({ steps, filter, nodeTypes: defaultNodeTypes }: IWorkflowProps) => {
+  const { nodes, onNodesChange, edges, onEdgesChange, onConnect } = useWorkflow({ data: steps, filter });
   const nodeTypes = useMemo(
     () =>
       defaultNodeTypes || {

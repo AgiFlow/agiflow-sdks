@@ -11,13 +11,11 @@ import {
   BreadcrumbSeparator,
   Separator,
   Badge,
-  Button,
   Sheet,
   SheetContent,
   MeasuredContainer,
 } from '@agiflowai/frontend-web-ui';
 import { ReactFlowProvider } from 'reactflow';
-import { EyeOpenIcon } from '@radix-ui/react-icons';
 import { getLocalCurrencyByCents } from '@/libs';
 import { actionQueryOptions } from './-ui/queries';
 import { Spans } from './-ui/components/Spans';
@@ -35,11 +33,11 @@ export const Route = createLazyFileRoute(
 
 function Dashboard() {
   const params = Route.useParams();
-  const [viewWorkflow, setViewWorkflow] = useAtom(workflowViewAtom);
   const stepId = Route.useSearch({
     select: s => SearchSchema.parse(s).stepId,
   });
   const { data } = useQuery(actionQueryOptions({ path: params }));
+  const [viewWorkflow, setViewWorkflow] = useAtom(workflowViewAtom);
   const step = useMemo(() => {
     return (data?.data?.steps || []).find(step => step.id === stepId);
   }, [stepId, data]);
@@ -115,25 +113,7 @@ function Dashboard() {
       <Separator />
       <div className='grid w-full grid-cols-12 gap-4'>
         <div className='col-span-8 min-h-[200px] rounded-md border-2 border-border'>
-          {step ? (
-            <StepComp
-              step={step}
-              topSlot={
-                <Button className='h-9 w-9 rounded-full p-2' variant={'ghost'} onClick={() => setViewWorkflow(true)}>
-                  <EyeOpenIcon />
-                </Button>
-              }
-            />
-          ) : (
-            <ActionComp
-              action={data?.data}
-              topSlot={
-                <Button className='h-9 w-9 rounded-full p-2' variant={'ghost'} onClick={() => setViewWorkflow(true)}>
-                  <EyeOpenIcon />
-                </Button>
-              }
-            />
-          )}
+          {step ? <StepComp step={step} /> : <ActionComp action={data?.data} />}
         </div>
         <div className='col-span-4'>
           <Spans action={data?.data} />
