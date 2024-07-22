@@ -78,24 +78,34 @@ def get_atrribute_key_value(method_name, args):
             AgiflowSpanAttributes.AGIFLOW_ENTITY_NAME: "add_edge",
         }
     elif "add_conditional_edges" in method_name:
-        return {
-            FrameworkSpanAttributes.FRAMEWORK_EDGE: serialise_to_json(
-                {
-                    "source": args[0],
-                    "path": (
-                        args[1].json()
-                        if hasattr(args[1], "json")
-                        else (
-                            args[1].__name__
-                            if hasattr(args[1], "__name__")
-                            else str(args[1])
-                        )
-                    ),
-                    "path_map": args[2],
-                }
-            ),
-            AgiflowSpanAttributes.AGIFLOW_ENTITY_NAME: "add_conditional_edges",
-        }
+        if len(args) == 2:
+            return {
+                FrameworkSpanAttributes.FRAMEWORK_EDGE: serialise_to_json(
+                    {
+                        "source": args[0],
+                    }
+                ),
+                AgiflowSpanAttributes.AGIFLOW_ENTITY_NAME: "add_conditional_edges",
+            }
+        else:
+            return {
+                FrameworkSpanAttributes.FRAMEWORK_EDGE: serialise_to_json(
+                    {
+                        "source": args[0],
+                        "path": (
+                            args[1].json()
+                            if hasattr(args[1], "json")
+                            else (
+                                args[1].__name__
+                                if hasattr(args[1], "__name__")
+                                else str(args[1])
+                            )
+                        ),
+                        "path_map": args[2],
+                    }
+                ),
+                AgiflowSpanAttributes.AGIFLOW_ENTITY_NAME: "add_conditional_edges",
+            }
     elif "set_entry_point" in method_name:
         return {
             FrameworkSpanAttributes.FRAMEWORK_ENTRYPOINT: args[0],

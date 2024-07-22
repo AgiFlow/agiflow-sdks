@@ -67,6 +67,8 @@ class TaskExecuteSpanCapture(CrewAISpanCapture):
                     crew_config[key] = value
 
         span_attributes[FrameworkSpanAttributes.FRAMEWORK_CONFIG] = serialise_to_json(crew_config)
+        if "role" in crew_config:
+            span_attributes[AgiflowSpanAttributes.AGIFLOW_ENTITY_DESCRIPTION] = crew_config.get('role')
 
         self.set_span_attributes_from_pydantic(span_attributes, FrameworkSpanAttributesValidator)
 
