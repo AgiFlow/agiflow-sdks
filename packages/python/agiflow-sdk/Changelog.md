@@ -1,5 +1,14 @@
 # Changelog for agiflow-sdk
 
+## [0.0.23] - 2024-07-22
+
+**Added**
+- Add `description` to span from CrewAI agent name.
+
+**Fixed**
+- Fix `langchain` chat `tool_calls` capture.
+- Fix `openai` chat completion `tool_calls` capture.
+
 ## [0.0.22] - 2024-07-16
 
 **Added**
