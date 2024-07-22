@@ -30,27 +30,46 @@ export const StepComp = ({ step, topSlot }: StepCompProps) => {
     if (!str) return;
     let input: Record<string, any>[] = [];
     try {
-      input = JSON.parse(str);
-      if (typeof input === 'string') {
-        input = JSON.parse(input);
-      }
+      const parse = val => {
+        try {
+          const obj = JSON.parse(val);
+          return parse(obj);
+        } catch (err) {
+          return val;
+        }
+      };
+
+      input = parse(str);
     } catch (_) {
       input = [{ user: str }];
     }
     return (
       <div className='flex w-full flex-col gap-3'>
-        {input.map(item => {
-          return Object.entries(item).map(([key, value]) => (
-            <div className='grid w-full gap-2'>
-              <div>
-                <Badge className='rounded-md' variant='outline'>
-                  {key}
-                </Badge>
-              </div>
-              <pre className={cn('flex-1 text-wrap break-all rounded-md bg-background-shade p-3 text-xs')}>{value}</pre>
-            </div>
-          ));
-        })}
+        {input.map(item => (
+          <div className='grid w-full gap-2'>
+            {Object.entries(item)
+              .sort(a => (a[0] === 'role' ? -1 : 1))
+              .map(([key, value]) => {
+                if (key === 'role') {
+                  return (
+                    <div>
+                      <Badge className='rounded-md' variant='secondary'>
+                        {value}
+                      </Badge>
+                    </div>
+                  );
+                }
+                return (
+                  <div className='grid gap-2 pl-2'>
+                    <label className='text-xs text-mono-light'>{key}</label>
+                    <pre className={cn('flex-1 text-wrap break-all rounded-md bg-background-shade p-3 text-xs')}>
+                      {typeof value === 'object' ? JSON.stringify(value, null, 2) : value}
+                    </pre>
+                  </div>
+                );
+              })}
+          </div>
+        ))}
       </div>
     );
   };

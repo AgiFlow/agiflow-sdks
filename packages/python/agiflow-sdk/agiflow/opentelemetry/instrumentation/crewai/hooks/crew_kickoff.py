@@ -66,6 +66,9 @@ class CrewKickoffSpanCapture(CrewAISpanCapture):
                 else:
                     crew_config[key] = value
 
+        if "role" in crew_config:
+            span_attributes[AgiflowSpanAttributes.AGIFLOW_ENTITY_DESCRIPTION] = crew_config.get('role')
+
         span_attributes[FrameworkSpanAttributes.FRAMEWORK_CONFIG] = serialise_to_json(crew_config)
 
         if "inputs" in self.fkwargs and self.fkwargs["inputs"]:

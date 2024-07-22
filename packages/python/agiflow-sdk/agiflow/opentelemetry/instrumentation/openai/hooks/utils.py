@@ -43,7 +43,7 @@ def extract_content(choice):
         response[LLMResponseKeys.ROLE] = message.role
 
     # Check if choice.message has tool_calls and extract information accordingly
-    elif (
+    if (
         hasattr(message, "tool_calls")
         and message.tool_calls is not None
     ):
@@ -56,18 +56,18 @@ def extract_content(choice):
                     "arguments": tool_call.function.arguments,
                 },
             }
-            for tool_call in choice.message.tool_calls
+            for tool_call in message.tool_calls
         ]
         response[LLMResponseKeys.TOOL_CALLS] = result
 
     # Check if choice.message has a function_call and extract information accordingly
-    elif (
+    if (
         hasattr(message, "function_call")
         and message.function_call is not None
     ):
         response[LLMResponseKeys.FUNCTION_CALLS] = {
-            "name": choice.message.function_call.name,
-            "arguments": choice.message.function_call.arguments,
+            "name": message.function_call.name,
+            "arguments": message.function_call.arguments,
         }
 
     return response

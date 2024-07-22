@@ -96,7 +96,7 @@ class ChatSpanCapture(LangchainSpanCapture):
             total_tokens = 0
             responses = []
             for idx, generation in enumerate(result.generations):
-                responses.append({LLMResponseKeys.CONTENT: generation[0].text})
+                responses.append(extract_content(generation[0]))
 
             self.set_span_attribute(
                 SpanAttributes.LLM_RESPONSES,
@@ -121,3 +121,64 @@ class ChatSpanCapture(LangchainSpanCapture):
                 LLMTokenUsageKeys.TOTAL_TOKENS: total_tokens,
             }
             self.set_span_attribute(SpanAttributes.LLM_TOKEN_COUNTS, serialise_to_json(usage_dict))
+
+
+def extract_content(generation):
+    response = {}
+    if (
+        hasattr(generation, "text")
+        and generation.text is not None
+    ):
+        response[LLMResponseKeys.CONTENT] = generation.text
+
+    if not hasattr(generation, 'message'):
+        return response
+
+    message = generation.message
+
+    if message is None:
+        return response
+
+    # Check if choice.message exists and has a content attribute
+    if (
+        hasattr(message, "content")
+        and message.content is not None
+    ):
+        response[LLMResponseKeys.CONTENT] = message.content
+
+    # Check if choice.message exists and has a content attribute
+    if (
+        hasattr(message, "role")
+        and message.role is not None
+    ):
+        response[LLMResponseKeys.ROLE] = message.role
+
+    # Check if choice.message has tool_calls and extract information accordingly
+    if (
+        hasattr(message, "tool_calls")
+        and message.tool_calls is not None
+    ):
+        result = [
+            {
+                "id": tool_call.id,
+                "type": tool_call.type,
+                "function": {
+                    "name": tool_call.function.name,
+                    "arguments": tool_call.function.arguments,
+                },
+            }
+            for tool_call in message.tool_calls
+        ]
+        response[LLMResponseKeys.TOOL_CALLS] = result
+
+    # Check if choice.message has a function_call and extract information accordingly
+    if (
+        hasattr(message, "function_call")
+        and message.function_call is not None
+    ):
+        response[LLMResponseKeys.FUNCTION_CALLS] = {
+            "name": message.function_call.name,
+            "arguments": message.function_call.arguments,
+        }
+
+    return response
