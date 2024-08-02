@@ -58,7 +58,7 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
         if self.fkwargs.get("user") is not None:
             span_attributes[SpanAttributes.LLM_USER] = self.fkwargs.get("user")
         if self.fkwargs.get("max_tokens") is not None:
-            span_attributes[SpanAttributes.LLM_MAX_TOKENS] = self.fkwargs.get("max_tokens")
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_MAX_TOKENS] = self.fkwargs.get("max_tokens")
 
         self.set_span_attributes_from_pydantic(span_attributes, LLMSpanAttributesValidator)
 

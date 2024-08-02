@@ -30,7 +30,6 @@ class LLMSpanAttributes():
     LLM_IS_SEARCH_REQUIRED = 'llm.is_search_required'
     LLM_SEARCH_RESULTS = 'llm.search_results'
     LLM_TOOL_CALLS = 'llm.tool_calls'
-    LLM_MAX_TOKENS = 'llm.max_tokens'
     LLM_MAX_INPUT_TOKENS = 'llm.max_input_tokens'
     LLM_CONVERSATION_ID = 'llm.conversation_id'
     LLM_SEED = 'llm.seed'
@@ -72,7 +71,6 @@ class LLMSpanAttributesValidator(GenAISpanAttributesValidator):
     LLS_IS_SEARCH_REQUIRED: Optional[bool] = Field(None, alias=LLMSpanAttributes.LLM_IS_SEARCH_REQUIRED)
     LLM_SEARCH_RESULTS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_SEARCH_RESULTS)
     LLM_TOOL_CALLS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_TOOL_CALLS)
-    LLM_MAX_TOKENS: Optional[int] = Field(None, alias=LLMSpanAttributes.LLM_MAX_TOKENS)
     LLM_MAX_INPUT_TOKENS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_MAX_INPUT_TOKENS)
     LLM_CONVERSATION_ID: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_CONVERSATION_ID)
     LLM_SEED: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_SEED)
