@@ -35,7 +35,7 @@ def test_anthropic(anthropic_client, exporter):
     assert attributes.get("url.full") == "https://api.anthropic.com"
     assert attributes.get("llm.api") == APIS["MESSAGES_CREATE"]["ENDPOINT"]
     assert attributes.get("llm.model") == llm_model_value
-    assert attributes.get("llm.prompts") == json.dumps(messages_value)
+    assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("llm.stream") is False
 
     assert_token_count(attributes)
@@ -77,7 +77,7 @@ def test_anthropic_streaming(anthropic_client, exporter):
     assert attributes.get("url.full") == "https://api.anthropic.com"
     assert attributes.get("llm.api") == APIS["MESSAGES_CREATE"]["ENDPOINT"]
     assert attributes.get("llm.model") == llm_model_value
-    assert attributes.get("llm.prompts") == json.dumps(messages_value)
+    assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("llm.stream") is True
     events = streaming_span.events
 

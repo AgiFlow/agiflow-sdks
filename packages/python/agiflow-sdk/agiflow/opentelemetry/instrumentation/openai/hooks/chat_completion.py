@@ -68,7 +68,7 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
         }
         if should_send_prompts():
             # handle tool calls in the kwargs
-            llm_prompts = []
+            GEN_AI_PROMPT = []
             for item in (self.messages or []):
                 if hasattr(item, "tool_calls") and item.tool_calls is not None:
                     tool_calls = []
@@ -91,11 +91,11 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
                                 ),
                             }
                         tool_calls.append(tool_call_dict)
-                    llm_prompts.append(tool_calls)
+                    GEN_AI_PROMPT.append(tool_calls)
                 else:
-                    llm_prompts.append(item)
+                    GEN_AI_PROMPT.append(item)
 
-            span_attributes[SpanAttributes.LLM_PROMPTS] = serialise_to_json(llm_prompts)
+            span_attributes[SpanAttributes.GEN_AI_PROMPT] = serialise_to_json(GEN_AI_PROMPT)
 
         self.set_span_attributes_from_pydantic(
           span_attributes,

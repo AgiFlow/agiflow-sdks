@@ -32,7 +32,7 @@ def test_image_generation(openai_client, exporter):
     assert attributes.get("url.full") == os.getenv('OPENAI_BASE_URL')
     assert attributes.get("llm.api") == APIS["IMAGES_GENERATION"]["ENDPOINT"]
     assert attributes.get("llm.model") == llm_model_value
-    prompts = json.loads(attributes.get("llm.prompts"))
+    prompts = json.loads(attributes.get("gen_ai.prompt"))
     assert prompts[0]["content"] == prompt
 
     agiflow_responses = json.loads(attributes.get("llm.responses"))
@@ -75,7 +75,7 @@ async def test_async_image_generation(async_openai_client, exporter):
     assert attributes.get("url.full") == os.getenv('OPENAI_BASE_URL')
     assert attributes.get("llm.api") == APIS["IMAGES_GENERATION"]["ENDPOINT"]
     assert attributes.get("llm.model") == llm_model_value
-    prompts = json.loads(attributes.get("llm.prompts"))
+    prompts = json.loads(attributes.get("gen_ai.prompt"))
     assert prompts[0]["content"] == prompt
 
     agiflow_responses = json.loads(attributes.get("llm.responses"))

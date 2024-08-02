@@ -44,7 +44,7 @@ class RerankSpanCapture(CohereSpanCapture):
           SpanAttributes.URL_FULL: APIS["RERANK"]["URL"],
           SpanAttributes.LLM_API: APIS["RERANK"]["ENDPOINT"],
           SpanAttributes.LLM_MODEL: self.model,
-          SpanAttributes.LLM_PROMPTS: "",
+          SpanAttributes.GEN_AI_PROMPT: "",
           SpanAttributes.LLM_RETRIEVAL_QUERY: self.fkwargs.get("query"),
         }
 

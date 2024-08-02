@@ -49,7 +49,7 @@ def test_cohere_chat(cohere_client, exporter):
     assert attributes.get("llm.stream") is False
 
     assert json.loads(attributes.get("llm.connectors")) == connectors
-    assert json.loads(attributes.get("llm.prompts"))[-1]["content"] == messages_value
+    assert json.loads(attributes.get("gen_ai.prompt"))[-1]["content"] == messages_value
     assert json.loads(attributes.get("llm.responses"))[-1]["content"] == res.text
 
     assert_token_count(attributes)
@@ -105,7 +105,7 @@ def test_cohere_chat_streaming(cohere_client, exporter):
     assert attributes.get("llm.temperature") == kwargs.get("temperature")
     assert attributes.get("llm.stream") is True
     assert json.loads(attributes.get("llm.connectors")) == connectors
-    assert json.loads(attributes.get("llm.prompts"))[-1]["content"] == messages_value
+    assert json.loads(attributes.get("gen_ai.prompt"))[-1]["content"] == messages_value
     events = cohere_span.events
     assert events[-1].name == "stream.end"
     assert len(events) - 2 == chunks_count

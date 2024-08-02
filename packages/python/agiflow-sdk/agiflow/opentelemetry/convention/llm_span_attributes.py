@@ -21,7 +21,7 @@ class LLMSpanAttributes():
     LLM_TOP_K = 'llm.top_k'
     LLM_USER = 'llm.user'
     LLM_SYSTEM_FINGERPRINT = 'llm.system.fingerprint'
-    LLM_PROMPTS = 'llm.prompts'
+    GEN_AI_PROMPT = 'gen_ai.prompt'
     LLM_RESPONSES = 'llm.responses'
     LLM_TOKEN_COUNTS = 'llm.token.counts'
     LLM_STREAM = 'llm.stream'
@@ -68,7 +68,7 @@ class LLMSpanAttributesValidator(AgiflowSpanAttributesValidator):
     LLM_TOP_K: Optional[float] = Field(None, alias=LLMSpanAttributes.LLM_TOP_K)
     LLM_USER: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_USER)
     LLM_SYSTEM_FINGERPRINT: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_SYSTEM_FINGERPRINT)
-    LLM_PROMPTS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_PROMPTS)
+    GEN_AI_PROMPT: Optional[str] = Field(None, alias=LLMSpanAttributes.GEN_AI_PROMPT)
     LLM_RESPONSES: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_RESPONSES)
     LLM_TOKEN_COUNTS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_TOKEN_COUNTS)
     LLM_STREAM: Optional[bool] = Field(None, alias=LLMSpanAttributes.LLM_STREAM)

@@ -43,7 +43,7 @@ class ImageGenerateSpanCapture(OpenAISpanCapture):
             SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.IMAGE_GENERATION,
             SpanAttributes.LLM_API: APIS["IMAGES_GENERATION"]["ENDPOINT"],
             SpanAttributes.LLM_STREAM: self.stream,
-            SpanAttributes.LLM_PROMPTS: json.dumps(
+            SpanAttributes.GEN_AI_PROMPT: json.dumps(
                 [{"role": "user", "content": (self.prompt or [])}]
             ),
         }

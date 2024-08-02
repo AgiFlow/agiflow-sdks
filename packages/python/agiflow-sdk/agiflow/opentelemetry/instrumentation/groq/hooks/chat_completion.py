@@ -45,7 +45,7 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
         }
 
         if should_send_prompts():
-            llm_prompts = []
+            GEN_AI_PROMPT = []
             for item in self.fkwargs.get("messages", []):
                 if hasattr(item, "tool_calls") and item.tool_calls is not None:
                     tool_calls = []
@@ -68,10 +68,10 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
                                 ),
                             }
                         tool_calls.append(tool_call_dict)
-                    llm_prompts.append(tool_calls)
+                    GEN_AI_PROMPT.append(tool_calls)
                 else:
-                    llm_prompts.append(item)
-            span_attributes[SpanAttributes.LLM_PROMPTS] = serialise_to_json(llm_prompts)
+                    GEN_AI_PROMPT.append(item)
+            span_attributes[SpanAttributes.GEN_AI_PROMPT] = serialise_to_json(GEN_AI_PROMPT)
 
         tools = []
         if self.fkwargs.get("temperature") is not None:

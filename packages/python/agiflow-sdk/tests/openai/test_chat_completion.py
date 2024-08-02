@@ -34,7 +34,7 @@ def test_chat_completion(exporter, openai_client):
     assert attributes.get("url.full") == os.getenv('OPENAI_BASE_URL')
     assert attributes.get("llm.api") == APIS["CHAT_COMPLETION"]["ENDPOINT"]
     assert attributes.get("llm.model") == "gpt-3.5-turbo-0125"
-    assert attributes.get("llm.prompts") == json.dumps(messages_value)
+    assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("llm.stream") is False
 
     assert_token_count(attributes)
@@ -87,7 +87,7 @@ def test_chat_completion_streaming(exporter, openai_client):
     assert attributes.get("url.full") == os.getenv('OPENAI_BASE_URL')
     assert attributes.get("llm.api") == APIS["CHAT_COMPLETION"]["ENDPOINT"]
     assert attributes.get("llm.model") == "gpt-3.5-turbo-0125"
-    assert attributes.get("llm.prompts") == json.dumps(messages_value)
+    assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("llm.stream") is True
 
     events = streaming_span.events
@@ -144,7 +144,7 @@ async def test_async_chat_completion_streaming(exporter, async_openai_client):
     assert attributes.get("url.full") == os.getenv('OPENAI_BASE_URL')
     assert attributes.get("llm.api") == APIS["CHAT_COMPLETION"]["ENDPOINT"]
     assert attributes.get("llm.model") == "gpt-3.5-turbo-0125"
-    assert attributes.get("llm.prompts") == json.dumps(messages_value)
+    assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("llm.stream") is True
 
     events = streaming_span.events

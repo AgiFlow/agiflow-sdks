@@ -47,7 +47,7 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
                 prompts = serialise_to_json(
                     [{"role": "system", "content": system}] + self.fkwargs.get("messages", [])
                 )
-            span_attributes[SpanAttributes.LLM_PROMPTS] = prompts
+            span_attributes[SpanAttributes.GEN_AI_PROMPT] = prompts
 
         if self.fkwargs.get("temperature") is not None:
             span_attributes[SpanAttributes.LLM_TEMPERATURE] = self.fkwargs.get("temperature")
