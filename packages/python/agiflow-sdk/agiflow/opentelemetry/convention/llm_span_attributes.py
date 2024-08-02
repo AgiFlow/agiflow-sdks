@@ -14,7 +14,6 @@ class LLMSpanAttributes():
     LLM_API = 'llm.api'
     # Detect if the wrapper include instrumented llm or not
     LLM_WRAPPER = 'llm.wrapper'
-    LLM_TEMPERATURE = 'llm.temperature'
     LLM_TOP_P = 'llm.top_p'
     LLM_TOP_K = 'llm.top_k'
     LLM_USER = 'llm.user'
@@ -55,7 +54,6 @@ class LLMSpanAttributesValidator(GenAISpanAttributesValidator):
     URL_FULL: Optional[str] = Field(None, alias=LLMSpanAttributes.URL_FULL)
     LLM_API: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_API)
     LLM_WRAPPER: Optional[bool] = Field(None, alias=LLMSpanAttributes.LLM_WRAPPER)
-    LLM_TEMPERATURE: Optional[float] = Field(None, alias=LLMSpanAttributes.LLM_TEMPERATURE)
     LLM_TOP_P: Optional[float] = Field(None, alias=LLMSpanAttributes.LLM_TOP_P)
     LLM_TOP_K: Optional[float] = Field(None, alias=LLMSpanAttributes.LLM_TOP_K)
     LLM_USER: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_USER)

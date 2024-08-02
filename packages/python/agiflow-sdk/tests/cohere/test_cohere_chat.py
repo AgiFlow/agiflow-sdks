@@ -45,7 +45,7 @@ def test_cohere_chat(cohere_client, exporter):
     assert attributes.get("llm.api") == APIS["CHAT_CREATE"]["ENDPOINT"]
     assert attributes.get("gen_ai.request.model") == llm_model_value
     assert attributes.get("llm.generation_id") == res.generation_id
-    assert attributes.get("llm.temperature") == kwargs.get("temperature")
+    assert attributes.get("gen_ai.request.temperature") == kwargs.get("temperature")
     assert attributes.get("llm.stream") is False
 
     assert json.loads(attributes.get("llm.connectors")) == connectors
@@ -102,7 +102,7 @@ def test_cohere_chat_streaming(cohere_client, exporter):
     assert attributes.get("url.full") == APIS["CHAT_STREAM"]["URL"]
     assert attributes.get("llm.api") == APIS["CHAT_STREAM"]["ENDPOINT"]
     assert attributes.get("gen_ai.request.model") == llm_model_value
-    assert attributes.get("llm.temperature") == kwargs.get("temperature")
+    assert attributes.get("gen_ai.request.temperature") == kwargs.get("temperature")
     assert attributes.get("llm.stream") is True
     assert json.loads(attributes.get("llm.connectors")) == connectors
     assert json.loads(attributes.get("gen_ai.prompt"))[-1]["content"] == messages_value

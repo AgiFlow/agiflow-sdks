@@ -74,7 +74,7 @@ class CohereChatSpanCapture(CohereSpanCapture):
             span_attributes[SpanAttributes.GEN_AI_PROMPT] = serialise_to_json(prompts)
 
         if self.fkwargs.get("temperature") is not None:
-            span_attributes[SpanAttributes.LLM_TEMPERATURE] = self.fkwargs.get("temperature")
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_TEMPERATURE] = self.fkwargs.get("temperature")
         if self.fkwargs.get("max_tokens") is not None:
             span_attributes[SpanAttributes.GEN_AI_REQUEST_MAX_TOKENS] = str(self.fkwargs.get("max_tokens"))
         if self.fkwargs.get("max_input_tokens") is not None:
