@@ -80,7 +80,7 @@ class CohereChatSpanCapture(CohereSpanCapture):
         if self.fkwargs.get("max_input_tokens") is not None:
             span_attributes[SpanAttributes.LLM_MAX_INPUT_TOKENS] = str(self.fkwargs.get("max_input_tokens"))
         if self.fkwargs.get("p") is not None:
-            span_attributes[SpanAttributes.LLM_TOP_P] = self.fkwargs.get("p")
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_TOP_P] = self.fkwargs.get("p")
         if self.fkwargs.get("k") is not None:
             span_attributes[SpanAttributes.LLM_TOP_K] = self.fkwargs.get("k")
         if self.fkwargs.get("user") is not None:

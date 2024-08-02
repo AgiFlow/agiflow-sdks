@@ -64,7 +64,7 @@ class LLMSpanCapture(LangchainCoreSpanCapture):
                 options = params.get("options")
                 if options is not None:
                     span_attributes[SpanAttributes.GEN_AI_REQUEST_TEMPERATURE] = options.get("temperature")
-                    span_attributes[SpanAttributes.LLM_TOP_P] = options.get("top_p")
+                    span_attributes[SpanAttributes.GEN_AI_REQUEST_TOP_P] = options.get("top_p")
                     span_attributes[SpanAttributes.LLM_TOP_K] = options.get("top_k")
             except Exception as e:
                 logger.error(e)
@@ -124,7 +124,7 @@ class LLMStreamSpanCapture(LangchainCoreSpanCapture):
                 options = params.get("options")
                 if options is not None:
                     span_attributes[SpanAttributes.GEN_AI_REQUEST_TEMPERATURE] = options.get("temperature")
-                    span_attributes[SpanAttributes.LLM_TOP_P] = options.get("top_p")
+                    span_attributes[SpanAttributes.GEN_AI_REQUEST_TOP_P] = options.get("top_p")
                     span_attributes[SpanAttributes.LLM_TOP_K] = options.get("top_k")
             except Exception as e:
                 logger.error(e)

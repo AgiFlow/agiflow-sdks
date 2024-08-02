@@ -79,7 +79,7 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
         if self.fkwargs.get("temperature") is not None:
             span_attributes[SpanAttributes.GEN_AI_REQUEST_TEMPERATURE] = self.fkwargs.get("temperature")
         if self.fkwargs.get("top_p") is not None:
-            span_attributes[SpanAttributes.LLM_TOP_P] = self.fkwargs.get("top_p")
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_TOP_P] = self.fkwargs.get("top_p")
         if self.fkwargs.get("user") is not None:
             span_attributes[SpanAttributes.LLM_USER] = self.fkwargs.get("user")
         if self.fkwargs.get("functions") is not None:

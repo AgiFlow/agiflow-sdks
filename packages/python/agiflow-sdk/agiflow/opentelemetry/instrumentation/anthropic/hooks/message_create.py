@@ -52,7 +52,7 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
         if self.fkwargs.get("temperature") is not None:
             span_attributes[SpanAttributes.GEN_AI_REQUEST_TEMPERATURE] = self.fkwargs.get("temperature")
         if self.fkwargs.get("top_p") is not None:
-            span_attributes[SpanAttributes.LLM_TOP_P] = self.fkwargs.get("top_p")
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_TOP_P] = self.fkwargs.get("top_p")
         if self.fkwargs.get("top_k") is not None:
             span_attributes[SpanAttributes.LLM_TOP_K] = self.fkwargs.get("top_k")
         if self.fkwargs.get("user") is not None:
