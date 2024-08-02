@@ -30,7 +30,7 @@ class ChatStreamSpanCapture(CohereChatSpanCapture):
         super().__init__(*args, **kwargs)
 
     @staticmethod
-    def get_span_name(instance):
+    def get_span_name(instance, *args, **kwargs):
         return APIS["CHAT_STREAM"]["METHOD"]
 
     def is_streaming(self):

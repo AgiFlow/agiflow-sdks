@@ -158,17 +158,17 @@ def extract_content(generation):
         hasattr(message, "tool_calls")
         and message.tool_calls is not None
     ):
-        result = [
-            {
-                "id": tool_call.id,
-                "type": tool_call.type,
+        result = []
+        for tool_call in message.tool_calls:
+            result.append({
+                "id": tool_call.get('id'),
+                "type": tool_call.get('type'),
                 "function": {
-                    "name": tool_call.function.name,
-                    "arguments": tool_call.function.arguments,
+                    "name": tool_call.get('name'),
+                    "arguments": tool_call.get('args'),
                 },
-            }
-            for tool_call in message.tool_calls
-        ]
+            })
+
         response[LLMResponseKeys.TOOL_CALLS] = result
 
     # Check if choice.message has a function_call and extract information accordingly
@@ -176,9 +176,10 @@ def extract_content(generation):
         hasattr(message, "function_call")
         and message.function_call is not None
     ):
-        response[LLMResponseKeys.FUNCTION_CALLS] = {
-            "name": message.function_call.name,
-            "arguments": message.function_call.arguments,
-        }
+        if hasattr(message.function_call, 'name'):
+            response[LLMResponseKeys.FUNCTION_CALLS] = {
+                "name": message.function_call.name,
+                "arguments": message.function_call.arguments,
+            }
 
     return response

@@ -31,7 +31,7 @@ class CohereChatSpanCapture(CohereSpanCapture):
         super().__init__(*args, **kwargs)
 
     @staticmethod
-    def get_span_name(instance):
+    def get_span_name(instance, *args, **kwargs):
         return APIS["CHAT_CREATE"]["METHOD"]
 
     def capture_input(self):

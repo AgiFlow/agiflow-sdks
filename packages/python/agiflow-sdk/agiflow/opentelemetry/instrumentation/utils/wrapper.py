@@ -62,7 +62,7 @@ class AbstractSpanCapture(ABC, Generic[R]):
         pass
 
     @staticmethod
-    def get_span_name(instance):
+    def get_span_name(instance, *args, **kwargs):
         """
         Override span name
         """
@@ -110,7 +110,7 @@ class BaseSpanCapture(AbstractSpanCapture):
         return is_streaming_response(self.fkwargs.get('stream'))
 
     @staticmethod
-    def get_span_name(instance):
+    def get_span_name(instance, *args, **kwargs):
         """
         Override this method if span name is different
         """
@@ -173,7 +173,7 @@ def method_wrapper(
     **okwargs
 ):
     def traced_method(wrapped, instance, args, kwargs):
-        name = span_name or SpanCapture.get_span_name(instance)
+        name = span_name or SpanCapture.get_span_name(instance, *args, **kwargs)
         kind = span_kind or SpanCapture.get_span_kind(instance)
         with tracer.start_as_current_span(
             name, kind=kind
@@ -211,7 +211,7 @@ def async_method_wrapper(
     **okwargs
 ):
     async def traced_method(wrapped, instance, args, kwargs):
-        name = span_name or SpanCapture.get_span_name(instance)
+        name = span_name or SpanCapture.get_span_name(instance, *args, **kwargs)
         kind = span_kind or SpanCapture.get_span_kind(instance)
         with tracer.start_as_current_span(
             name, kind=kind
@@ -253,7 +253,7 @@ def stream_wrapper(
     """
 
     def traced_method(wrapped, instance, args, kwargs):
-        name = span_name or SpanCapture.get_span_name(instance)
+        name = span_name or SpanCapture.get_span_name(instance, *args, **kwargs)
         kind = span_kind or SpanCapture.get_span_kind(instance)
         span = tracer.start_span(name, kind=kind)
         span_capture = SpanCapture(*args, version=version, instance=instance, span=span, **kwargs, **okwargs)
@@ -308,7 +308,7 @@ def async_stream_wrapper(
     """
 
     async def traced_method(wrapped, instance, args, kwargs):
-        name = span_name or SpanCapture.get_span_name(instance)
+        name = span_name or SpanCapture.get_span_name(instance, *args, **kwargs)
         kind = span_kind or SpanCapture.get_span_kind(instance)
         span = tracer.start_span(name, kind=kind)
         span_capture = SpanCapture(*args, version=version, instance=instance, span=span, **kwargs, **okwargs)

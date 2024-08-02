@@ -41,6 +41,25 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
     ):
         super().__init__(*args, **kwargs)
 
+    @staticmethod
+    def get_span_name(instance, *args, **kwargs):
+        """
+        Override this method if span name is different
+        """
+        if kwargs.get('model'):
+            return f"{LLMTypes.CHAT.value.lower()} {kwargs.get('model')}"
+        if instance is None:
+            return ""
+        if hasattr(instance, '__class__'):
+            if hasattr(instance, '__name__'):
+                return f"{instance.__class__.__name__}.${instance.__name__}"
+            else:
+                return f"{instance.__class__.__name__}"
+        elif hasattr(instance, '__name__'):
+            return f"{instance.__name__}"
+        else:
+            return ""
+
     def capture_input(self):
         self.add_input_attributes()
         span_attributes: Dict[str, Any] = {

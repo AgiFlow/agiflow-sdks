@@ -34,7 +34,7 @@ class RerankSpanCapture(CohereSpanCapture):
         self.model = model
 
     @staticmethod
-    def get_span_name(instance):
+    def get_span_name(instance, *args, **kwargs):
         return APIS["RERANK"]["METHOD"]
 
     def capture_input(self):

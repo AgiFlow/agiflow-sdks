@@ -21,7 +21,7 @@ def test_chat_completion(exporter, openai_client):
     openai_client.chat.completions.create(**kwargs)
     spans = exporter.get_finished_spans()
     completion_span = spans[-1]
-    assert completion_span.name == "Completions"
+    assert completion_span.name == f"chat {llm_model_value}"
 
     attributes = completion_span.attributes
     assert attributes.get("agiflow.sdk.name") == "agiflow-python-sdk"
@@ -74,7 +74,7 @@ def test_chat_completion_streaming(exporter, openai_client):
     spans = exporter.get_finished_spans()
     streaming_span = spans[-1]
 
-    assert streaming_span.name == "Completions"
+    assert streaming_span.name == f"chat {llm_model_value}"
     attributes = streaming_span.attributes
 
     assert attributes.get("agiflow.sdk.name") == "agiflow-python-sdk"
@@ -131,7 +131,7 @@ async def test_async_chat_completion_streaming(exporter, async_openai_client):
     spans = exporter.get_finished_spans()
     streaming_span = spans[-1]
 
-    assert streaming_span.name == "AsyncCompletions"
+    assert streaming_span.name == f"chat {llm_model_value}"
     attributes = streaming_span.attributes
 
     assert attributes.get("agiflow.sdk.name") == "agiflow-python-sdk"
