@@ -64,19 +64,19 @@ class ChatCreateSpanCapture(CohereChatSpanCapture):
                         }
                         for item in result.chat_history
                     ]
-                    self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json(responses))
+                    self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
                 else:
                     responses = [{"role": "CHATBOT", "content": result.text}]
-                    self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json(responses))
+                    self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
             elif hasattr(result, "tool_calls") and result.tool_calls is not None:
                 tool_calls = []
                 for tool_call in result.tool_calls:
                     tool_calls.append(tool_call.json())
                 self.set_span_attribute(SpanAttributes.LLM_TOOL_CALLS, serialise_to_json(tool_calls))
-                self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json([]))
+                self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json([]))
             else:
                 responses = []
-                self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json(responses))
+                self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
 
         # Get the usage
         if hasattr(result, "meta") and result.meta is not None:

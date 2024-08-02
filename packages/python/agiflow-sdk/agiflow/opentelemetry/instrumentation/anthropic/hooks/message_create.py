@@ -70,7 +70,7 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
                     result.model if result.model else self.fkwargs.get("model"),
                 )
                 self.set_span_attribute(
-                    SpanAttributes.LLM_RESPONSES,
+                    SpanAttributes.GEN_AI_COMPLETION,
                     serialise_to_json(
                         [
                             {
@@ -83,7 +83,7 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
                 )
             else:
                 responses = []
-                self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json(responses))
+                self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
             if (
                 hasattr(result, "system_fingerprint")
                 and result.system_fingerprint is not None
@@ -160,7 +160,7 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
                 ),
             )
             self.set_span_attribute(
-                SpanAttributes.LLM_RESPONSES,
+                SpanAttributes.GEN_AI_COMPLETION,
                 serialise_to_json([{"role": "assistant", "content": "".join(result_content)}]),
             )
             self.span.set_status(StatusCode.OK)

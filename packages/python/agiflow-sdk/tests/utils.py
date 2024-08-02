@@ -36,7 +36,7 @@ def assert_token_count(attributes):
 
 
 def assert_response_format(attributes):
-    agiflow_responses = json.loads(attributes.get("llm.responses"))
+    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
     assert isinstance(agiflow_responses, list)
     for agiflow_response in agiflow_responses:
         assert isinstance(agiflow_response, dict)

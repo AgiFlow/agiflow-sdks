@@ -40,14 +40,14 @@ def test_chat_completion(exporter, openai_client):
     assert_token_count(attributes)
     assert_response_format(attributes)
 
-    agiflow_responses = json.loads(attributes.get("llm.responses"))
+    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
     assert isinstance(agiflow_responses, list)
     for agiflow_response in agiflow_responses:
         assert isinstance(agiflow_response, dict)
         assert "role" in agiflow_response
         assert "content" in agiflow_response
 
-    agiflow_responses = json.loads(attributes.get("llm.responses"))
+    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
     assert isinstance(agiflow_responses, list)
     for agiflow_response in agiflow_responses:
         assert isinstance(agiflow_response, dict)
@@ -96,14 +96,14 @@ def test_chat_completion_streaming(exporter, openai_client):
     assert_token_count(attributes)
     assert_response_format(attributes)
 
-    agiflow_responses = json.loads(attributes.get("llm.responses"))
+    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
     assert isinstance(agiflow_responses, list)
     for agiflow_response in agiflow_responses:
         assert isinstance(agiflow_response, dict)
         assert "role" in agiflow_response
         assert "content" in agiflow_response
 
-    agiflow_responses = json.loads(attributes.get("llm.responses"))
+    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
     assert isinstance(agiflow_responses, list)
     for agiflow_response in agiflow_responses:
         assert isinstance(agiflow_response, dict)

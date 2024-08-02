@@ -84,7 +84,7 @@ class LLMSpanCapture(LangchainCoreSpanCapture):
             for idx, generation in enumerate(result.generations):
                 responses.append({LLMResponseKeys.CONTENT: generation[0].text})
             self.set_span_attribute(
-                SpanAttributes.LLM_RESPONSES,
+                SpanAttributes.GEN_AI_COMPLETION,
                 serialise_to_json(responses),
             )
 
@@ -142,7 +142,7 @@ class LLMStreamSpanCapture(LangchainCoreSpanCapture):
         # Finalize span after processing all chunks
         self.span.add_event(Event.STREAM_END)
         self.span.set_attribute(
-            SpanAttributes.LLM_RESPONSES,
+            SpanAttributes.GEN_AI_COMPLETION,
             serialise_to_json(
                 [
                     {

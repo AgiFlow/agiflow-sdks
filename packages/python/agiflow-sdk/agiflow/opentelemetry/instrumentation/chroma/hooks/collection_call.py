@@ -130,7 +130,7 @@ class CollectionCallSpanCapture(ChromaSpanCapture):
                 ),
             )
             self.set_span_attribute(
-                SpanAttributes.LLM_RESPONSES,
+                SpanAttributes.GEN_AI_COMPLETION,
                 serialise_to_json([{"role": "assistant", "content": "".join(result_content)}]),
             )
             self.span.set_status(StatusCode.OK)

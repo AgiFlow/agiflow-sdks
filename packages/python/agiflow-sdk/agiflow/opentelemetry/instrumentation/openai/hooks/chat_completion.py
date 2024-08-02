@@ -117,10 +117,10 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
                     if response:
                         responses.append(response)
 
-                self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json(responses))
+                self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
             else:
                 responses = []
-                self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json(responses))
+                self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
 
         if (
             hasattr(result, "system_fingerprint")
@@ -241,7 +241,7 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
             ),
         )
         self.span.set_attribute(
-            SpanAttributes.LLM_RESPONSES,
+            SpanAttributes.GEN_AI_COMPLETION,
             serialise_to_json(
                 [
                     {

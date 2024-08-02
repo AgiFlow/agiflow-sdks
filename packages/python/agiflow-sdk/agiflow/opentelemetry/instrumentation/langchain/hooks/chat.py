@@ -99,7 +99,7 @@ class ChatSpanCapture(LangchainSpanCapture):
                 responses.append(extract_content(generation[0]))
 
             self.set_span_attribute(
-                SpanAttributes.LLM_RESPONSES,
+                SpanAttributes.GEN_AI_COMPLETION,
                 serialise_to_json(responses),
             )
             try:

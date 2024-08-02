@@ -101,14 +101,14 @@ class ChatStreamSpanCapture(CohereChatSpanCapture):
                                     for item in response.chat_history
                                 ]
                                 self.set_span_attribute(
-                                    SpanAttributes.LLM_RESPONSES, serialise_to_json(responses)
+                                    SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses)
                                 )
                             else:
                                 responses = [
                                     {"role": "CHATBOT", "content": response.text}
                                 ]
                                 self.set_span_attribute(
-                                    SpanAttributes.LLM_RESPONSES, serialise_to_json(responses)
+                                    SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses)
                                 )
 
                         # Get the usage
