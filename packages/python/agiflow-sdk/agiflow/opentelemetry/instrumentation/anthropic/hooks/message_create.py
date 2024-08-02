@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from agiflow.opentelemetry.convention.constants import Event, LLMTokenUsageKeys, LLMTypes
+from agiflow.opentelemetry.convention.constants import Event, LLMTypes
 from agiflow.opentelemetry.convention.llm_span_attributes import LLMSpanAttributesValidator
 from agiflow.opentelemetry.instrumentation.constants.anthropic import APIS
 from agiflow.utils import serialise_to_json
@@ -96,12 +96,8 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
             if hasattr(result, "usage") and result.usage is not None:
                 usage = result.usage
                 if usage is not None:
-                    usage_dict = {
-                        LLMTokenUsageKeys.PROMPT_TOKENS: usage.input_tokens,
-                        LLMTokenUsageKeys.COMPLETION_TOKENS: usage.output_tokens,
-                        LLMTokenUsageKeys.TOTAL_TOKENS: usage.input_tokens + usage.output_tokens,
-                    }
-                    self.set_span_attribute(SpanAttributes.LLM_TOKEN_COUNTS, serialise_to_json(usage_dict))
+                    self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, usage.input_tokens)
+                    self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, usage.output_tokens)
 
     def capture_stream_output(self, result):
         """Process and yield streaming response chunks."""
@@ -149,16 +145,8 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
 
             # Finalize span after processing all chunks
             self.span.add_event(Event.STREAM_END.value)
-            self.set_span_attribute(
-                SpanAttributes.LLM_TOKEN_COUNTS,
-                serialise_to_json(
-                    {
-                        LLMTokenUsageKeys.PROMPT_TOKENS: input_tokens,
-                        LLMTokenUsageKeys.COMPLETION_TOKENS: output_tokens,
-                        LLMTokenUsageKeys.TOTAL_TOKENS: input_tokens + output_tokens,
-                    }
-                ),
-            )
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, input_tokens)
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, output_tokens)
             self.set_span_attribute(
                 SpanAttributes.GEN_AI_COMPLETION,
                 serialise_to_json([{"role": "assistant", "content": "".join(result_content)}]),

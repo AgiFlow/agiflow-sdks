@@ -17,7 +17,6 @@ class LLMSpanAttributes():
     LLM_TOP_K = 'llm.top_k'
     LLM_USER = 'llm.user'
     LLM_SYSTEM_FINGERPRINT = 'llm.system.fingerprint'
-    LLM_TOKEN_COUNTS = 'llm.token.counts'
     LLM_STREAM = 'llm.stream'
     LLM_ENCODING_FORMAT = 'llm.encoding.format'
     LLM_DIMENSIONS = 'llm.dimensions'
@@ -55,7 +54,6 @@ class LLMSpanAttributesValidator(GenAISpanAttributesValidator):
     LLM_TOP_K: Optional[float] = Field(None, alias=LLMSpanAttributes.LLM_TOP_K)
     LLM_USER: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_USER)
     LLM_SYSTEM_FINGERPRINT: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_SYSTEM_FINGERPRINT)
-    LLM_TOKEN_COUNTS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_TOKEN_COUNTS)
     LLM_STREAM: Optional[bool] = Field(None, alias=LLMSpanAttributes.LLM_STREAM)
     LLM_ENCODING_FORMATS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_ENCODING_FORMAT)
     LLM_DIMENSIONS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_DIMENSIONS)

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from agiflow.opentelemetry.convention.constants import Event, LLMResponseKeys, LLMTokenUsageKeys
+from agiflow.opentelemetry.convention.constants import Event, LLMResponseKeys
 from agiflow.opentelemetry.instrumentation.constants.cohere import APIS
 from agiflow.opentelemetry.utils.llm import should_send_prompts
 from agiflow.utils import serialise_to_json
@@ -119,32 +119,14 @@ class ChatStreamSpanCapture(CohereChatSpanCapture):
                             ):
                                 usage = response.meta.billed_units
                                 if usage is not None:
-                                    usage_dict = {
-                                        LLMTokenUsageKeys.PROMPT_TOKENS: (
-                                            usage.input_tokens
-                                            if usage.input_tokens is not None
-                                            else 0
-                                        ),
-                                        LLMTokenUsageKeys.COMPLETION_TOKENS: (
-                                            usage.output_tokens
-                                            if usage.output_tokens is not None
-                                            else 0
-                                        ),
-                                        LLMTokenUsageKeys.TOTAL_TOKENS: (
-                                            usage.input_tokens + usage.output_tokens
-                                            if usage.input_tokens is not None
-                                            and usage.output_tokens is not None
-                                            else 0
-                                        ),
-                                        LLMTokenUsageKeys.SEARCH_UNITS: (
-                                            usage.search_units
-                                            if usage.search_units is not None
-                                            else 0
-                                        ),
-                                    }
                                     self.set_span_attribute(
-                                        SpanAttributes.LLM_TOKEN_COUNTS, serialise_to_json(usage_dict)
-                                    )
+                                        SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS,
+                                        usage.input_tokens
+                                        )
+                                    self.set_span_attribute(
+                                        SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS,
+                                        usage.output_tokens
+                                        )
 
                 yield event
         finally:

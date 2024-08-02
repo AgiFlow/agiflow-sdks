@@ -22,10 +22,9 @@ def common_setup(data, method_to_mock=None):
 
 
 def assert_token_count(attributes):
-    tokens = json.loads(attributes.get("llm.token.counts"))
-    output_tokens = tokens.get("prompt_tokens")
-    prompt_tokens = tokens.get("completion_tokens")
-    total_tokens = tokens.get("total_tokens")
+    output_tokens = attributes.get("gen_ai.usage.completion_tokens")
+    prompt_tokens = attributes.get("gen_ai.usage.prompt_tokens")
+    total_tokens = output_tokens + prompt_tokens
 
     assert (
         output_tokens is not None

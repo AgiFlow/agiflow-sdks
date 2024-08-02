@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from agiflow.opentelemetry.convention.constants import Event, LLMPromptKeys, LLMTokenUsageKeys
+from agiflow.opentelemetry.convention.constants import Event, LLMPromptKeys
 from agiflow.opentelemetry.convention.llm_span_attributes import LLMSpanAttributesValidator
 from agiflow.opentelemetry.instrumentation.constants.groq import APIS
 from agiflow.utils import serialise_to_json
@@ -134,12 +134,8 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
         if hasattr(result, "usage") and result.usage is not None:
             usage = result.usage
             if usage is not None:
-                usage_dict = {
-                    LLMTokenUsageKeys.PROMPT_TOKENS: result.usage.prompt_tokens,
-                    LLMTokenUsageKeys.COMPLETION_TOKENS: usage.completion_tokens,
-                    LLMTokenUsageKeys.TOTAL_TOKENS: usage.total_tokens,
-                }
-                self.set_span_attribute(SpanAttributes.LLM_TOKEN_COUNTS, serialise_to_json(usage_dict))
+                self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, result.usage.prompt_tokens)
+                self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, usage.completion_tokens)
 
     def compute_tokens(self):
         for message in self.fkwargs.get("messages", {}):
@@ -217,16 +213,8 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
 
     def handle_stream_end(self):
         self.span.add_event(Event.STREAM_END.value)
-        self.set_span_attribute(
-            SpanAttributes.LLM_TOKEN_COUNTS,
-            serialise_to_json(
-                {
-                    LLMTokenUsageKeys.PROMPT_TOKENS: self.prompt_tokens,
-                    LLMTokenUsageKeys.COMPLETION_TOKENS: self.completion_tokens,
-                    LLMTokenUsageKeys.COMPLETION_TOKENS: self.prompt_tokens + self.completion_tokens,
-                }
-            ),
-        )
+        self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, self.prompt_tokens)
+        self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, self.completion_tokens)
         self.set_span_attribute(
             SpanAttributes.GEN_AI_COMPLETION,
             serialise_to_json(

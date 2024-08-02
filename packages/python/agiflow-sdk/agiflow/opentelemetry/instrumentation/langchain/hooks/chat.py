@@ -15,7 +15,7 @@ limitations under the License.
 """
 
 import logging
-from agiflow.opentelemetry.convention.constants import LLMResponseKeys, LLMTokenUsageKeys, LLMTypes
+from agiflow.opentelemetry.convention.constants import LLMResponseKeys, LLMTypes
 from agiflow.opentelemetry.convention.llm_span_attributes import LLMSpanAttributesValidator
 from agiflow.utils import serialise_to_json
 from agiflow.opentelemetry.convention import (
@@ -115,12 +115,8 @@ class ChatSpanCapture(LangchainSpanCapture):
             except Exception:
                 prompt_tokens = 0
 
-            usage_dict = {
-                LLMTokenUsageKeys.PROMPT_TOKENS: prompt_tokens,
-                LLMTokenUsageKeys.COMPLETION_TOKENS: completion_tokens,
-                LLMTokenUsageKeys.TOTAL_TOKENS: total_tokens,
-            }
-            self.set_span_attribute(SpanAttributes.LLM_TOKEN_COUNTS, serialise_to_json(usage_dict))
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, prompt_tokens)
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, completion_tokens)
 
 
 def extract_content(generation):

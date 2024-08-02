@@ -2,7 +2,6 @@ from agiflow.opentelemetry.instrumentation.constants.cohere import APIS
 from agiflow.opentelemetry.instrumentation.constants.common import SERVICE_PROVIDERS
 import pytest
 import json
-from tests.utils import assert_token_count
 from importlib_metadata import version as v
 from agiflow.version import __version__
 
@@ -40,11 +39,10 @@ def test_cohere_rerank(cohere_client, exporter):
     assert attributes.get("url.full") == APIS["RERANK"]["URL"]
     assert attributes.get("llm.api") == APIS["RERANK"]["ENDPOINT"]
     assert attributes.get("gen_ai.request.model") == llm_model_value
+    assert attributes.get("gen_ai.usage.search_units") is not None
 
     agiflow_results = json.loads(attributes.get("llm.retrieval.results"))
     for idx, res in enumerate(results.results):
         lang_res = json.loads(agiflow_results[idx])
         assert lang_res["index"] == res.index
         assert lang_res["relevance_score"] == res.relevance_score
-
-    assert_token_count(attributes)

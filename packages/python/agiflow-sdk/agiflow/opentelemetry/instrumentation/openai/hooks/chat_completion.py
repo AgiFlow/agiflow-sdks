@@ -66,7 +66,7 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
           SpanAttributes.LLM_API: APIS["CHAT_COMPLETION"]["ENDPOINT"],
           SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.CHAT,
         }
-        
+
         if self.fkwargs.get('model'):
             span_attributes[SpanAttributes.GEN_AI_REQUEST_MODEL] = self.fkwargs.get('model')
 
@@ -134,12 +134,8 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
         if hasattr(result, "usage"):
             usage = result.usage
             if usage is not None:
-                usage_dict = {
-                    LLMTokenUsageKeys.PROMPT_TOKENS: usage.prompt_tokens,
-                    LLMTokenUsageKeys.COMPLETION_TOKENS: usage.completion_tokens,
-                    LLMTokenUsageKeys.TOTAL_TOKENS: usage.total_tokens,
-                }
-                self.set_span_attribute(SpanAttributes.LLM_TOKEN_COUNTS, serialise_to_json(usage_dict))
+                self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, usage.prompt_tokens)
+                self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, usage.completion_tokens)
 
     def get_prompt_tokens(self, result):
         # iterate over kwargs.get("messages", {}) and calculate the prompt tokens
@@ -226,20 +222,10 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
         prompt_tokens = self.get_prompt_tokens(result)
         # Finalize span after processing all chunks
         self.span.add_event(Event.STREAM_END)
-        self.span.set_attribute(
-            SpanAttributes.LLM_TOKEN_COUNTS,
-            serialise_to_json(
-                {
-                    LLMTokenUsageKeys.PROMPT_TOKENS: prompt_tokens,
-                    LLMTokenUsageKeys.COMPLETION_TOKENS: self.tokens[
+        self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, prompt_tokens)
+        self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, self.tokens[
                       LLMTokenUsageKeys.COMPLETION_TOKENS
-                      ],
-                    LLMTokenUsageKeys.TOTAL_TOKENS: prompt_tokens + self.tokens[
-                      LLMTokenUsageKeys.COMPLETION_TOKENS
-                      ],
-                }
-            ),
-        )
+                      ])
         self.span.set_attribute(
             SpanAttributes.GEN_AI_COMPLETION,
             serialise_to_json(

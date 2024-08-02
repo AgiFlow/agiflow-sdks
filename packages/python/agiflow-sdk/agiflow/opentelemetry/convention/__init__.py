@@ -33,7 +33,13 @@ from .constants import (
 )
 
 
-class SpanAttributes(AgiflowSpanAttributes, LLMSpanAttributes, FrameworkSpanAttributes, DatabaseSpanAttributes, GenAISpanAttributes):
+class SpanAttributes(
+    AgiflowSpanAttributes,
+    LLMSpanAttributes,
+    FrameworkSpanAttributes,
+    DatabaseSpanAttributes,
+    GenAISpanAttributes
+):
     """
     All span attributes collected by Agiflow.
     Using this for key value instead of hard coding to ensure

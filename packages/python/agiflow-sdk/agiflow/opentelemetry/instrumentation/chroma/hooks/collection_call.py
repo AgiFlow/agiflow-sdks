@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from agiflow.opentelemetry.convention.constants import Event, LLMTokenUsageKeys
+from agiflow.opentelemetry.convention.constants import Event
 from agiflow.opentelemetry.convention.database_span_attributes import DatabaseSpanAttributesValidator
 from agiflow.opentelemetry.instrumentation.constants.chroma import APIS
 from agiflow.utils import serialise_to_json, silently_fail
@@ -119,16 +119,8 @@ class CollectionCallSpanCapture(ChromaSpanCapture):
 
             # Finalize span after processing all chunks
             self.span.add_event(Event.STREAM_END.value)
-            self.set_span_attribute(
-                SpanAttributes.LLM_TOKEN_COUNTS,
-                serialise_to_json(
-                    {
-                        LLMTokenUsageKeys.PROMPT_TOKENS: input_tokens,
-                        LLMTokenUsageKeys.COMPLETION_TOKENS: output_tokens,
-                        LLMTokenUsageKeys.TOTAL_TOKENS: input_tokens + output_tokens,
-                    }
-                ),
-            )
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, input_tokens)
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, output_tokens)
             self.set_span_attribute(
                 SpanAttributes.GEN_AI_COMPLETION,
                 serialise_to_json([{"role": "assistant", "content": "".join(result_content)}]),
