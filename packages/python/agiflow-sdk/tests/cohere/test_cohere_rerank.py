@@ -39,7 +39,7 @@ def test_cohere_rerank(cohere_client, exporter):
     assert attributes.get("agiflow.sdk.version") == __version__
     assert attributes.get("url.full") == APIS["RERANK"]["URL"]
     assert attributes.get("llm.api") == APIS["RERANK"]["ENDPOINT"]
-    assert attributes.get("llm.model") == llm_model_value
+    assert attributes.get("gen_ai.request.model") == llm_model_value
 
     agiflow_results = json.loads(attributes.get("llm.retrieval.results"))
     for idx, res in enumerate(results.results):

@@ -40,7 +40,7 @@ class CohereChatSpanCapture(CohereSpanCapture):
           SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.CHAT,
           SpanAttributes.URL_FULL: APIS["CHAT_CREATE"]["URL"],
           SpanAttributes.LLM_API: APIS["CHAT_CREATE"]["ENDPOINT"],
-          SpanAttributes.LLM_MODEL: (
+          SpanAttributes.GEN_AI_REQUEST_MODEL: (
               self.fkwargs.get("model") if self.fkwargs.get("model") is not None else "command-r"
           ),
         }

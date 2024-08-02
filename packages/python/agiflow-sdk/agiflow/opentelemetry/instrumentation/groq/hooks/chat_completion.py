@@ -43,6 +43,8 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
             SpanAttributes.LLM_API: APIS["CHAT_COMPLETION"]["ENDPOINT"],
             SpanAttributes.LLM_STREAM: self.fkwargs.get("stream"),
         }
+        if self.fkwargs.get('model'):
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_MODEL] = self.fkwargs.get('model')
 
         if should_send_prompts():
             GEN_AI_PROMPT = []
@@ -91,7 +93,7 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
         self.set_span_attributes_from_pydantic(span_attributes, LLMSpanAttributesValidator)
 
     def capture_output(self, result):
-        self.set_span_attribute(SpanAttributes.LLM_MODEL, result.model)
+        self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_MODEL, result.model)
         if should_send_prompts():
             if hasattr(result, "choices") and result.choices is not None:
                 responses = [
@@ -154,7 +156,7 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
 
     def handle_stream_start(self, chunk):
         if hasattr(chunk, "model") and chunk.model is not None:
-            self.set_span_attribute(SpanAttributes.LLM_MODEL, chunk.model)
+            self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_MODEL, chunk.model)
 
         function_call = self.fkwargs.get("functions") is not None,
         tool_calls = self.fkwargs.get("tools")

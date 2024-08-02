@@ -58,7 +58,7 @@ class ChatSpanCapture(LangchainSpanCapture):
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
           SpanAttributes.URL_FULL: base_url,
           SpanAttributes.LLM_API: self.instance.__class__.__name__,
-          SpanAttributes.LLM_MODEL: model,
+          SpanAttributes.GEN_AI_REQUEST_MODEL: model,
           SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.CHAT,
         }
 

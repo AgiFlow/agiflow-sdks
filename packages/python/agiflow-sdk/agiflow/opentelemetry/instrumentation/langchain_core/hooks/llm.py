@@ -53,7 +53,7 @@ class LLMSpanCapture(LangchainCoreSpanCapture):
         span_attributes = {
           SpanAttributes.URL_FULL: "",
           SpanAttributes.LLM_API: self.instance.__class__.__name__,
-          SpanAttributes.LLM_MODEL: LLMSpanCapture.get_model(self.instance),
+          SpanAttributes.GEN_AI_REQUEST_MODEL: LLMSpanCapture.get_model(self.instance),
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
           SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.COMPLETION,
         }
@@ -113,7 +113,7 @@ class LLMStreamSpanCapture(LangchainCoreSpanCapture):
         span_attributes = {
           SpanAttributes.URL_FULL: "",
           SpanAttributes.LLM_API: self.instance.__class__.__name__,
-          SpanAttributes.LLM_MODEL: LLMSpanCapture.get_model(self.instance),
+          SpanAttributes.GEN_AI_REQUEST_MODEL: LLMSpanCapture.get_model(self.instance),
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
           SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.COMPLETION,
         }
@@ -157,7 +157,7 @@ class LLMStreamSpanCapture(LangchainCoreSpanCapture):
 
     def capture_chunk(self, result_content, chunk):
         if hasattr(chunk, "model") and chunk.model is not None:
-            self.span.set_attribute(SpanAttributes.LLM_MODEL, chunk.model)
+            self.span.set_attribute(SpanAttributes.GEN_AI_RESPONSE_MODEL, chunk.model)
 
         result_content.append(chunk)
 

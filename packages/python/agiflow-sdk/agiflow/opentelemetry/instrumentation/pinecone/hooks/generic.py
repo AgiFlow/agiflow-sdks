@@ -72,7 +72,7 @@ class GenericSpanCapture(PineconeSpanCapture):
                     and hasattr(chunk.message, "model")
                     and chunk.message.model is not None
                 ):
-                    self.set_span_attribute(SpanAttributes.LLM_MODEL, chunk.message.model)
+                    self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_MODEL, chunk.message.model)
                 content = ""
                 if hasattr(chunk, "delta") and chunk.delta is not None:
                     content = chunk.delta.text if hasattr(chunk.delta, "text") else ""

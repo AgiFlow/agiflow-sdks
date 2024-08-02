@@ -43,7 +43,7 @@ class EmbedSpanCapture(CohereSpanCapture):
           SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.EMBEDDING,
           SpanAttributes.URL_FULL: APIS["EMBED"]["URL"],
           SpanAttributes.LLM_API: APIS["EMBED"]["ENDPOINT"],
-          SpanAttributes.LLM_MODEL: self.model,
+          SpanAttributes.GEN_AI_REQUEST_MODEL: self.model,
           SpanAttributes.GEN_AI_PROMPT: "",
           SpanAttributes.LLM_EMBEDDING_DATASET_ID: self.fkwargs.get("dataset_id"),
           SpanAttributes.LLM_EMBEDDING_JOB_NAME: self.fkwargs.get("name"),

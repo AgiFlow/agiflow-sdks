@@ -66,6 +66,10 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
           SpanAttributes.LLM_API: APIS["CHAT_COMPLETION"]["ENDPOINT"],
           SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.CHAT,
         }
+        
+        if self.fkwargs.get('model'):
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_MODEL] = self.fkwargs.get('model')
+
         if should_send_prompts():
             # handle tool calls in the kwargs
             GEN_AI_PROMPT = []
@@ -103,7 +107,7 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
           )
 
     def capture_output(self, result):
-        self.set_span_attribute(SpanAttributes.LLM_MODEL, result.model)
+        self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_MODEL, result.model)
 
         if should_send_prompts():
             if hasattr(result, "choices") and result.choices is not None:
@@ -158,7 +162,7 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
         function_call = self.fkwargs.get('functions')
         tool_calls = self.fkwargs.get('tools')
         if hasattr(chunk, "model") and chunk.model is not None:
-            self.span.set_attribute(SpanAttributes.LLM_MODEL, chunk.model)
+            self.span.set_attribute(SpanAttributes.GEN_AI_RESPONSE_MODEL, chunk.model)
 
         content = []
         if hasattr(chunk, "choices") and chunk.choices is not None:

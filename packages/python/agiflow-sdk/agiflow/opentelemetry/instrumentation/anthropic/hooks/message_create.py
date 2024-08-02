@@ -36,7 +36,7 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
           SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.CHAT,
           SpanAttributes.LLM_API: APIS["MESSAGES_CREATE"]["ENDPOINT"],
-          SpanAttributes.LLM_MODEL: self.fkwargs.get('model'),
+          SpanAttributes.GEN_AI_REQUEST_MODEL: self.fkwargs.get('model'),
           SpanAttributes.LLM_STREAM: self.fkwargs.get('stream'),
         }
 
@@ -66,7 +66,7 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
         if should_send_prompts():
             if hasattr(result, "content") and result.content is not None:
                 self.set_span_attribute(
-                    SpanAttributes.LLM_MODEL,
+                    SpanAttributes.GEN_AI_RESPONSE_MODEL,
                     result.model if result.model else self.fkwargs.get("model"),
                 )
                 self.set_span_attribute(
@@ -117,7 +117,7 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
                     and hasattr(chunk.message, "model")
                     and chunk.message.model is not None
                 ):
-                    self.set_span_attribute(SpanAttributes.LLM_MODEL, chunk.message.model)
+                    self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_MODEL, chunk.message.model)
                 content = ""
                 if hasattr(chunk, "delta") and chunk.delta is not None:
                     content = chunk.delta.text if hasattr(chunk.delta, "text") else ""
