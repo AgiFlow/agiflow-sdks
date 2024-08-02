@@ -61,7 +61,7 @@ class RerankSpanCapture(CohereSpanCapture):
 
     def capture_output(self, result):
         if (hasattr(result, "response_id")) and (result.response_id is not None):
-            self.set_span_attribute(SpanAttributes.LLM_RESPONSE_ID, result.response_id)
+            self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_ID, result.response_id)
 
         if hasattr(result, "meta") and result.meta is not None:
             if (

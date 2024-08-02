@@ -69,7 +69,7 @@ class ChatStreamSpanCapture(CohereChatSpanCapture):
                         if (hasattr(response, "response_id")) and (
                             response.response_id is not None
                         ):
-                            self.set_span_attribute(SpanAttributes.LLM_RESPONSE_ID, response.response_id)
+                            self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_ID, response.response_id)
                         if (hasattr(response, "is_search_required")) and (
                             response.is_search_required is not None
                         ):

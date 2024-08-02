@@ -12,6 +12,7 @@ class GenAISpanAttributes():
     GEN_AI_REQUEST_TEMPERATURE = 'gen_ai.request.temperature'
     GEN_AI_REQUEST_TOP_P = 'gen_ai.request.top_p'
     GEN_AI_RESPONSE_MODEL = 'gen_ai.response.model'
+    GEN_AI_RESPONSE_ID = 'gen_ai.response.id'
     GEN_AI_OPERATION_NAME = 'gen_ai.operation.name'
     GEN_AI_PROMPT = 'gen_ai.prompt'
     GEN_AI_SYSTEM = 'gen_ai.system'
@@ -24,6 +25,7 @@ class GenAISpanAttributesValidator(AgiflowSpanAttributesValidator):
     GEN_AI_REQUEST_TEMPERATURE: Optional[float] = Field(None, alias=GenAISpanAttributes.GEN_AI_REQUEST_TEMPERATURE)
     GEN_AI_REQUEST_TOP_P: Optional[float] = Field(None, alias=GenAISpanAttributes.GEN_AI_REQUEST_TOP_P)
     GEN_AI_RESPONSE_MODEL: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_RESPONSE_MODEL)
+    GEN_AI_RESPONSE_ID: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_RESPONSE_ID)
     # Type of llm called (Completion, Chat, Image Genration)
     GEN_AI_OPERATION_NAME: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_OPERATION_NAME)
     GEN_AI_PROMPT: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_PROMPT)

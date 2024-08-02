@@ -22,7 +22,6 @@ class LLMSpanAttributes():
     LLM_ENCODING_FORMAT = 'llm.encoding.format'
     LLM_DIMENSIONS = 'llm.dimensions'
     LLM_GENERATION_ID = 'llm.generation_id'
-    LLM_RESPONSE_ID = 'llm.response_id'
     LLM_CITATIONS = 'llm.citations'
     LLM_DOCUMENTS = 'llm.documents'
     LLM_IS_SEARCH_REQUIRED = 'llm.is_search_required'
@@ -61,7 +60,6 @@ class LLMSpanAttributesValidator(GenAISpanAttributesValidator):
     LLM_ENCODING_FORMATS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_ENCODING_FORMAT)
     LLM_DIMENSIONS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_DIMENSIONS)
     LLM_GENERATION_ID: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_GENERATION_ID)
-    LLM_RESPONSE_ID: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_RESPONSE_ID)
     LLM_CITATIONS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_CITATIONS)
     LLM_DOCUMENTS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_DOCUMENTS)
     LLS_IS_SEARCH_REQUIRED: Optional[bool] = Field(None, alias=LLMSpanAttributes.LLM_IS_SEARCH_REQUIRED)
