@@ -34,7 +34,7 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
     def capture_input(self):
         span_attributes = {
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
-          SpanAttributes.LLM_TYPE: LLMTypes.CHAT,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.CHAT,
           SpanAttributes.LLM_API: APIS["MESSAGES_CREATE"]["ENDPOINT"],
           SpanAttributes.LLM_MODEL: self.fkwargs.get('model'),
           SpanAttributes.LLM_STREAM: self.fkwargs.get('stream'),

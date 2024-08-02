@@ -18,11 +18,11 @@ class AgiflowServiceTypes(str, Enum):
 
 
 class LLMTypes(str, Enum):
-    CHAT = 'Chat'
-    COMPLETION = 'Completion'
-    IMAGE_GENERATION = 'ImageGeneration'
-    EMBEDDING = 'Embedding'
-    RERANK = 'Rerank'
+    CHAT = 'chat'
+    COMPLETION = 'completion'
+    IMAGE_GENERATION = 'image generation'
+    EMBEDDING = 'embedding'
+    RERANK = 'rerank'
 
     def __str__(self):
         return str(self.value)

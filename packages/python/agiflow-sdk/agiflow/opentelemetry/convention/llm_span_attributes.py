@@ -13,7 +13,7 @@ class LLMSpanAttributes():
     URL_FULL = 'url.full'
     LLM_API = 'llm.api'
     LLM_MODEL = 'llm.model'
-    LLM_TYPE = 'llm.type'
+    GEN_AI_OPERATION_NAME = 'gen_ai.operation.name'
     # Detect if the wrapper include instrumented llm or not
     LLM_WRAPPER = 'llm.wrapper'
     LLM_TEMPERATURE = 'llm.temperature'
@@ -62,7 +62,7 @@ class LLMSpanAttributesValidator(AgiflowSpanAttributesValidator):
     LLM_WRAPPER: Optional[bool] = Field(None, alias=LLMSpanAttributes.LLM_WRAPPER)
     LLM_MODEL: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_MODEL)
     # Type of llm called (Completion, Chat, Image Genration)
-    LLM_TYPE: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_TYPE)
+    GEN_AI_OPERATION_NAME: Optional[str] = Field(None, alias=LLMSpanAttributes.GEN_AI_OPERATION_NAME)
     LLM_TEMPERATURE: Optional[float] = Field(None, alias=LLMSpanAttributes.LLM_TEMPERATURE)
     LLM_TOP_P: Optional[float] = Field(None, alias=LLMSpanAttributes.LLM_TOP_P)
     LLM_TOP_K: Optional[float] = Field(None, alias=LLMSpanAttributes.LLM_TOP_K)

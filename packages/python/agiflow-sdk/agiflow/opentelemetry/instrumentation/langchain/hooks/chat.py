@@ -59,7 +59,7 @@ class ChatSpanCapture(LangchainSpanCapture):
           SpanAttributes.URL_FULL: base_url,
           SpanAttributes.LLM_API: self.instance.__class__.__name__,
           SpanAttributes.LLM_MODEL: model,
-          SpanAttributes.LLM_TYPE: LLMTypes.CHAT,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.CHAT,
         }
 
         if hasattr(self.instance, "dict") and callable(self.instance.dict):

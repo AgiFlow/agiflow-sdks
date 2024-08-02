@@ -40,7 +40,7 @@ class ImageGenerateSpanCapture(OpenAISpanCapture):
 
     def capture_input(self):
         span_attributes = {
-            SpanAttributes.LLM_TYPE: LLMTypes.IMAGE_GENERATION,
+            SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.IMAGE_GENERATION,
             SpanAttributes.LLM_API: APIS["IMAGES_GENERATION"]["ENDPOINT"],
             SpanAttributes.LLM_STREAM: self.stream,
             SpanAttributes.LLM_PROMPTS: json.dumps(

@@ -55,7 +55,7 @@ class LLMSpanCapture(LangchainCoreSpanCapture):
           SpanAttributes.LLM_API: self.instance.__class__.__name__,
           SpanAttributes.LLM_MODEL: LLMSpanCapture.get_model(self.instance),
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
-          SpanAttributes.LLM_TYPE: LLMTypes.COMPLETION,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.COMPLETION,
         }
 
         if hasattr(self.instance, "_identifying_params"):
@@ -115,7 +115,7 @@ class LLMStreamSpanCapture(LangchainCoreSpanCapture):
           SpanAttributes.LLM_API: self.instance.__class__.__name__,
           SpanAttributes.LLM_MODEL: LLMSpanCapture.get_model(self.instance),
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
-          SpanAttributes.LLM_TYPE: LLMTypes.COMPLETION,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.COMPLETION,
         }
 
         if hasattr(self.instance, "_identifying_params"):

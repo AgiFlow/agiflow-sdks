@@ -51,7 +51,7 @@ class EmbeddingSpanCapture(OpenAISpanCapture):
         span_attributes = {
             SpanAttributes.LLM_API: APIS["EMBEDDINGS_CREATE"]["ENDPOINT"],
             SpanAttributes.LLM_MODEL: self.model,
-            SpanAttributes.LLM_TYPE: LLMTypes.EMBEDDING,
+            SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.EMBEDDING,
             SpanAttributes.LLM_PROMPTS: json.dumps(
                 [{"role": "user", "content": (self.input or '')}]
             ),

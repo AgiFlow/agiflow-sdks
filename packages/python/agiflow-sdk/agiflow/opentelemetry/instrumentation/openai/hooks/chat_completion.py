@@ -64,7 +64,7 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
         self.add_input_attributes()
         span_attributes: Dict[str, Any] = {
           SpanAttributes.LLM_API: APIS["CHAT_COMPLETION"]["ENDPOINT"],
-          SpanAttributes.LLM_TYPE: LLMTypes.CHAT,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.CHAT,
         }
         if should_send_prompts():
             # handle tool calls in the kwargs

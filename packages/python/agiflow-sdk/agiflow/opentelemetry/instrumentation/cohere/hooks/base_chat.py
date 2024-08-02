@@ -37,7 +37,7 @@ class CohereChatSpanCapture(CohereSpanCapture):
     def capture_input(self):
         span_attributes = {
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
-          SpanAttributes.LLM_TYPE: LLMTypes.CHAT,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.CHAT,
           SpanAttributes.URL_FULL: APIS["CHAT_CREATE"]["URL"],
           SpanAttributes.LLM_API: APIS["CHAT_CREATE"]["ENDPOINT"],
           SpanAttributes.LLM_MODEL: (

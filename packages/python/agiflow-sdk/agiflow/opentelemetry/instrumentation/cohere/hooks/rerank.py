@@ -40,7 +40,7 @@ class RerankSpanCapture(CohereSpanCapture):
     def capture_input(self):
         span_attributes = {
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
-          SpanAttributes.LLM_TYPE: LLMTypes.RERANK,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.RERANK,
           SpanAttributes.URL_FULL: APIS["RERANK"]["URL"],
           SpanAttributes.LLM_API: APIS["RERANK"]["ENDPOINT"],
           SpanAttributes.LLM_MODEL: self.model,

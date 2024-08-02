@@ -40,7 +40,7 @@ class EmbedSpanCapture(CohereSpanCapture):
     def capture_input(self):
         span_attributes = {
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
-          SpanAttributes.LLM_TYPE: LLMTypes.EMBEDDING,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.EMBEDDING,
           SpanAttributes.URL_FULL: APIS["EMBED"]["URL"],
           SpanAttributes.LLM_API: APIS["EMBED"]["ENDPOINT"],
           SpanAttributes.LLM_MODEL: self.model,
