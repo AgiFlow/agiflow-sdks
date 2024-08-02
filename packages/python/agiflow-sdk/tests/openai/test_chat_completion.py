@@ -33,9 +33,12 @@ def test_chat_completion(exporter, openai_client):
     assert attributes.get("agiflow.sdk.version") == __version__
     assert attributes.get("url.full") == os.getenv('OPENAI_BASE_URL')
     assert attributes.get("llm.api") == APIS["CHAT_COMPLETION"]["ENDPOINT"]
+    assert attributes.get("gen_ai.request.model") == "gpt-3.5-turbo"
     assert attributes.get("gen_ai.response.model") == "gpt-3.5-turbo-0125"
     assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("llm.stream") is False
+    assert attributes.get("gen_ai.system") == 'OpenAI'
+    assert attributes.get("gen_ai.response.finish_reasons") == ('stop',)
 
     assert_token_count(attributes)
     assert_response_format(attributes)
@@ -86,9 +89,12 @@ def test_chat_completion_streaming(exporter, openai_client):
     assert attributes.get("agiflow.sdk.version") == __version__
     assert attributes.get("url.full") == os.getenv('OPENAI_BASE_URL')
     assert attributes.get("llm.api") == APIS["CHAT_COMPLETION"]["ENDPOINT"]
+    assert attributes.get("gen_ai.request.model") == "gpt-3.5-turbo"
     assert attributes.get("gen_ai.response.model") == "gpt-3.5-turbo-0125"
     assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("llm.stream") is True
+    assert attributes.get("gen_ai.system") == 'OpenAI'
+    assert attributes.get("gen_ai.response.finish_reasons") == ('stop',)
 
     events = streaming_span.events
     assert len(events) - 2 == chunk_count  # -2 for start and end events
@@ -143,9 +149,12 @@ async def test_async_chat_completion_streaming(exporter, async_openai_client):
     assert attributes.get("agiflow.sdk.version") == __version__
     assert attributes.get("url.full") == os.getenv('OPENAI_BASE_URL')
     assert attributes.get("llm.api") == APIS["CHAT_COMPLETION"]["ENDPOINT"]
+    assert attributes.get("gen_ai.request.model") == "gpt-3.5-turbo"
     assert attributes.get("gen_ai.response.model") == "gpt-3.5-turbo-0125"
     assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
+    assert attributes.get("gen_ai.system") == 'OpenAI'
     assert attributes.get("llm.stream") is True
+    assert attributes.get("gen_ai.response.finish_reasons") == ('stop', 'stop')
 
     events = streaming_span.events
     assert len(events) - 2 == chunk_count  # -2 for start and end events

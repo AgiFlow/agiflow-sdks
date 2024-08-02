@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 from agiflow.opentelemetry.instrumentation.constants.openai import APIS
 from opentelemetry.trace.status import StatusCode
@@ -34,6 +34,8 @@ from .utils import extract_content
 
 
 class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
+    finish_reasons: List[str] = []
+
     def __init__(
         self,
         *args,
@@ -112,12 +114,16 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
         if should_send_prompts():
             if hasattr(result, "choices") and result.choices is not None:
                 responses = []
+                finish_reasons = []
                 for choice in result.choices:
                     response = extract_content(choice)
+                    if hasattr(choice, 'finish_reason') and choice.finish_reason is not None:
+                        finish_reasons.append(choice.finish_reason)
                     if response:
                         responses.append(response)
 
                 self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
+                self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_FINISH_REASONS, finish_reasons)
             else:
                 responses = []
                 self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
@@ -164,6 +170,8 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
         if hasattr(chunk, "choices") and chunk.choices is not None:
             if not function_call and not tool_calls:
                 for choice in chunk.choices:
+                    if hasattr(choice, 'finish_reason') and choice.finish_reason is not None:
+                        self.finish_reasons.append(choice.finish_reason)
                     if choice.delta and choice.delta.content is not None:
                         token_counts = estimate_tokens(choice.delta.content)
                         completion_tokens = self.tokens.get(LLMTokenUsageKeys.COMPLETION_TOKENS, 0)
@@ -237,6 +245,7 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
                 ]
             ),
         )
+        self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_FINISH_REASONS, self.finish_reasons)
         self.span.set_status(StatusCode.OK)
         self.span.end()
 
