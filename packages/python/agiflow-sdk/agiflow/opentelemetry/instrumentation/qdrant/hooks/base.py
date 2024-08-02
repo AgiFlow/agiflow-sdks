@@ -36,4 +36,5 @@ class QdrantSpanCapture(BaseSpanCapture):
             SpanAttributes.AGIFLOW_SERVICE_VERSION: importlib.metadata.version("qdrant-client"),
             SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.VECTORDB,
             SpanAttributes.DB_SYSTEM: 'qdrant',
+            SpanAttributes.GEN_AI_SYSTEM: service_provider,
         })

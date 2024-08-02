@@ -36,4 +36,5 @@ class ChromaSpanCapture(BaseSpanCapture):
             SpanAttributes.AGIFLOW_SERVICE_VERSION: importlib.metadata.version("chromadb"),
             SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.VECTORDB,
             SpanAttributes.DB_SYSTEM: 'chromadb',
+            SpanAttributes.GEN_AI_SYSTEM: service_provider,
         })

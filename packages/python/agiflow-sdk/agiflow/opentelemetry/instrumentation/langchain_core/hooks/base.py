@@ -40,4 +40,5 @@ class LangchainCoreSpanCapture(BaseSpanCapture):
             SpanAttributes.AGIFLOW_SERVICE_VERSION: importlib.metadata.version("langchain-core"),
             SpanAttributes.AGIFLOW_ENTITY_NAME: self.task,
             SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.FRAMEWORK,
+            SpanAttributes.GEN_AI_SYSTEM: service_provider,
         })

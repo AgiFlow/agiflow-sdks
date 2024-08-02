@@ -56,6 +56,7 @@ class OpenAISpanCapture(BaseSpanCapture):
             SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
             SpanAttributes.URL_FULL: base_url,
             SpanAttributes.GEN_AI_REQUEST_MODEL: self.model,
+            SpanAttributes.GEN_AI_SYSTEM: service_provider,
         }
 
         try:

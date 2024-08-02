@@ -49,4 +49,5 @@ class GroqSpanCapture(BaseSpanCapture):
             SpanAttributes.AGIFLOW_SERVICE_VERSION: importlib.metadata.version("groq"),
             SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
             SpanAttributes.URL_FULL: self.base_url,
+            SpanAttributes.GEN_AI_SYSTEM: service_provider,
         })

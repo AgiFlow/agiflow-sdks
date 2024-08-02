@@ -14,6 +14,10 @@ from .agiflow_attributes import (
   AgiflowSpanAttributes,
   AgiflowSpanAttributesValidator
 )
+from .gen_ai_span_attributes import (
+  GenAISpanAttributes,
+  GenAISpanAttributesValidator,
+)
 from .constants import (
   Event,
   OpenAIMethods,
@@ -29,7 +33,7 @@ from .constants import (
 )
 
 
-class SpanAttributes(AgiflowSpanAttributes, LLMSpanAttributes, FrameworkSpanAttributes, DatabaseSpanAttributes):
+class SpanAttributes(AgiflowSpanAttributes, LLMSpanAttributes, FrameworkSpanAttributes, DatabaseSpanAttributes, GenAISpanAttributes):
     """
     All span attributes collected by Agiflow.
     Using this for key value instead of hard coding to ensure
@@ -53,6 +57,8 @@ __all__ = [
   'AgiflowSpanAttributesValidator',
   'AgiflowSpanAttributes',
   'AgiflowServiceTypes',
+  'GenAISpanAttributesValidator',
+  'GenAISpanAttributes',
   "LLMTypes",
   "LLMPromptKeys",
   "LLMPromptRoles",

@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Optional
 
 from pydantic import Field
-from .agiflow_attributes import AgiflowSpanAttributesValidator
+from .gen_ai_span_attributes import GenAISpanAttributesValidator
 
 
 class LLMSpanAttributes():
@@ -12,9 +12,6 @@ class LLMSpanAttributes():
     OPENAI_API_TYPE = 'openai.api_type'
     URL_FULL = 'url.full'
     LLM_API = 'llm.api'
-    GEN_AI_REQUEST_MODEL = 'gen_ai.request.model'
-    GEN_AI_RESPONSE_MODEL = 'gen_ai.response.model'
-    GEN_AI_OPERATION_NAME = 'gen_ai.operation.name'
     # Detect if the wrapper include instrumented llm or not
     LLM_WRAPPER = 'llm.wrapper'
     LLM_TEMPERATURE = 'llm.temperature'
@@ -22,8 +19,6 @@ class LLMSpanAttributes():
     LLM_TOP_K = 'llm.top_k'
     LLM_USER = 'llm.user'
     LLM_SYSTEM_FINGERPRINT = 'llm.system.fingerprint'
-    GEN_AI_PROMPT = 'gen_ai.prompt'
-    GEN_AI_COMPLETION = 'gen_ai.completion'
     LLM_TOKEN_COUNTS = 'llm.token.counts'
     LLM_STREAM = 'llm.stream'
     LLM_ENCODING_FORMAT = 'llm.encoding.format'
@@ -54,24 +49,18 @@ class LLMSpanAttributes():
     HTTP_TIMEOUT = 'http.timeout'
 
 
-class LLMSpanAttributesValidator(AgiflowSpanAttributesValidator):
+class LLMSpanAttributesValidator(GenAISpanAttributesValidator):
     OPENAI_API_BASE: Optional[str] = Field(None, alias=LLMSpanAttributes.OPENAI_API_BASE)
     OPENAI_API_BASE_VERSION: Optional[str] = Field(None, alias=LLMSpanAttributes.OPENAI_API_VERSION)
     OPENAI_API_TYPE: Optional[str] = Field(None, alias=LLMSpanAttributes.OPENAI_API_TYPE)
     URL_FULL: Optional[str] = Field(None, alias=LLMSpanAttributes.URL_FULL)
     LLM_API: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_API)
     LLM_WRAPPER: Optional[bool] = Field(None, alias=LLMSpanAttributes.LLM_WRAPPER)
-    GEN_AI_REQUEST_MODEL: Optional[str] = Field(None, alias=LLMSpanAttributes.GEN_AI_REQUEST_MODEL)
-    GEN_AI_RESPONSE_MODEL: Optional[str] = Field(None, alias=LLMSpanAttributes.GEN_AI_RESPONSE_MODEL)
-    # Type of llm called (Completion, Chat, Image Genration)
-    GEN_AI_OPERATION_NAME: Optional[str] = Field(None, alias=LLMSpanAttributes.GEN_AI_OPERATION_NAME)
     LLM_TEMPERATURE: Optional[float] = Field(None, alias=LLMSpanAttributes.LLM_TEMPERATURE)
     LLM_TOP_P: Optional[float] = Field(None, alias=LLMSpanAttributes.LLM_TOP_P)
     LLM_TOP_K: Optional[float] = Field(None, alias=LLMSpanAttributes.LLM_TOP_K)
     LLM_USER: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_USER)
     LLM_SYSTEM_FINGERPRINT: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_SYSTEM_FINGERPRINT)
-    GEN_AI_PROMPT: Optional[str] = Field(None, alias=LLMSpanAttributes.GEN_AI_PROMPT)
-    GEN_AI_COMPLETION: Optional[str] = Field(None, alias=LLMSpanAttributes.GEN_AI_COMPLETION)
     LLM_TOKEN_COUNTS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_TOKEN_COUNTS)
     LLM_STREAM: Optional[bool] = Field(None, alias=LLMSpanAttributes.LLM_STREAM)
     LLM_ENCODING_FORMATS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_ENCODING_FORMAT)

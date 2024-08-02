@@ -35,4 +35,5 @@ class LlamaIndexSpanCapture(BaseSpanCapture):
             SpanAttributes.AGIFLOW_SERVICE_NAME: service_provider,
             SpanAttributes.AGIFLOW_SERVICE_VERSION: importlib.metadata.version("llama-index"),
             SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.FRAMEWORK,
+            SpanAttributes.GEN_AI_SYSTEM: service_provider,
         })

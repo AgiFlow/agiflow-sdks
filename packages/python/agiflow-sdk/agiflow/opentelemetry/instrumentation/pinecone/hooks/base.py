@@ -36,4 +36,5 @@ class PineconeSpanCapture(BaseSpanCapture):
             SpanAttributes.AGIFLOW_SERVICE_VERSION: importlib.metadata.version("pinecone-client"),
             SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.VECTORDB,
             SpanAttributes.DB_SYSTEM: 'pinecone',
+            SpanAttributes.GEN_AI_SYSTEM: service_provider,
         })
