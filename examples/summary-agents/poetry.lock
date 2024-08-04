@@ -2,7 +2,7 @@
 
 [[package]]
 name = "agiflow-sdk"
-version = "0.0.21"
+version = "0.0.23"
 description = "Agiflow Software Development Kit (SDK) for Python, support LLM APIs and Frameworks tracing with Opentelemetry and more."
 optional = false
 python-versions = "<=3.13,>=3.10"

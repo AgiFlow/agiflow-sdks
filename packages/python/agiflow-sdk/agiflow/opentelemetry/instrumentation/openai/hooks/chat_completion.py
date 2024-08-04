@@ -132,6 +132,11 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
             hasattr(result, "system_fingerprint")
             and result.system_fingerprint is not None
         ):
+            if result.system_fingerprint == 'fp_ollama':
+                self.set_span_attribute(
+                    SpanAttributes.GEN_AI_SYSTEM, 'ollama'
+                )
+
             self.set_span_attribute(
                 SpanAttributes.LLM_SYSTEM_FINGERPRINT, result.system_fingerprint
             )
