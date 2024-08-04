@@ -49,6 +49,8 @@ class OpenAISpanCapture(BaseSpanCapture):
             else ""
         )
         service_provider = SERVICE_PROVIDERS["OPENAI"]
+        if service_provider is not None:
+            system = service_provider.lower()
 
         attr = {
             SpanAttributes.AGIFLOW_SERVICE_NAME: service_provider,
@@ -56,7 +58,7 @@ class OpenAISpanCapture(BaseSpanCapture):
             SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
             SpanAttributes.URL_FULL: base_url,
             SpanAttributes.GEN_AI_REQUEST_MODEL: self.model,
-            SpanAttributes.GEN_AI_SYSTEM: service_provider,
+            SpanAttributes.GEN_AI_SYSTEM: system,
         }
 
         try:
