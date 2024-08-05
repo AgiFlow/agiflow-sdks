@@ -85,7 +85,7 @@ class ChatSpanCapture(LangchainSpanCapture):
                   serialise_to_json(prompt.content) if isinstance(prompt.content, list) else prompt.content
                 })
 
-        span_attributes[SpanAttributes.GEN_AI_PROMPT] = serialise_to_json(prompts)
+        self.set_prompt_span_event(prompts)
 
         self.set_span_attributes_from_pydantic(span_attributes, LLMSpanAttributesValidator)
 

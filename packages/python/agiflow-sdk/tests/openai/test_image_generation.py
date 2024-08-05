@@ -4,6 +4,7 @@ import importlib
 import os
 from agiflow.opentelemetry.instrumentation.constants.openai import APIS
 from agiflow.version import __version__
+from tests.utils import assert_prompt
 
 
 @pytest.mark.vcr()
@@ -32,11 +33,9 @@ def test_image_generation(openai_client, exporter):
     assert attributes.get("url.full") == os.getenv('OPENAI_BASE_URL')
     assert attributes.get("llm.api") == APIS["IMAGES_GENERATION"]["ENDPOINT"]
     assert attributes.get("gen_ai.request.model") == llm_model_value
-    prompts = json.loads(attributes.get("gen_ai.prompt"))
-    assert prompts[0]["content"] == prompt
 
-    assert image_generation_span.events[0].name == 'gen_ai.content.completion'
-    agiflow_responses = json.loads(image_generation_span.events[0].attributes.get('gen_ai.completion'))
+    assert image_generation_span.events[-1].name == 'gen_ai.content.completion'
+    agiflow_responses = json.loads(image_generation_span.events[-1].attributes.get('gen_ai.completion'))
     assert isinstance(agiflow_responses, list)
     for agiflow_response in agiflow_responses:
         assert isinstance(agiflow_response, dict)
@@ -47,6 +46,13 @@ def test_image_generation(openai_client, exporter):
             response.data[0].revised_prompt
             == agiflow_response["content"]["revised_prompt"]
         )
+
+    assert_prompt(image_generation_span, json.dumps([
+        {
+            'role': 'user',
+            'content': prompt,
+        }
+    ]))
 
 
 @pytest.mark.vcr()
@@ -76,11 +82,9 @@ async def test_async_image_generation(async_openai_client, exporter):
     assert attributes.get("url.full") == os.getenv('OPENAI_BASE_URL')
     assert attributes.get("llm.api") == APIS["IMAGES_GENERATION"]["ENDPOINT"]
     assert attributes.get("gen_ai.request.model") == llm_model_value
-    prompts = json.loads(attributes.get("gen_ai.prompt"))
-    assert prompts[0]["content"] == prompt
 
-    assert image_generation_span.events[0].name == 'gen_ai.content.completion'
-    agiflow_responses = json.loads(image_generation_span.events[0].attributes.get('gen_ai.completion'))
+    assert image_generation_span.events[-1].name == 'gen_ai.content.completion'
+    agiflow_responses = json.loads(image_generation_span.events[-1].attributes.get('gen_ai.completion'))
 
     assert isinstance(agiflow_responses, list)
     for agiflow_response in agiflow_responses:
@@ -92,3 +96,10 @@ async def test_async_image_generation(async_openai_client, exporter):
             response.data[0].revised_prompt
             == agiflow_response["content"]["revised_prompt"]
         )
+
+    assert_prompt(image_generation_span, json.dumps([
+        {
+            'role': 'user',
+            'content': prompt,
+        }
+    ]))

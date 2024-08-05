@@ -2,7 +2,7 @@ import pytest
 import json
 import importlib
 from agiflow.opentelemetry.instrumentation.constants.anthropic import APIS
-from tests.utils import assert_response_format, assert_token_count
+from tests.utils import assert_response_format, assert_token_count, assert_prompt
 from agiflow.version import __version__
 
 
@@ -35,11 +35,11 @@ def test_anthropic(anthropic_client, exporter):
     assert attributes.get("url.full") == "https://api.anthropic.com"
     assert attributes.get("llm.api") == APIS["MESSAGES_CREATE"]["ENDPOINT"]
     assert attributes.get("gen_ai.request.model") == llm_model_value
-    assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("llm.stream") is False
 
     assert_token_count(attributes)
     assert_response_format(completion_span)
+    assert_prompt(completion_span, json.dumps(messages_value))
 
 
 @pytest.mark.vcr
@@ -77,11 +77,11 @@ def test_anthropic_streaming(anthropic_client, exporter):
     assert attributes.get("url.full") == "https://api.anthropic.com"
     assert attributes.get("llm.api") == APIS["MESSAGES_CREATE"]["ENDPOINT"]
     assert attributes.get("gen_ai.request.model") == llm_model_value
-    assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("llm.stream") is True
     events = streaming_span.events
 
-    assert len(events) - 2 == chunk_count + 1  # -2 for start and end events
+    assert len(events) - 2 == chunk_count + 2  # -2 for start and end events
 
     assert_token_count(attributes)
     assert_response_format(streaming_span)
+    assert_prompt(streaming_span, json.dumps(messages_value))

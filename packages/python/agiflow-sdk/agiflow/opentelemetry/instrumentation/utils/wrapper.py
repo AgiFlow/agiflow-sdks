@@ -173,7 +173,20 @@ class BaseSpanCapture(AbstractSpanCapture):
             self.span.add_event(
                 name=GenAISpanEvents.GEN_AI_CONTENT_COMPLETION,
                 attributes={
-                    GenAISpanEventAttributes.GEN_AI_CONTENT_COMPLETION: serialise_to_json(value),
+                    GenAISpanEventAttributes.GEN_AI_COMPLETION: serialise_to_json(value),
+                },
+            )
+
+    def set_prompt_span_event(self, value):
+        """
+        Using this method to set gen_ai.content.prompt
+        """
+        if should_send_prompts():
+            self.span.add_event(
+                name=GenAISpanEvents.GEN_AI_CONTENT_PROMPT,
+                attributes={
+                    GenAISpanEventAttributes.GEN_AI_PROMPT:
+                    value if isinstance(value, str) else serialise_to_json(value),
                 },
             )
 

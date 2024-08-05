@@ -14,8 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import json
-
 from typing import Any, Optional
 from agiflow.opentelemetry.convention.llm_span_attributes import LLMSpanAttributesValidator
 from agiflow.opentelemetry.instrumentation.constants.openai import APIS
@@ -52,10 +50,9 @@ class EmbeddingSpanCapture(OpenAISpanCapture):
             SpanAttributes.LLM_API: APIS["EMBEDDINGS_CREATE"]["ENDPOINT"],
             SpanAttributes.GEN_AI_REQUEST_MODEL: self.model,
             SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.EMBEDDING,
-            SpanAttributes.GEN_AI_PROMPT: json.dumps(
-                [{"role": "user", "content": (self.input or '')}]
-            ),
         }
+
+        self.set_prompt_span_event([{"role": "user", "content": (self.input or '')}])
 
         if self.encoding_format is not None:
             span_attributes[SpanAttributes.LLM_ENCODING_FORMAT] = self.encoding_format

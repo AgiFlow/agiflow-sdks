@@ -2,7 +2,7 @@ import pytest
 import importlib
 import json
 from agiflow.opentelemetry.instrumentation.constants.openai import APIS
-from tests.utils import assert_response_format, assert_token_count
+from tests.utils import assert_response_format, assert_token_count, assert_prompt
 import os
 from agiflow.version import __version__
 
@@ -35,13 +35,13 @@ def test_chat_completion(exporter, openai_client):
     assert attributes.get("llm.api") == APIS["CHAT_COMPLETION"]["ENDPOINT"]
     assert attributes.get("gen_ai.request.model") == "gpt-3.5-turbo"
     assert attributes.get("gen_ai.response.model") == "gpt-3.5-turbo-0125"
-    assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("llm.stream") is False
     assert attributes.get("gen_ai.system") == 'OpenAI'
     assert attributes.get("gen_ai.response.finish_reasons") == ('stop',)
 
     assert_token_count(attributes)
     assert_response_format(completion_span)
+    assert_prompt(completion_span, json.dumps(messages_value))
 
 
 @pytest.mark.vcr()
@@ -77,16 +77,16 @@ def test_chat_completion_streaming(exporter, openai_client):
     assert attributes.get("llm.api") == APIS["CHAT_COMPLETION"]["ENDPOINT"]
     assert attributes.get("gen_ai.request.model") == "gpt-3.5-turbo"
     assert attributes.get("gen_ai.response.model") == "gpt-3.5-turbo-0125"
-    assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("llm.stream") is True
     assert attributes.get("gen_ai.system") == 'OpenAI'
     assert attributes.get("gen_ai.response.finish_reasons") == ('stop',)
 
     events = streaming_span.events
-    assert len(events) - 2 == chunk_count + 1  # -2 for start and end events
+    assert len(events) - 2 == chunk_count + 2  # -2 for start and end events
 
     assert_token_count(attributes)
     assert_response_format(streaming_span)
+    assert_prompt(streaming_span, json.dumps(messages_value))
 
 
 @pytest.mark.vcr()
@@ -123,13 +123,13 @@ async def test_async_chat_completion_streaming(exporter, async_openai_client):
     assert attributes.get("llm.api") == APIS["CHAT_COMPLETION"]["ENDPOINT"]
     assert attributes.get("gen_ai.request.model") == "gpt-3.5-turbo"
     assert attributes.get("gen_ai.response.model") == "gpt-3.5-turbo-0125"
-    assert attributes.get("gen_ai.prompt") == json.dumps(messages_value)
     assert attributes.get("gen_ai.system") == 'OpenAI'
     assert attributes.get("llm.stream") is True
     assert attributes.get("gen_ai.response.finish_reasons") == ('stop', 'stop')
 
     events = streaming_span.events
-    assert len(events) - 2 == chunk_count + 1  # -2 for start and end events
+    assert len(events) - 2 == chunk_count + 2  # -2 for start and end events
 
     assert_token_count(attributes)
     assert_response_format(streaming_span)
+    assert_prompt(streaming_span, json.dumps(messages_value))

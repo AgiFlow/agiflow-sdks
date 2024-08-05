@@ -15,7 +15,6 @@ limitations under the License.
 """
 
 import logging
-from agiflow.utils import serialise_to_json
 from agiflow.opentelemetry.convention import (
   SpanAttributes,
   AgiflowServiceTypes,
@@ -74,7 +73,7 @@ class LLMSpanCapture(LangchainCoreSpanCapture):
             for idx, prompt in enumerate(self.fargs[0]):
                 prompts.append({LLMPromptRoles.USER: prompt})
 
-            span_attributes[SpanAttributes.GEN_AI_PROMPT] = serialise_to_json(prompts)
+            self.set_prompt_span_event(prompts)
 
         self.set_span_attributes_from_pydantic(span_attributes, LLMSpanAttributesValidator)
 
@@ -133,7 +132,7 @@ class LLMStreamSpanCapture(LangchainCoreSpanCapture):
             for idx, prompt in enumerate(self.fargs[0]):
                 prompts.append({LLMPromptRoles.USER: prompt})
 
-            span_attributes[SpanAttributes.GEN_AI_PROMPT] = serialise_to_json(prompts)
+            self.set_prompt_span_event(prompts)
 
         self.set_span_attributes_from_pydantic(span_attributes, LLMSpanAttributesValidator)
 

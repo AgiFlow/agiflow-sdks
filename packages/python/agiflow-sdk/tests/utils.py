@@ -48,3 +48,12 @@ def assert_response_format(span):
         assert isinstance(agiflow_response, dict)
         assert "role" in agiflow_response
         assert "content" in agiflow_response
+
+
+def assert_prompt(span, value):
+    event = span.events[0]
+
+    assert event.name == 'gen_ai.content.prompt'
+    prompt = event.attributes.get('gen_ai.prompt')
+    print(prompt)
+    assert prompt == value
