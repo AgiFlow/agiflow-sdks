@@ -22,5 +22,5 @@ poetry shell
 ### OpenAI Ollama
 
 ``` sh
-python run app/openai_ollama.py
+python app/openai_ollama.py
 ```
