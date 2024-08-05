@@ -120,7 +120,7 @@ class ChatStreamSpanCapture(CohereChatSpanCapture):
                                 usage = response.meta.billed_units
                                 if usage is not None:
                                     self.set_span_attribute(
-                                        SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS,
+                                        SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS,
                                         usage.input_tokens
                                         )
                                     self.set_span_attribute(

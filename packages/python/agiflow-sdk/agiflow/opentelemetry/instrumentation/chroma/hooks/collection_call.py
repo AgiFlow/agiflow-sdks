@@ -119,7 +119,7 @@ class CollectionCallSpanCapture(ChromaSpanCapture):
 
             # Finalize span after processing all chunks
             self.span.add_event(Event.STREAM_END.value)
-            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, input_tokens)
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS, input_tokens)
             self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, output_tokens)
             self.set_span_attribute(
                 SpanAttributes.GEN_AI_COMPLETION,

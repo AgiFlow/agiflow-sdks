@@ -134,7 +134,7 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
         if hasattr(result, "usage") and result.usage is not None:
             usage = result.usage
             if usage is not None:
-                self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, result.usage.prompt_tokens)
+                self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS, result.usage.prompt_tokens)
                 self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, usage.completion_tokens)
 
     def compute_tokens(self):
@@ -213,7 +213,7 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
 
     def handle_stream_end(self):
         self.span.add_event(Event.STREAM_END.value)
-        self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, self.prompt_tokens)
+        self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS, self.prompt_tokens)
         self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, self.completion_tokens)
         self.set_span_attribute(
             SpanAttributes.GEN_AI_COMPLETION,
