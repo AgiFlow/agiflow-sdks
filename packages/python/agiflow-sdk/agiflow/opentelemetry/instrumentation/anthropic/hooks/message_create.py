@@ -69,21 +69,16 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
                     SpanAttributes.GEN_AI_RESPONSE_MODEL,
                     result.model if result.model else self.fkwargs.get("model"),
                 )
-                self.set_span_attribute(
-                    SpanAttributes.GEN_AI_COMPLETION,
-                    serialise_to_json(
-                        [
-                            {
-                                "role": result.role if result.role else "assistant",
-                                "content": result.content[0].text,
-                                "type": result.content[0].type,
-                            }
-                        ]
-                    ),
-                )
+                self.set_completion_span_event([
+                    {
+                        "role": result.role if result.role else "assistant",
+                        "content": result.content[0].text,
+                        "type": result.content[0].type,
+                    }
+                ])
             else:
                 responses = []
-                self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
+                self.set_completion_span_event(responses)
             if (
                 hasattr(result, "system_fingerprint")
                 and result.system_fingerprint is not None
@@ -144,12 +139,9 @@ class MessageCreateSpanCapture(AnthropicSpanCapture):
         finally:
 
             # Finalize span after processing all chunks
-            self.span.add_event(Event.STREAM_END.value)
             self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS, input_tokens)
             self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, output_tokens)
-            self.set_span_attribute(
-                SpanAttributes.GEN_AI_COMPLETION,
-                serialise_to_json([{"role": "assistant", "content": "".join(result_content)}]),
-            )
+            self.set_completion_span_event([{"role": "assistant", "content": "".join(result_content)}])
+            self.span.add_event(Event.STREAM_END.value)
             self.span.set_status(StatusCode.OK)
             self.span.end()

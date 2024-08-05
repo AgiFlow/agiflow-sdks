@@ -1,12 +1,14 @@
 from abc import ABC
 from typing import Any, Dict, Literal, Optional, Type, TypeVar, Generic
-from agiflow.opentelemetry.convention import SpanAttributes
+from agiflow.opentelemetry.convention import SpanAttributes, GenAISpanEvents, GenAISpanEventAttributes
 from opentelemetry.trace import SpanKind, Span
 from opentelemetry.trace.status import Status, StatusCode
 from agiflow.utils import error_handler
 from agiflow.opentelemetry.instrumentation.constants.common import (
     AGIFLOW_ADDITIONAL_SPAN_ATTRIBUTES_KEY,
 )
+from agiflow.opentelemetry.utils.llm import should_send_prompts
+from agiflow.utils import serialise_to_json
 from opentelemetry import baggage
 from pydantic import BaseModel
 from agiflow.version import __version__
@@ -162,6 +164,18 @@ class BaseSpanCapture(AbstractSpanCapture):
                 self.span.set_attribute(field.value, value)
             else:
                 self.span.set_attribute(field, value)
+
+    def set_completion_span_event(self, value):
+        """
+        Using this method to set gen_ai.content.completion
+        """
+        if should_send_prompts():
+            self.span.add_event(
+                name=GenAISpanEvents.GEN_AI_CONTENT_COMPLETION,
+                attributes={
+                    GenAISpanEventAttributes.GEN_AI_CONTENT_COMPLETION: serialise_to_json(value),
+                },
+            )
 
 
 def method_wrapper(

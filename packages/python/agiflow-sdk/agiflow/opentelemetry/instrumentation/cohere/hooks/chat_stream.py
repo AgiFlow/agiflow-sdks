@@ -17,7 +17,6 @@ limitations under the License.
 from agiflow.opentelemetry.convention.constants import Event, LLMResponseKeys
 from agiflow.opentelemetry.instrumentation.constants.cohere import APIS
 from agiflow.opentelemetry.utils.llm import should_send_prompts
-from agiflow.utils import serialise_to_json
 from agiflow.opentelemetry.convention import (
   SpanAttributes,
 )
@@ -100,15 +99,15 @@ class ChatStreamSpanCapture(CohereChatSpanCapture):
                                     }
                                     for item in response.chat_history
                                 ]
-                                self.set_span_attribute(
-                                    SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses)
+                                self.set_completion_span_event(
+                                    responses
                                 )
                             else:
                                 responses = [
                                     {"role": "CHATBOT", "content": response.text}
                                 ]
-                                self.set_span_attribute(
-                                    SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses)
+                                self.set_completion_span_event(
+                                    responses
                                 )
 
                         # Get the usage

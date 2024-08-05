@@ -34,8 +34,15 @@ def assert_token_count(attributes):
     assert output_tokens + prompt_tokens == total_tokens
 
 
-def assert_response_format(attributes):
-    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
+def assert_response_format(span):
+    if len(span.events) > 2:
+        event = span.events[-2]
+    else:
+        event = span.events[-1]
+
+    assert event.name == 'gen_ai.content.completion'
+    agiflow_responses = json.loads(event.attributes.get('gen_ai.completion'))
+
     assert isinstance(agiflow_responses, list)
     for agiflow_response in agiflow_responses:
         assert isinstance(agiflow_response, dict)

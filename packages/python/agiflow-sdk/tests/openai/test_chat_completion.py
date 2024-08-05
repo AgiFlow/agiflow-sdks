@@ -41,21 +41,7 @@ def test_chat_completion(exporter, openai_client):
     assert attributes.get("gen_ai.response.finish_reasons") == ('stop',)
 
     assert_token_count(attributes)
-    assert_response_format(attributes)
-
-    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
-    assert isinstance(agiflow_responses, list)
-    for agiflow_response in agiflow_responses:
-        assert isinstance(agiflow_response, dict)
-        assert "role" in agiflow_response
-        assert "content" in agiflow_response
-
-    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
-    assert isinstance(agiflow_responses, list)
-    for agiflow_response in agiflow_responses:
-        assert isinstance(agiflow_response, dict)
-        assert "role" in agiflow_response
-        assert "content" in agiflow_response
+    assert_response_format(completion_span)
 
 
 @pytest.mark.vcr()
@@ -97,24 +83,10 @@ def test_chat_completion_streaming(exporter, openai_client):
     assert attributes.get("gen_ai.response.finish_reasons") == ('stop',)
 
     events = streaming_span.events
-    assert len(events) - 2 == chunk_count  # -2 for start and end events
+    assert len(events) - 2 == chunk_count + 1  # -2 for start and end events
 
     assert_token_count(attributes)
-    assert_response_format(attributes)
-
-    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
-    assert isinstance(agiflow_responses, list)
-    for agiflow_response in agiflow_responses:
-        assert isinstance(agiflow_response, dict)
-        assert "role" in agiflow_response
-        assert "content" in agiflow_response
-
-    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
-    assert isinstance(agiflow_responses, list)
-    for agiflow_response in agiflow_responses:
-        assert isinstance(agiflow_response, dict)
-        assert "role" in agiflow_response
-        assert "content" in agiflow_response
+    assert_response_format(streaming_span)
 
 
 @pytest.mark.vcr()
@@ -157,7 +129,7 @@ async def test_async_chat_completion_streaming(exporter, async_openai_client):
     assert attributes.get("gen_ai.response.finish_reasons") == ('stop', 'stop')
 
     events = streaming_span.events
-    assert len(events) - 2 == chunk_count  # -2 for start and end events
+    assert len(events) - 2 == chunk_count + 1  # -2 for start and end events
 
     assert_token_count(attributes)
-    assert_response_format(attributes)
+    assert_response_format(streaming_span)

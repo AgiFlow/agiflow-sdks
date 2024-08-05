@@ -39,7 +39,7 @@ def test_anthropic(anthropic_client, exporter):
     assert attributes.get("llm.stream") is False
 
     assert_token_count(attributes)
-    assert_response_format(attributes)
+    assert_response_format(completion_span)
 
 
 @pytest.mark.vcr
@@ -81,7 +81,7 @@ def test_anthropic_streaming(anthropic_client, exporter):
     assert attributes.get("llm.stream") is True
     events = streaming_span.events
 
-    assert len(events) - 2 == chunk_count  # -2 for start and end events
+    assert len(events) - 2 == chunk_count + 1  # -2 for start and end events
 
     assert_token_count(attributes)
-    assert_response_format(attributes)
+    assert_response_format(streaming_span)

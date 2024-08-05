@@ -122,11 +122,11 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
                     if response:
                         responses.append(response)
 
-                self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
+                self.set_completion_span_event(responses)
                 self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_FINISH_REASONS, finish_reasons)
             else:
                 responses = []
-                self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
+                self.set_completion_span_event(responses)
 
         if (
             hasattr(result, "system_fingerprint")
@@ -234,23 +234,20 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
     def capture_stream_end(self, result, result_content):
         prompt_tokens = self.get_prompt_tokens(result)
         # Finalize span after processing all chunks
-        self.span.add_event(Event.STREAM_END)
         self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS, prompt_tokens)
         self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, self.tokens[
                       LLMTokenUsageKeys.COMPLETION_TOKENS
                       ])
-        self.span.set_attribute(
-            SpanAttributes.GEN_AI_COMPLETION,
-            serialise_to_json(
-                [
-                    {
-                        LLMResponseKeys.ROLE: "assistant",
-                        LLMResponseKeys.CONTENT: "".join(result_content),
-                    }
-                ]
-            ),
+        self.set_completion_span_event(
+            [
+                {
+                    LLMResponseKeys.ROLE: "assistant",
+                    LLMResponseKeys.CONTENT: "".join(result_content),
+                }
+            ]
         )
         self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_FINISH_REASONS, self.finish_reasons)
+        self.span.add_event(Event.STREAM_END)
         self.span.set_status(StatusCode.OK)
         self.span.end()
 

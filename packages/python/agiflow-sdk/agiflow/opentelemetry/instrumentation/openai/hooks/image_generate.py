@@ -70,4 +70,4 @@ class ImageGenerateSpanCapture(OpenAISpanCapture):
                     },
                 }
             ]
-            self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, json.dumps(response))
+            self.set_completion_span_event(response)

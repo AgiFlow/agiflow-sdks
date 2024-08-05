@@ -35,7 +35,8 @@ def test_image_generation(openai_client, exporter):
     prompts = json.loads(attributes.get("gen_ai.prompt"))
     assert prompts[0]["content"] == prompt
 
-    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
+    assert image_generation_span.events[0].name == 'gen_ai.content.completion'
+    agiflow_responses = json.loads(image_generation_span.events[0].attributes.get('gen_ai.completion'))
     assert isinstance(agiflow_responses, list)
     for agiflow_response in agiflow_responses:
         assert isinstance(agiflow_response, dict)
@@ -78,7 +79,9 @@ async def test_async_image_generation(async_openai_client, exporter):
     prompts = json.loads(attributes.get("gen_ai.prompt"))
     assert prompts[0]["content"] == prompt
 
-    agiflow_responses = json.loads(attributes.get("gen_ai.completion"))
+    assert image_generation_span.events[0].name == 'gen_ai.content.completion'
+    agiflow_responses = json.loads(image_generation_span.events[0].attributes.get('gen_ai.completion'))
+
     assert isinstance(agiflow_responses, list)
     for agiflow_response in agiflow_responses:
         assert isinstance(agiflow_response, dict)

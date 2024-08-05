@@ -18,6 +18,10 @@ from .gen_ai_span_attributes import (
   GenAISpanAttributes,
   GenAISpanAttributesValidator,
 )
+from .gen_ai_span_events import (
+  GenAISpanEvents,
+  GenAISpanEventAttributes,
+)
 from .constants import (
   Event,
   OpenAIMethods,
@@ -72,4 +76,6 @@ __all__ = [
   "LLMTokenUsageKeys",
   "SpanAttributes",
   "WeaviateMethods",
+  "GenAISpanEvents",
+  "GenAISpanEventAttributes",
   ]

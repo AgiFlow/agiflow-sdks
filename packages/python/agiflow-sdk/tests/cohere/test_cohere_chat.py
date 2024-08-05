@@ -50,10 +50,9 @@ def test_cohere_chat(cohere_client, exporter):
 
     assert json.loads(attributes.get("llm.connectors")) == connectors
     assert json.loads(attributes.get("gen_ai.prompt"))[-1]["content"] == messages_value
-    assert json.loads(attributes.get("gen_ai.completion"))[-1]["content"] == res.text
 
     assert_token_count(attributes)
-    assert_response_format(attributes)
+    assert_response_format(cohere_span)
 
 
 @pytest.mark.vcr
@@ -108,10 +107,7 @@ def test_cohere_chat_streaming(cohere_client, exporter):
     assert json.loads(attributes.get("gen_ai.prompt"))[-1]["content"] == messages_value
     events = cohere_span.events
     assert events[-1].name == "stream.end"
-    assert len(events) - 2 == chunks_count
-    assert (
-        json.loads(attributes.get("gen_ai.completion"))[-1]["content"] == streamed_response
-    )
+    assert len(events) - 2 == chunks_count + 1
 
     assert_token_count(attributes)
-    assert_response_format(attributes)
+    assert_response_format(cohere_span)

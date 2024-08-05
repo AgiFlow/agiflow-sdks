@@ -116,11 +116,11 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
                     }
                     for choice in result.choices
                 ]
-                self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
+                self.set_completion_span_event(responses)
 
             else:
                 responses = []
-                self.set_span_attribute(SpanAttributes.GEN_AI_COMPLETION, serialise_to_json(responses))
+                self.set_completion_span_event(responses)
 
         if (
             hasattr(result, "system_fingerprint")
@@ -215,16 +215,13 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
         self.span.add_event(Event.STREAM_END.value)
         self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS, self.prompt_tokens)
         self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, self.completion_tokens)
-        self.set_span_attribute(
-            SpanAttributes.GEN_AI_COMPLETION,
-            serialise_to_json(
-                [
-                    {
-                        "role": "assistant",
-                        "content": "".join(self.result_content),
-                    }
-                ]
-            ),
+        self.set_completion_span_event(
+            [
+                {
+                    "role": "assistant",
+                    "content": "".join(self.result_content),
+                }
+            ]
         )
         self.span.set_status(StatusCode.OK)
         self.span.end()

@@ -18,7 +18,6 @@ class GenAISpanAttributes():
     GEN_AI_OPERATION_NAME = 'gen_ai.operation.name'
     GEN_AI_PROMPT = 'gen_ai.prompt'
     GEN_AI_SYSTEM = 'gen_ai.system'
-    GEN_AI_COMPLETION = 'gen_ai.completion'
     GEN_AI_USAGE_OUTPUT_TOKENS = 'gen_ai.usage.output_tokens'
     GEN_AI_USAGE_INPUT_TOKENS = 'gen_ai.usage.input_tokens'
     GEN_AI_USAGE_SEARCH_UNITS = 'gen_ai.usage.search_units'
@@ -39,7 +38,6 @@ class GenAISpanAttributesValidator(AgiflowSpanAttributesValidator):
     # Type of llm called (Completion, Chat, Image Genration)
     GEN_AI_OPERATION_NAME: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_OPERATION_NAME)
     GEN_AI_PROMPT: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_PROMPT)
-    GEN_AI_COMPLETION: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_COMPLETION)
     GEN_AI_SYSTEM: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_SYSTEM)
     GEN_AI_USAGE_OUTPUT_TOKENS: Optional[int] = Field(
         None,

@@ -98,9 +98,8 @@ class ChatSpanCapture(LangchainSpanCapture):
             for idx, generation in enumerate(result.generations):
                 responses.append(extract_content(generation[0]))
 
-            self.set_span_attribute(
-                SpanAttributes.GEN_AI_COMPLETION,
-                serialise_to_json(responses),
+            self.set_completion_span_event(
+                responses,
             )
             try:
                 token_usage = generation[0].message.response_metadata['token_usage']
