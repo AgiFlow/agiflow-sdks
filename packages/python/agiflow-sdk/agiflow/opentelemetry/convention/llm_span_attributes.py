@@ -30,7 +30,6 @@ class LLMSpanAttributes():
     LLM_CONVERSATION_ID = 'llm.conversation_id'
     LLM_SEED = 'llm.seed'
     LLM_FREQUENCY_PENALTY = 'llm.frequency_penalty'
-    LLM_PRESENCE_PENALTY = 'llm.presence_penalty'
     LLM_CONNECTORS = 'llm.connectors'
     LLM_TOOLS = 'llm.tools'
     LLM_TOOL_RESULTS = 'llm.tool_results'
@@ -67,7 +66,6 @@ class LLMSpanAttributesValidator(GenAISpanAttributesValidator):
     LLM_CONVERSATION_ID: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_CONVERSATION_ID)
     LLM_SEED: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_SEED)
     LLM_FREQUENCY_PENALTY: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_FREQUENCY_PENALTY)
-    LLM_PRESENCE_PENALTY: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_PRESENCE_PENALTY)
     LLM_CONNECTORS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_CONNECTORS)
     LLM_TOOLS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_TOOLS)
     LLM_TOOL_RESULTS: Optional[str] = Field(None, alias=LLMSpanAttributes.LLM_TOOL_RESULTS)

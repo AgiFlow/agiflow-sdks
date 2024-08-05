@@ -11,6 +11,7 @@ class GenAISpanAttributes():
     GEN_AI_REQUEST_MAX_TOKENS = 'gen_ai.request.max_tokens'
     GEN_AI_REQUEST_TEMPERATURE = 'gen_ai.request.temperature'
     GEN_AI_REQUEST_TOP_P = 'gen_ai.request.top_p'
+    GEN_AI_REQUEST_PRESENCE_PENALTY = 'gen_ai.request.presence_penalty'
     GEN_AI_RESPONSE_MODEL = 'gen_ai.response.model'
     GEN_AI_RESPONSE_ID = 'gen_ai.response.id'
     GEN_AI_RESPONSE_FINISH_REASONS = 'gen_ai.response.finish_reasons'
@@ -28,6 +29,7 @@ class GenAISpanAttributesValidator(AgiflowSpanAttributesValidator):
     GEN_AI_REQUEST_MAX_TOKENS: Optional[int] = Field(None, alias=GenAISpanAttributes.GEN_AI_REQUEST_MAX_TOKENS)
     GEN_AI_REQUEST_TEMPERATURE: Optional[float] = Field(None, alias=GenAISpanAttributes.GEN_AI_REQUEST_TEMPERATURE)
     GEN_AI_REQUEST_TOP_P: Optional[float] = Field(None, alias=GenAISpanAttributes.GEN_AI_REQUEST_TOP_P)
+    GEN_AI_REQUEST_PRESENCE_PENALTY: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_REQUEST_PRESENCE_PENALTY)
     GEN_AI_RESPONSE_MODEL: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_RESPONSE_MODEL)
     GEN_AI_RESPONSE_ID: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_RESPONSE_ID)
     GEN_AI_RESPONSE_FINISH_REASONS: Optional[List[str]] = Field(

@@ -92,7 +92,7 @@ class CohereChatSpanCapture(CohereSpanCapture):
         if self.fkwargs.get("frequency_penalty") is not None:
             span_attributes[SpanAttributes.LLM_FREQUENCY_PENALTY] = self.fkwargs.get("frequency_penalty")
         if self.fkwargs.get("presence_penalty") is not None:
-            span_attributes[SpanAttributes.LLM_PRESENCE_PENALTY] = self.fkwargs.get("presence_penalty")
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_PRESENCE_PENALTY] = self.fkwargs.get("presence_penalty")
         if self.fkwargs.get("connectors") is not None:
             # stringify the list of objects
             span_attributes[SpanAttributes.LLM_CONNECTORS] = serialise_to_json(self.fkwargs.get("connectors"))

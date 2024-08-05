@@ -71,7 +71,7 @@ class OpenAILLMSpanCapture(OpenAISpanCapture):
             SpanAttributes.LLM_USER: self.user,
             SpanAttributes.GEN_AI_REQUEST_MAX_TOKENS: self.fkwargs.get('max_tokens'),
             SpanAttributes.LLM_FREQUENCY_PENALTY: self.fkwargs.get('frequency_penalty'),
-            SpanAttributes.LLM_PRESENCE_PENALTY: self.fkwargs.get('presence_penalty'),
+            SpanAttributes.GEN_AI_REQUEST_PRESENCE_PENALTY: self.fkwargs.get('presence_penalty'),
         }
         tools = []
         if self.functions is not None:
