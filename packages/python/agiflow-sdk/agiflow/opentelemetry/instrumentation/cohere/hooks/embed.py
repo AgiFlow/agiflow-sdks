@@ -67,4 +67,4 @@ class EmbedSpanCapture(CohereSpanCapture):
                 usage = result.meta.billed_units
                 if usage is not None:
                     self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, usage.input_tokens)
-                    self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, usage.output_tokens)
+                    self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, usage.output_tokens)

@@ -22,7 +22,7 @@ def common_setup(data, method_to_mock=None):
 
 
 def assert_token_count(attributes):
-    output_tokens = attributes.get("gen_ai.usage.completion_tokens")
+    output_tokens = attributes.get("gen_ai.usage.output_tokens")
     prompt_tokens = attributes.get("gen_ai.usage.prompt_tokens")
     total_tokens = output_tokens + prompt_tokens
 

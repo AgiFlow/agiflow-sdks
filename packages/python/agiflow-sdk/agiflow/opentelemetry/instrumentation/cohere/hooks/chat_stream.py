@@ -124,7 +124,7 @@ class ChatStreamSpanCapture(CohereChatSpanCapture):
                                         usage.input_tokens
                                         )
                                     self.set_span_attribute(
-                                        SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS,
+                                        SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS,
                                         usage.output_tokens
                                         )
 

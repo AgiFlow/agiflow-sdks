@@ -146,7 +146,7 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
             usage = result.usage
             if usage is not None:
                 self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, usage.prompt_tokens)
-                self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, usage.completion_tokens)
+                self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, usage.completion_tokens)
 
     def get_prompt_tokens(self, result):
         # iterate over kwargs.get("messages", {}) and calculate the prompt tokens
@@ -236,7 +236,7 @@ class ChatCompletionSpanCapture(OpenAILLMSpanCapture):
         # Finalize span after processing all chunks
         self.span.add_event(Event.STREAM_END)
         self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, prompt_tokens)
-        self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, self.tokens[
+        self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, self.tokens[
                       LLMTokenUsageKeys.COMPLETION_TOKENS
                       ])
         self.span.set_attribute(

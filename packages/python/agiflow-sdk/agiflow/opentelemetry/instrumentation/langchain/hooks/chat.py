@@ -116,7 +116,7 @@ class ChatSpanCapture(LangchainSpanCapture):
                 prompt_tokens = 0
 
             self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, prompt_tokens)
-            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, completion_tokens)
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, completion_tokens)
 
 
 def extract_content(generation):

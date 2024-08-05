@@ -18,7 +18,7 @@ class GenAISpanAttributes():
     GEN_AI_PROMPT = 'gen_ai.prompt'
     GEN_AI_SYSTEM = 'gen_ai.system'
     GEN_AI_COMPLETION = 'gen_ai.completion'
-    GEN_AI_USAGE_COMPLETION_TOKENS = 'gen_ai.usage.completion_tokens'
+    GEN_AI_USAGE_OUTPUT_TOKENS = 'gen_ai.usage.output_tokens'
     GEN_AI_USAGE_PROMPT_TOKENS = 'gen_ai.usage.prompt_tokens'
     GEN_AI_USAGE_SEARCH_UNITS = 'gen_ai.usage.search_units'
 
@@ -39,9 +39,9 @@ class GenAISpanAttributesValidator(AgiflowSpanAttributesValidator):
     GEN_AI_PROMPT: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_PROMPT)
     GEN_AI_COMPLETION: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_COMPLETION)
     GEN_AI_SYSTEM: Optional[str] = Field(None, alias=GenAISpanAttributes.GEN_AI_SYSTEM)
-    GEN_AI_USAGE_COMPLETION_TOKENS: Optional[int] = Field(
+    GEN_AI_USAGE_OUTPUT_TOKENS: Optional[int] = Field(
         None,
-        alias=GenAISpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS
+        alias=GenAISpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS
         )
     GEN_AI_USAGE_PROMPT_TOKENS: Optional[int] = Field(None, alias=GenAISpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS)
     GEN_AI_USAGE_SEARCH_UNITS: Optional[int] = Field(None, alias=GenAISpanAttributes.GEN_AI_USAGE_SEARCH_UNITS)

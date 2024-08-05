@@ -87,7 +87,7 @@ class ChatCreateSpanCapture(CohereChatSpanCapture):
                 usage = result.meta.billed_units
                 if usage is not None:
                     self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_PROMPT_TOKENS, usage.input_tokens)
-                    self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_COMPLETION_TOKENS, usage.output_tokens)
+                    self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, usage.output_tokens)
 
     def capture_stream_output(self, result):
         super().capture_output(result)
