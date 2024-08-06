@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Optional
 
 from pydantic import Field
-from .agiflow_attributes import AgiflowSpanAttributesValidator
+from .gen_ai_span_attributes import GenAISpanAttributesValidator
 
 
 class DatabaseSpanAttributes():
@@ -24,7 +24,7 @@ class DatabaseSpanAttributes():
     DB_USAGE_WRITE_UNITS = 'db.usage.write_units'
 
 
-class DatabaseSpanAttributesValidator(AgiflowSpanAttributesValidator):
+class DatabaseSpanAttributesValidator(GenAISpanAttributesValidator):
     SERVER_ADDRESS: Optional[str] = Field(None, alias=DatabaseSpanAttributes.SERVER_ADDRESS)
     DB_QUERY: Optional[str] = Field(None, alias=DatabaseSpanAttributes.DB_QUERY)
     DB_RESPONSE: Optional[str] = Field(None, alias=DatabaseSpanAttributes.DB_RESPONSE)

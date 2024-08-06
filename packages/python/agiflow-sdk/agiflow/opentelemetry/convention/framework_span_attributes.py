@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Optional
 
 from pydantic import Field
-from .agiflow_attributes import AgiflowSpanAttributesValidator
+from .gen_ai_span_attributes import GenAISpanAttributesValidator
 
 
 class FrameworkSpanAttributes():
@@ -14,7 +14,7 @@ class FrameworkSpanAttributes():
     FRAMEWORK_CONFIG = 'framework.config'
 
 
-class FrameworkSpanAttributesValidator(AgiflowSpanAttributesValidator):
+class FrameworkSpanAttributesValidator(GenAISpanAttributesValidator):
     FRAMEWORK_ENDPOINT: Optional[str] = Field(None, alias=FrameworkSpanAttributes.FRAMEWORK_ENTRYPOINT)
     FRAMEWORK_NODE: Optional[str] = Field(None, alias=FrameworkSpanAttributes.FRAMEWORK_NODE)
     FRAMEWORK_EDGE: Optional[str] = Field(None, alias=FrameworkSpanAttributes.FRAMEWORK_EDGE)

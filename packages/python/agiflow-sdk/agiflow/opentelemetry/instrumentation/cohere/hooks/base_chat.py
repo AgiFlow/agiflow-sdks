@@ -31,16 +31,16 @@ class CohereChatSpanCapture(CohereSpanCapture):
         super().__init__(*args, **kwargs)
 
     @staticmethod
-    def get_span_name(instance):
+    def get_span_name(instance, *args, **kwargs):
         return APIS["CHAT_CREATE"]["METHOD"]
 
     def capture_input(self):
         span_attributes = {
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
-          SpanAttributes.LLM_TYPE: LLMTypes.CHAT,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.CHAT,
           SpanAttributes.URL_FULL: APIS["CHAT_CREATE"]["URL"],
           SpanAttributes.LLM_API: APIS["CHAT_CREATE"]["ENDPOINT"],
-          SpanAttributes.LLM_MODEL: (
+          SpanAttributes.GEN_AI_REQUEST_MODEL: (
               self.fkwargs.get("model") if self.fkwargs.get("model") is not None else "command-r"
           ),
         }
@@ -71,16 +71,16 @@ class CohereChatSpanCapture(CohereSpanCapture):
                 prompts = history + prompts
             if len(system_prompts) > 0:
                 prompts = system_prompts + prompts
-            span_attributes[SpanAttributes.LLM_PROMPTS] = serialise_to_json(prompts)
+            self.set_prompt_span_event(prompts)
 
         if self.fkwargs.get("temperature") is not None:
-            span_attributes[SpanAttributes.LLM_TEMPERATURE] = self.fkwargs.get("temperature")
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_TEMPERATURE] = self.fkwargs.get("temperature")
         if self.fkwargs.get("max_tokens") is not None:
-            span_attributes[SpanAttributes.LLM_MAX_TOKENS] = str(self.fkwargs.get("max_tokens"))
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_MAX_TOKENS] = str(self.fkwargs.get("max_tokens"))
         if self.fkwargs.get("max_input_tokens") is not None:
             span_attributes[SpanAttributes.LLM_MAX_INPUT_TOKENS] = str(self.fkwargs.get("max_input_tokens"))
         if self.fkwargs.get("p") is not None:
-            span_attributes[SpanAttributes.LLM_TOP_P] = self.fkwargs.get("p")
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_TOP_P] = self.fkwargs.get("p")
         if self.fkwargs.get("k") is not None:
             span_attributes[SpanAttributes.LLM_TOP_K] = self.fkwargs.get("k")
         if self.fkwargs.get("user") is not None:
@@ -92,7 +92,7 @@ class CohereChatSpanCapture(CohereSpanCapture):
         if self.fkwargs.get("frequency_penalty") is not None:
             span_attributes[SpanAttributes.LLM_FREQUENCY_PENALTY] = self.fkwargs.get("frequency_penalty")
         if self.fkwargs.get("presence_penalty") is not None:
-            span_attributes[SpanAttributes.LLM_PRESENCE_PENALTY] = self.fkwargs.get("presence_penalty")
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_PRESENCE_PENALTY] = self.fkwargs.get("presence_penalty")
         if self.fkwargs.get("connectors") is not None:
             # stringify the list of objects
             span_attributes[SpanAttributes.LLM_CONNECTORS] = serialise_to_json(self.fkwargs.get("connectors"))
@@ -112,7 +112,7 @@ class CohereChatSpanCapture(CohereSpanCapture):
         ):
             self.set_span_attribute(SpanAttributes.LLM_GENERATION_ID, result.generation_id)
         if (hasattr(result, "response_id")) and (result.response_id is not None):
-            self.set_span_attribute(SpanAttributes.LLM_RESPONSE_ID, result.response_id)
+            self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_ID, result.response_id)
         if (hasattr(result, "is_search_required")) and (
             result.is_search_required is not None
         ):

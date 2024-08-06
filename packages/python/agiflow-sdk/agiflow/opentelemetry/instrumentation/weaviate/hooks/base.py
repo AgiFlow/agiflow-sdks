@@ -36,4 +36,5 @@ class WeaviateSpanCapture(BaseSpanCapture):
             SpanAttributes.AGIFLOW_SERVICE_VERSION: importlib.metadata.version("weaviate-client"),
             SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.VECTORDB,
             SpanAttributes.DB_SYSTEM: 'weaviate',
+            SpanAttributes.GEN_AI_SYSTEM: service_provider,
         })

@@ -39,6 +39,7 @@ class AnthropicSpanCapture(BaseSpanCapture):
         self.set_pydantic_attributes({
             SpanAttributes.URL_FULL: base_url,
             SpanAttributes.AGIFLOW_SERVICE_NAME: service_provider,
+            SpanAttributes.GEN_AI_SYSTEM: service_provider,
             SpanAttributes.AGIFLOW_SERVICE_VERSION: importlib.metadata.version("anthropic"),
             SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
         })

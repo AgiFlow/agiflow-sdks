@@ -63,14 +63,15 @@ class OpenAILLMSpanCapture(OpenAISpanCapture):
             service_provider = SERVICE_PROVIDERS["AZURE"]
 
         span_attributes = {
+            SpanAttributes.GEN_AI_SYSTEM: service_provider,
             SpanAttributes.AGIFLOW_SERVICE_NAME: service_provider,
             SpanAttributes.LLM_STREAM: self.fkwargs.get('stream'),
-            SpanAttributes.LLM_TEMPERATURE: self.temperature,
-            SpanAttributes.LLM_TOP_P: self.top_p,
+            SpanAttributes.GEN_AI_REQUEST_TEMPERATURE: self.temperature,
+            SpanAttributes.GEN_AI_REQUEST_TOP_P: self.top_p,
             SpanAttributes.LLM_USER: self.user,
-            SpanAttributes.LLM_MAX_TOKENS: self.fkwargs.get('max_tokens'),
+            SpanAttributes.GEN_AI_REQUEST_MAX_TOKENS: self.fkwargs.get('max_tokens'),
             SpanAttributes.LLM_FREQUENCY_PENALTY: self.fkwargs.get('frequency_penalty'),
-            SpanAttributes.LLM_PRESENCE_PENALTY: self.fkwargs.get('presence_penalty'),
+            SpanAttributes.GEN_AI_REQUEST_PRESENCE_PENALTY: self.fkwargs.get('presence_penalty'),
         }
         tools = []
         if self.functions is not None:

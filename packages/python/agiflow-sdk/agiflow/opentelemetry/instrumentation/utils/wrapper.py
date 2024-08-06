@@ -1,12 +1,14 @@
 from abc import ABC
 from typing import Any, Dict, Literal, Optional, Type, TypeVar, Generic
-from agiflow.opentelemetry.convention import SpanAttributes
+from agiflow.opentelemetry.convention import SpanAttributes, GenAISpanEvents, GenAISpanEventAttributes
 from opentelemetry.trace import SpanKind, Span
 from opentelemetry.trace.status import Status, StatusCode
 from agiflow.utils import error_handler
 from agiflow.opentelemetry.instrumentation.constants.common import (
     AGIFLOW_ADDITIONAL_SPAN_ATTRIBUTES_KEY,
 )
+from agiflow.opentelemetry.utils.llm import should_send_prompts
+from agiflow.utils import serialise_to_json
 from opentelemetry import baggage
 from pydantic import BaseModel
 from agiflow.version import __version__
@@ -62,7 +64,7 @@ class AbstractSpanCapture(ABC, Generic[R]):
         pass
 
     @staticmethod
-    def get_span_name(instance):
+    def get_span_name(instance, *args, **kwargs):
         """
         Override span name
         """
@@ -110,7 +112,7 @@ class BaseSpanCapture(AbstractSpanCapture):
         return is_streaming_response(self.fkwargs.get('stream'))
 
     @staticmethod
-    def get_span_name(instance):
+    def get_span_name(instance, *args, **kwargs):
         """
         Override this method if span name is different
         """
@@ -163,6 +165,31 @@ class BaseSpanCapture(AbstractSpanCapture):
             else:
                 self.span.set_attribute(field, value)
 
+    def set_completion_span_event(self, value):
+        """
+        Using this method to set gen_ai.content.completion
+        """
+        if should_send_prompts():
+            self.span.add_event(
+                name=GenAISpanEvents.GEN_AI_CONTENT_COMPLETION,
+                attributes={
+                    GenAISpanEventAttributes.GEN_AI_COMPLETION: serialise_to_json(value),
+                },
+            )
+
+    def set_prompt_span_event(self, value):
+        """
+        Using this method to set gen_ai.content.prompt
+        """
+        if should_send_prompts():
+            self.span.add_event(
+                name=GenAISpanEvents.GEN_AI_CONTENT_PROMPT,
+                attributes={
+                    GenAISpanEventAttributes.GEN_AI_PROMPT:
+                    value if isinstance(value, str) else serialise_to_json(value),
+                },
+            )
+
 
 def method_wrapper(
     tracer,
@@ -173,7 +200,7 @@ def method_wrapper(
     **okwargs
 ):
     def traced_method(wrapped, instance, args, kwargs):
-        name = span_name or SpanCapture.get_span_name(instance)
+        name = span_name or SpanCapture.get_span_name(instance, *args, **kwargs)
         kind = span_kind or SpanCapture.get_span_kind(instance)
         with tracer.start_as_current_span(
             name, kind=kind
@@ -211,7 +238,7 @@ def async_method_wrapper(
     **okwargs
 ):
     async def traced_method(wrapped, instance, args, kwargs):
-        name = span_name or SpanCapture.get_span_name(instance)
+        name = span_name or SpanCapture.get_span_name(instance, *args, **kwargs)
         kind = span_kind or SpanCapture.get_span_kind(instance)
         with tracer.start_as_current_span(
             name, kind=kind
@@ -253,7 +280,7 @@ def stream_wrapper(
     """
 
     def traced_method(wrapped, instance, args, kwargs):
-        name = span_name or SpanCapture.get_span_name(instance)
+        name = span_name or SpanCapture.get_span_name(instance, *args, **kwargs)
         kind = span_kind or SpanCapture.get_span_kind(instance)
         span = tracer.start_span(name, kind=kind)
         span_capture = SpanCapture(*args, version=version, instance=instance, span=span, **kwargs, **okwargs)
@@ -308,7 +335,7 @@ def async_stream_wrapper(
     """
 
     async def traced_method(wrapped, instance, args, kwargs):
-        name = span_name or SpanCapture.get_span_name(instance)
+        name = span_name or SpanCapture.get_span_name(instance, *args, **kwargs)
         kind = span_kind or SpanCapture.get_span_kind(instance)
         span = tracer.start_span(name, kind=kind)
         span_capture = SpanCapture(*args, version=version, instance=instance, span=span, **kwargs, **okwargs)

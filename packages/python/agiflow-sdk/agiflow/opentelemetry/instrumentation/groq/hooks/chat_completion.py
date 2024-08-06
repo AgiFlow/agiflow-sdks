@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from agiflow.opentelemetry.convention.constants import Event, LLMPromptKeys, LLMTokenUsageKeys
+from agiflow.opentelemetry.convention.constants import Event, LLMPromptKeys
 from agiflow.opentelemetry.convention.llm_span_attributes import LLMSpanAttributesValidator
 from agiflow.opentelemetry.instrumentation.constants.groq import APIS
 from agiflow.utils import serialise_to_json
@@ -35,7 +35,7 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
         super().__init__(*args, **kwargs)
 
     @staticmethod
-    def get_span_name(instance):
+    def get_span_name(instance, *args, **kwargs):
         return APIS["CHAT_COMPLETION"]["METHOD"]
 
     def capture_input(self):
@@ -43,9 +43,11 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
             SpanAttributes.LLM_API: APIS["CHAT_COMPLETION"]["ENDPOINT"],
             SpanAttributes.LLM_STREAM: self.fkwargs.get("stream"),
         }
+        if self.fkwargs.get('model'):
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_MODEL] = self.fkwargs.get('model')
 
         if should_send_prompts():
-            llm_prompts = []
+            prompts = []
             for item in self.fkwargs.get("messages", []):
                 if hasattr(item, "tool_calls") and item.tool_calls is not None:
                     tool_calls = []
@@ -68,16 +70,16 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
                                 ),
                             }
                         tool_calls.append(tool_call_dict)
-                    llm_prompts.append(tool_calls)
+                    prompts.append(tool_calls)
                 else:
-                    llm_prompts.append(item)
-            span_attributes[SpanAttributes.LLM_PROMPTS] = serialise_to_json(llm_prompts)
+                    prompts.append(item)
+            self.set_prompt_span_event(prompts)
 
         tools = []
         if self.fkwargs.get("temperature") is not None:
-            span_attributes[SpanAttributes.LLM_TEMPERATURE] = self.fkwargs.get("temperature")
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_TEMPERATURE] = self.fkwargs.get("temperature")
         if self.fkwargs.get("top_p") is not None:
-            span_attributes[SpanAttributes.LLM_TOP_P] = self.fkwargs.get("top_p")
+            span_attributes[SpanAttributes.GEN_AI_REQUEST_TOP_P] = self.fkwargs.get("top_p")
         if self.fkwargs.get("user") is not None:
             span_attributes[SpanAttributes.LLM_USER] = self.fkwargs.get("user")
         if self.fkwargs.get("functions") is not None:
@@ -91,7 +93,7 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
         self.set_span_attributes_from_pydantic(span_attributes, LLMSpanAttributesValidator)
 
     def capture_output(self, result):
-        self.set_span_attribute(SpanAttributes.LLM_MODEL, result.model)
+        self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_MODEL, result.model)
         if should_send_prompts():
             if hasattr(result, "choices") and result.choices is not None:
                 responses = [
@@ -114,11 +116,11 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
                     }
                     for choice in result.choices
                 ]
-                self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json(responses))
+                self.set_completion_span_event(responses)
 
             else:
                 responses = []
-                self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json(responses))
+                self.set_completion_span_event(responses)
 
         if (
             hasattr(result, "system_fingerprint")
@@ -132,12 +134,8 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
         if hasattr(result, "usage") and result.usage is not None:
             usage = result.usage
             if usage is not None:
-                usage_dict = {
-                    LLMTokenUsageKeys.PROMPT_TOKENS: result.usage.prompt_tokens,
-                    LLMTokenUsageKeys.COMPLETION_TOKENS: usage.completion_tokens,
-                    LLMTokenUsageKeys.TOTAL_TOKENS: usage.total_tokens,
-                }
-                self.set_span_attribute(SpanAttributes.LLM_TOKEN_COUNTS, serialise_to_json(usage_dict))
+                self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS, result.usage.prompt_tokens)
+                self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, usage.completion_tokens)
 
     def compute_tokens(self):
         for message in self.fkwargs.get("messages", {}):
@@ -154,7 +152,7 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
 
     def handle_stream_start(self, chunk):
         if hasattr(chunk, "model") and chunk.model is not None:
-            self.set_span_attribute(SpanAttributes.LLM_MODEL, chunk.model)
+            self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_MODEL, chunk.model)
 
         function_call = self.fkwargs.get("functions") is not None,
         tool_calls = self.fkwargs.get("tools")
@@ -215,26 +213,15 @@ class ChatCompletionSpanCapture(GroqSpanCapture):
 
     def handle_stream_end(self):
         self.span.add_event(Event.STREAM_END.value)
-        self.set_span_attribute(
-            SpanAttributes.LLM_TOKEN_COUNTS,
-            serialise_to_json(
+        self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS, self.prompt_tokens)
+        self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, self.completion_tokens)
+        self.set_completion_span_event(
+            [
                 {
-                    LLMTokenUsageKeys.PROMPT_TOKENS: self.prompt_tokens,
-                    LLMTokenUsageKeys.COMPLETION_TOKENS: self.completion_tokens,
-                    LLMTokenUsageKeys.COMPLETION_TOKENS: self.prompt_tokens + self.completion_tokens,
+                    "role": "assistant",
+                    "content": "".join(self.result_content),
                 }
-            ),
-        )
-        self.set_span_attribute(
-            SpanAttributes.LLM_RESPONSES,
-            serialise_to_json(
-                [
-                    {
-                        "role": "assistant",
-                        "content": "".join(self.result_content),
-                    }
-                ]
-            ),
+            ]
         )
         self.span.set_status(StatusCode.OK)
         self.span.end()

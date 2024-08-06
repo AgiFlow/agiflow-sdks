@@ -1,12 +1,13 @@
 import sys
 
-from typing import Any, Optional, Dict
+from typing import Any, Optional, Dict, List
 from opentelemetry.sdk.trace import SpanProcessor
 from opentelemetry.sdk.trace.export import SpanExporter
 from opentelemetry.sdk.resources import SERVICE_NAME, SERVICE_VERSION, TELEMETRY_SDK_NAME, TELEMETRY_SDK_VERSION
 from opentelemetry.sdk.trace.sampling import Sampler
 from opentelemetry.util.re import parse_env_headers
 from opentelemetry.propagators.textmap import TextMapPropagator
+from opentelemetry.instrumentation.instrumentor import BaseInstrumentor
 
 from agiflow.opentelemetry.context.constants import PromptSettings
 from agiflow.opentelemetry.convention import SpanAttributes
@@ -49,6 +50,7 @@ class Agiflow:
         exporter: Optional[SpanExporter] = None,
         resource_attributes: dict = {},
         disable_instrumentations: Optional[DisableInstrumentations] = None,
+        extra_instrumentations: Optional[List[type[BaseInstrumentor]]] = None,
         propagator: Optional[TextMapPropagator] = None,
         Processor: Optional[type[SpanProcessor]] = None,
         additional_processor: Optional[SpanProcessor] = None,
@@ -92,6 +94,7 @@ class Agiflow:
             disable_instrumentations=disable_instrumentations,
             Processor=Processor,
             additional_processor=additional_processor,
+            extra_instrumentations=extra_instrumentations,
             propagator=propagator,
             exporter=exporter,
             sampler=sampler

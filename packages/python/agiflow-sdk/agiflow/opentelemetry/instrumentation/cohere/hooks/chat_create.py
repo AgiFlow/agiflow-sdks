@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from agiflow.opentelemetry.convention.constants import LLMResponseKeys, LLMTokenUsageKeys
+from agiflow.opentelemetry.convention.constants import LLMResponseKeys
 from agiflow.opentelemetry.instrumentation.constants.cohere import APIS
 from agiflow.opentelemetry.utils.llm import should_send_prompts
 from agiflow.utils import serialise_to_json
@@ -29,7 +29,7 @@ class ChatCreateSpanCapture(CohereChatSpanCapture):
         super().__init__(*args, **kwargs)
 
     @staticmethod
-    def get_span_name(instance):
+    def get_span_name(instance, *args, **kwargs):
         return APIS["CHAT_CREATE"]["METHOD"]
 
     def capture_input(self):
@@ -64,19 +64,19 @@ class ChatCreateSpanCapture(CohereChatSpanCapture):
                         }
                         for item in result.chat_history
                     ]
-                    self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json(responses))
+                    self.set_completion_span_event(responses)
                 else:
                     responses = [{"role": "CHATBOT", "content": result.text}]
-                    self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json(responses))
+                    self.set_completion_span_event(responses)
             elif hasattr(result, "tool_calls") and result.tool_calls is not None:
                 tool_calls = []
                 for tool_call in result.tool_calls:
                     tool_calls.append(tool_call.json())
                 self.set_span_attribute(SpanAttributes.LLM_TOOL_CALLS, serialise_to_json(tool_calls))
-                self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json([]))
+                self.set_completion_span_event([])
             else:
                 responses = []
-                self.set_span_attribute(SpanAttributes.LLM_RESPONSES, serialise_to_json(responses))
+                self.set_completion_span_event(responses)
 
         # Get the usage
         if hasattr(result, "meta") and result.meta is not None:
@@ -86,32 +86,8 @@ class ChatCreateSpanCapture(CohereChatSpanCapture):
             ):
                 usage = result.meta.billed_units
                 if usage is not None:
-                    usage_dict = {
-                        LLMTokenUsageKeys.PROMPT_TOKENS: (
-                            usage.input_tokens
-                            if usage.input_tokens is not None
-                            else 0
-                        ),
-                        LLMTokenUsageKeys.COMPLETION_TOKENS: (
-                            usage.output_tokens
-                            if usage.output_tokens is not None
-                            else 0
-                        ),
-                        LLMTokenUsageKeys.TOTAL_TOKENS: (
-                            usage.input_tokens + usage.output_tokens
-                            if usage.input_tokens is not None
-                            and usage.output_tokens is not None
-                            else 0
-                        ),
-                        LLMTokenUsageKeys.SEARCH_UNITS: (
-                            usage.search_units
-                            if usage.search_units is not None
-                            else 0
-                        ),
-                    }
-                    self.set_span_attribute(
-                        SpanAttributes.LLM_TOKEN_COUNTS, serialise_to_json(usage_dict)
-                    )
+                    self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS, usage.input_tokens)
+                    self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, usage.output_tokens)
 
     def capture_stream_output(self, result):
         super().capture_output(result)

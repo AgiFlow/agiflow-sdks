@@ -22,10 +22,9 @@ def common_setup(data, method_to_mock=None):
 
 
 def assert_token_count(attributes):
-    tokens = json.loads(attributes.get("llm.token.counts"))
-    output_tokens = tokens.get("prompt_tokens")
-    prompt_tokens = tokens.get("completion_tokens")
-    total_tokens = tokens.get("total_tokens")
+    output_tokens = attributes.get("gen_ai.usage.output_tokens")
+    prompt_tokens = attributes.get("gen_ai.usage.input_tokens")
+    total_tokens = output_tokens + prompt_tokens
 
     assert (
         output_tokens is not None
@@ -35,10 +34,26 @@ def assert_token_count(attributes):
     assert output_tokens + prompt_tokens == total_tokens
 
 
-def assert_response_format(attributes):
-    agiflow_responses = json.loads(attributes.get("llm.responses"))
+def assert_response_format(span):
+    if len(span.events) > 2:
+        event = span.events[-2]
+    else:
+        event = span.events[-1]
+
+    assert event.name == 'gen_ai.content.completion'
+    agiflow_responses = json.loads(event.attributes.get('gen_ai.completion'))
+
     assert isinstance(agiflow_responses, list)
     for agiflow_response in agiflow_responses:
         assert isinstance(agiflow_response, dict)
         assert "role" in agiflow_response
         assert "content" in agiflow_response
+
+
+def assert_prompt(span, value):
+    event = span.events[0]
+
+    assert event.name == 'gen_ai.content.prompt'
+    prompt = event.attributes.get('gen_ai.prompt')
+    print(prompt)
+    assert prompt == value

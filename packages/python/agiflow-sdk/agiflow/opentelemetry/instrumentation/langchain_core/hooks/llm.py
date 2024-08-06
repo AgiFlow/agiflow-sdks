@@ -15,7 +15,6 @@ limitations under the License.
 """
 
 import logging
-from agiflow.utils import serialise_to_json
 from agiflow.opentelemetry.convention import (
   SpanAttributes,
   AgiflowServiceTypes,
@@ -53,9 +52,9 @@ class LLMSpanCapture(LangchainCoreSpanCapture):
         span_attributes = {
           SpanAttributes.URL_FULL: "",
           SpanAttributes.LLM_API: self.instance.__class__.__name__,
-          SpanAttributes.LLM_MODEL: LLMSpanCapture.get_model(self.instance),
+          SpanAttributes.GEN_AI_REQUEST_MODEL: LLMSpanCapture.get_model(self.instance),
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
-          SpanAttributes.LLM_TYPE: LLMTypes.COMPLETION,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.COMPLETION,
         }
 
         if hasattr(self.instance, "_identifying_params"):
@@ -63,8 +62,8 @@ class LLMSpanCapture(LangchainCoreSpanCapture):
                 params = self.instance._identifying_params
                 options = params.get("options")
                 if options is not None:
-                    span_attributes[SpanAttributes.LLM_TEMPERATURE] = options.get("temperature")
-                    span_attributes[SpanAttributes.LLM_TOP_P] = options.get("top_p")
+                    span_attributes[SpanAttributes.GEN_AI_REQUEST_TEMPERATURE] = options.get("temperature")
+                    span_attributes[SpanAttributes.GEN_AI_REQUEST_TOP_P] = options.get("top_p")
                     span_attributes[SpanAttributes.LLM_TOP_K] = options.get("top_k")
             except Exception as e:
                 logger.error(e)
@@ -74,7 +73,7 @@ class LLMSpanCapture(LangchainCoreSpanCapture):
             for idx, prompt in enumerate(self.fargs[0]):
                 prompts.append({LLMPromptRoles.USER: prompt})
 
-            span_attributes[SpanAttributes.LLM_PROMPTS] = serialise_to_json(prompts)
+            self.set_prompt_span_event(prompts)
 
         self.set_span_attributes_from_pydantic(span_attributes, LLMSpanAttributesValidator)
 
@@ -83,9 +82,8 @@ class LLMSpanCapture(LangchainCoreSpanCapture):
             responses = []
             for idx, generation in enumerate(result.generations):
                 responses.append({LLMResponseKeys.CONTENT: generation[0].text})
-            self.set_span_attribute(
-                SpanAttributes.LLM_RESPONSES,
-                serialise_to_json(responses),
+            self.set_completion_span_event(
+                responses,
             )
 
 
@@ -113,9 +111,9 @@ class LLMStreamSpanCapture(LangchainCoreSpanCapture):
         span_attributes = {
           SpanAttributes.URL_FULL: "",
           SpanAttributes.LLM_API: self.instance.__class__.__name__,
-          SpanAttributes.LLM_MODEL: LLMSpanCapture.get_model(self.instance),
+          SpanAttributes.GEN_AI_REQUEST_MODEL: LLMSpanCapture.get_model(self.instance),
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
-          SpanAttributes.LLM_TYPE: LLMTypes.COMPLETION,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.COMPLETION,
         }
 
         if hasattr(self.instance, "_identifying_params"):
@@ -123,8 +121,8 @@ class LLMStreamSpanCapture(LangchainCoreSpanCapture):
                 params = self.instance._identifying_params
                 options = params.get("options")
                 if options is not None:
-                    span_attributes[SpanAttributes.LLM_TEMPERATURE] = options.get("temperature")
-                    span_attributes[SpanAttributes.LLM_TOP_P] = options.get("top_p")
+                    span_attributes[SpanAttributes.GEN_AI_REQUEST_TEMPERATURE] = options.get("temperature")
+                    span_attributes[SpanAttributes.GEN_AI_REQUEST_TOP_P] = options.get("top_p")
                     span_attributes[SpanAttributes.LLM_TOP_K] = options.get("top_k")
             except Exception as e:
                 logger.error(e)
@@ -134,30 +132,27 @@ class LLMStreamSpanCapture(LangchainCoreSpanCapture):
             for idx, prompt in enumerate(self.fargs[0]):
                 prompts.append({LLMPromptRoles.USER: prompt})
 
-            span_attributes[SpanAttributes.LLM_PROMPTS] = serialise_to_json(prompts)
+            self.set_prompt_span_event(prompts)
 
         self.set_span_attributes_from_pydantic(span_attributes, LLMSpanAttributesValidator)
 
     def capture_stream_end(self, result, result_content):
         # Finalize span after processing all chunks
         self.span.add_event(Event.STREAM_END)
-        self.span.set_attribute(
-            SpanAttributes.LLM_RESPONSES,
-            serialise_to_json(
-                [
-                    {
-                        LLMResponseKeys.ROLE: "assistant",
-                        LLMResponseKeys.CONTENT: "".join(result_content),
-                    }
-                ]
-            ),
+        self.set_completion_span_event(
+            [
+                {
+                    LLMResponseKeys.ROLE: "assistant",
+                    LLMResponseKeys.CONTENT: "".join(result_content),
+                }
+            ]
         )
         self.span.set_status(StatusCode.OK)
         self.span.end()
 
     def capture_chunk(self, result_content, chunk):
         if hasattr(chunk, "model") and chunk.model is not None:
-            self.span.set_attribute(SpanAttributes.LLM_MODEL, chunk.model)
+            self.span.set_attribute(SpanAttributes.GEN_AI_RESPONSE_MODEL, chunk.model)
 
         result_content.append(chunk)
 

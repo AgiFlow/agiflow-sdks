@@ -35,4 +35,5 @@ class CohereSpanCapture(BaseSpanCapture):
             SpanAttributes.AGIFLOW_SERVICE_NAME: service_provider,
             SpanAttributes.AGIFLOW_SERVICE_VERSION: importlib.metadata.version("cohere"),
             SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
+            SpanAttributes.GEN_AI_SYSTEM: service_provider,
         })

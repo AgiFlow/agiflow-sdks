@@ -14,8 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import json
-
 from typing import List, Any, Optional
 from agiflow.opentelemetry.convention.llm_span_attributes import LLMSpanAttributesValidator
 from agiflow.opentelemetry.instrumentation.constants.openai import APIS
@@ -40,13 +38,12 @@ class ImageGenerateSpanCapture(OpenAISpanCapture):
 
     def capture_input(self):
         span_attributes = {
-            SpanAttributes.LLM_TYPE: LLMTypes.IMAGE_GENERATION,
+            SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.IMAGE_GENERATION,
             SpanAttributes.LLM_API: APIS["IMAGES_GENERATION"]["ENDPOINT"],
             SpanAttributes.LLM_STREAM: self.stream,
-            SpanAttributes.LLM_PROMPTS: json.dumps(
-                [{"role": "user", "content": (self.prompt or [])}]
-            ),
         }
+
+        self.set_prompt_span_event([{"role": "user", "content": (self.prompt or [])}])
 
         self.set_span_attributes_from_pydantic(span_attributes, LLMSpanAttributesValidator)
 
@@ -70,4 +67,4 @@ class ImageGenerateSpanCapture(OpenAISpanCapture):
                     },
                 }
             ]
-            self.set_span_attribute(SpanAttributes.LLM_RESPONSES, json.dumps(response))
+            self.set_completion_span_event(response)

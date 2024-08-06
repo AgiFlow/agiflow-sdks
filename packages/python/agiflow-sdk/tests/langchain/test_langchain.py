@@ -18,7 +18,7 @@ def test_langchain(exporter, llm):
 
     assert [
         "ChatPromptTemplate",
-        "Completions",
+        "chat gpt-3.5-turbo",
         "ChatOpenAI",
         "RunnableSequence",
     ] == [span.name for span in spans]

@@ -15,7 +15,7 @@ limitations under the License.
 """
 
 import logging
-from agiflow.opentelemetry.convention.constants import LLMResponseKeys, LLMTokenUsageKeys, LLMTypes
+from agiflow.opentelemetry.convention.constants import LLMResponseKeys, LLMTypes
 from agiflow.opentelemetry.convention.llm_span_attributes import LLMSpanAttributesValidator
 from agiflow.utils import serialise_to_json
 from agiflow.opentelemetry.convention import (
@@ -58,8 +58,8 @@ class ChatSpanCapture(LangchainSpanCapture):
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
           SpanAttributes.URL_FULL: base_url,
           SpanAttributes.LLM_API: self.instance.__class__.__name__,
-          SpanAttributes.LLM_MODEL: model,
-          SpanAttributes.LLM_TYPE: LLMTypes.CHAT,
+          SpanAttributes.GEN_AI_REQUEST_MODEL: model,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.CHAT,
         }
 
         if hasattr(self.instance, "dict") and callable(self.instance.dict):
@@ -67,8 +67,8 @@ class ChatSpanCapture(LangchainSpanCapture):
             options = params.get('options')
             if options is not None:
                 try:
-                    span_attributes[SpanAttributes.LLM_TEMPERATURE] = options.get("temperature")
-                    span_attributes[SpanAttributes.LLM_TOP_P] = options.get("top_p")
+                    span_attributes[SpanAttributes.GEN_AI_REQUEST_TEMPERATURE] = options.get("temperature")
+                    span_attributes[SpanAttributes.GEN_AI_REQUEST_TOP_P] = options.get("top_p")
                     span_attributes[SpanAttributes.LLM_TOP_K] = options.get("top_k")
                 except Exception as e:
                     logger.error(e)
@@ -85,7 +85,7 @@ class ChatSpanCapture(LangchainSpanCapture):
                   serialise_to_json(prompt.content) if isinstance(prompt.content, list) else prompt.content
                 })
 
-        span_attributes[SpanAttributes.LLM_PROMPTS] = serialise_to_json(prompts)
+        self.set_prompt_span_event(prompts)
 
         self.set_span_attributes_from_pydantic(span_attributes, LLMSpanAttributesValidator)
 
@@ -98,9 +98,8 @@ class ChatSpanCapture(LangchainSpanCapture):
             for idx, generation in enumerate(result.generations):
                 responses.append(extract_content(generation[0]))
 
-            self.set_span_attribute(
-                SpanAttributes.LLM_RESPONSES,
-                serialise_to_json(responses),
+            self.set_completion_span_event(
+                responses,
             )
             try:
                 token_usage = generation[0].message.response_metadata['token_usage']
@@ -115,12 +114,8 @@ class ChatSpanCapture(LangchainSpanCapture):
             except Exception:
                 prompt_tokens = 0
 
-            usage_dict = {
-                LLMTokenUsageKeys.PROMPT_TOKENS: prompt_tokens,
-                LLMTokenUsageKeys.COMPLETION_TOKENS: completion_tokens,
-                LLMTokenUsageKeys.TOTAL_TOKENS: total_tokens,
-            }
-            self.set_span_attribute(SpanAttributes.LLM_TOKEN_COUNTS, serialise_to_json(usage_dict))
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS, prompt_tokens)
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, completion_tokens)
 
 
 def extract_content(generation):
@@ -158,17 +153,17 @@ def extract_content(generation):
         hasattr(message, "tool_calls")
         and message.tool_calls is not None
     ):
-        result = [
-            {
-                "id": tool_call.id,
-                "type": tool_call.type,
+        result = []
+        for tool_call in message.tool_calls:
+            result.append({
+                "id": tool_call.get('id'),
+                "type": tool_call.get('type'),
                 "function": {
-                    "name": tool_call.function.name,
-                    "arguments": tool_call.function.arguments,
+                    "name": tool_call.get('name'),
+                    "arguments": tool_call.get('args'),
                 },
-            }
-            for tool_call in message.tool_calls
-        ]
+            })
+
         response[LLMResponseKeys.TOOL_CALLS] = result
 
     # Check if choice.message has a function_call and extract information accordingly
@@ -176,9 +171,10 @@ def extract_content(generation):
         hasattr(message, "function_call")
         and message.function_call is not None
     ):
-        response[LLMResponseKeys.FUNCTION_CALLS] = {
-            "name": message.function_call.name,
-            "arguments": message.function_call.arguments,
-        }
+        if hasattr(message.function_call, 'name'):
+            response[LLMResponseKeys.FUNCTION_CALLS] = {
+                "name": message.function_call.name,
+                "arguments": message.function_call.arguments,
+            }
 
     return response

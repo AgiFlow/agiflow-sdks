@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from agiflow.opentelemetry.convention.constants import Event, LLMTokenUsageKeys
+from agiflow.opentelemetry.convention.constants import Event
 from agiflow.opentelemetry.convention.database_span_attributes import DatabaseSpanAttributesValidator
 from agiflow.opentelemetry.instrumentation.constants.pinecone import APIS
 from agiflow.utils import serialise_to_json, silently_fail
@@ -72,7 +72,7 @@ class GenericSpanCapture(PineconeSpanCapture):
                     and hasattr(chunk.message, "model")
                     and chunk.message.model is not None
                 ):
-                    self.set_span_attribute(SpanAttributes.LLM_MODEL, chunk.message.model)
+                    self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_MODEL, chunk.message.model)
                 content = ""
                 if hasattr(chunk, "delta") and chunk.delta is not None:
                     content = chunk.delta.text if hasattr(chunk.delta, "text") else ""
@@ -104,19 +104,10 @@ class GenericSpanCapture(PineconeSpanCapture):
 
             # Finalize span after processing all chunks
             self.span.add_event(Event.STREAM_END.value)
-            self.set_span_attribute(
-                SpanAttributes.LLM_TOKEN_COUNTS,
-                serialise_to_json(
-                    {
-                        LLMTokenUsageKeys.PROMPT_TOKENS: input_tokens,
-                        LLMTokenUsageKeys.COMPLETION_TOKENS: output_tokens,
-                        LLMTokenUsageKeys.TOTAL_TOKENS: input_tokens + output_tokens,
-                    }
-                ),
-            )
-            self.set_span_attribute(
-                SpanAttributes.LLM_RESPONSES,
-                serialise_to_json([{"role": "assistant", "content": "".join(result_content)}]),
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_INPUT_TOKENS, input_tokens)
+            self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_OUTPUT_TOKENS, output_tokens)
+            self.set_completion_span_event(
+                [{"role": "assistant", "content": "".join(result_content)}],
             )
             self.span.set_status(StatusCode.OK)
             self.span.end()

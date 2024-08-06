@@ -1,0 +1,82 @@
+{
+  "name": "agiflow-sdk-samples",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/agiflow-sdk-samples",
+  "targets": {
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "apps/agiflow-sdk-samples"
+      }
+    },
+    "run-app": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry run langchain_app",
+        "cwd": "apps/agiflow-sdk-samples"
+      }
+    },
+    "run-agent": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry run langchain_agent",
+        "cwd": "apps/agiflow-sdk-samples"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "outputPath": "apps/agiflow-sdk-samples/dist",
+        "publish": false,
+        "lockedVersions": false,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": [
+        "{workspaceRoot}/reports/apps/agiflow-sdk-samples/pylint.txt"
+      ],
+      "options": {
+        "outputFile": "reports/apps/agiflow-sdk-samples/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/apps/agiflow-sdk-samples/unittests",
+        "{workspaceRoot}/coverage/apps/agiflow-sdk-samples"
+      ],
+      "options": {
+        "command": "poetry run pytest tests/",
+        "cwd": "apps/agiflow-sdk-samples"
+      }
+    }
+  },
+  "tags": []
+}

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from agiflow.opentelemetry.convention.constants import LLMTokenUsageKeys, LLMTypes
+from agiflow.opentelemetry.convention.constants import LLMTypes
 from agiflow.opentelemetry.convention.llm_span_attributes import LLMSpanAttributesValidator
 from agiflow.opentelemetry.instrumentation.constants.cohere import APIS
 from agiflow.utils import serialise_to_json
@@ -34,17 +34,16 @@ class RerankSpanCapture(CohereSpanCapture):
         self.model = model
 
     @staticmethod
-    def get_span_name(instance):
+    def get_span_name(instance, *args, **kwargs):
         return APIS["RERANK"]["METHOD"]
 
     def capture_input(self):
         span_attributes = {
           SpanAttributes.AGIFLOW_SERVICE_TYPE: AgiflowServiceTypes.LLM,
-          SpanAttributes.LLM_TYPE: LLMTypes.RERANK,
+          SpanAttributes.GEN_AI_OPERATION_NAME: LLMTypes.RERANK,
           SpanAttributes.URL_FULL: APIS["RERANK"]["URL"],
           SpanAttributes.LLM_API: APIS["RERANK"]["ENDPOINT"],
-          SpanAttributes.LLM_MODEL: self.model,
-          SpanAttributes.LLM_PROMPTS: "",
+          SpanAttributes.GEN_AI_REQUEST_MODEL: self.model,
           SpanAttributes.LLM_RETRIEVAL_QUERY: self.fkwargs.get("query"),
         }
 
@@ -61,7 +60,7 @@ class RerankSpanCapture(CohereSpanCapture):
 
     def capture_output(self, result):
         if (hasattr(result, "response_id")) and (result.response_id is not None):
-            self.set_span_attribute(SpanAttributes.LLM_RESPONSE_ID, result.response_id)
+            self.set_span_attribute(SpanAttributes.GEN_AI_RESPONSE_ID, result.response_id)
 
         if hasattr(result, "meta") and result.meta is not None:
             if (
@@ -70,30 +69,7 @@ class RerankSpanCapture(CohereSpanCapture):
             ):
                 usage = result.meta.billed_units
                 if usage is not None:
-                    usage_dict = {
-                        LLMTokenUsageKeys.PROMPT_TOKENS: (
-                            usage.input_tokens
-                            if usage.input_tokens is not None
-                            else 0
-                        ),
-                        LLMTokenUsageKeys.COMPLETION_TOKENS: (
-                            usage.output_tokens
-                            if usage.output_tokens is not None
-                            else 0
-                        ),
-                        LLMTokenUsageKeys.TOTAL_TOKENS: (
-                            usage.input_tokens + usage.output_tokens
-                            if usage.input_tokens is not None
-                            and usage.output_tokens is not None
-                            else 0
-                        ),
-                        LLMTokenUsageKeys.SEARCH_UNITS: (
-                            usage.search_units
-                            if usage.search_units is not None
-                            else 0
-                        ),
-                    }
-                    self.set_span_attribute(SpanAttributes.LLM_TOKEN_COUNTS, serialise_to_json(usage_dict))
+                    self.set_span_attribute(SpanAttributes.GEN_AI_USAGE_SEARCH_UNITS, usage.search_units)
 
         if should_send_prompts():
 
