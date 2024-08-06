@@ -1,5 +1,30 @@
 # Changelog for agiflow-sdk
 
+## [0.0.24] - 2024-08-06
+
+Update span attributes to support Otel GenAi convention
+
+**Add attributes**
+- `gen_ai.response.finish_reasons` 
+- `gen_ai.system`
+- `gen_ai.usage.search_units`
+
+**Change attributes**
+- `llm.type` to `gen_ai.operation.name`
+- `llm.prompts` to span events with `gen_ai.content.prompt` name and `gen_ai.promp attributes`
+- `llm.model` to `gen_ai.request.model` and `gen_ai.response.model`
+- `llm.responses` to span events with `gen_ai.content.completion` name and `gen_ai.completion attributes`
+- `llm.max_tokens` to `gen_ai.request.max_tokens`
+- `llm.temperature` to `gen_ai.request.temperature`
+- `llm.top_p` to `gen_ai.request.top_p`
+- `llm.response_id` to `gen_ai.response.id`
+- `llm.usage.tokens` to `gen_ai.usage.promp_tokens` and `gen_ai.usage.completion_tokens`
+
+**Fix span name**
+- Change Chat Completion span name to chat [MODEL_NAME]
+
+[Merge PR #27](https://github.com/AgiFlow/agiflow-sdks/commit/f6973a21be28b1e943c687770461ee6359b60cca)
+
 ## [0.0.23] - 2024-07-22
 
 **Added**
